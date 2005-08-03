@@ -3,8 +3,9 @@ common-lisp-controller (4.16) unstable; urgency=low
   * Now uses darcs
   * Updated standard version
   * Remove /etc/lisp-config.lisp on purge. Closes: #319163
+  * Added ${misc:Depends}, fixing debconf2 and cdebconf problems. 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  3 Aug 2005 09:32:06 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  3 Aug 2005 10:58:02 +0200
 
 common-lisp-controller (4.15) unstable; urgency=low
 

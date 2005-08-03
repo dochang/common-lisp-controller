@@ -1,6 +1,8 @@
 common-lisp-controller (4.17) UNRELEASED; urgency=low
 
-  * token new version
+  René van Bevern:
+    * install clc-register-user-package and clc-unregister-user-package
+      to /usr/bin instead of /usr/sbin
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  3 Aug 2005 19:39:21 +0200
 

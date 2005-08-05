@@ -109,14 +109,16 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
       (setq cl:*features* (delete :sbcl-hooks-require  cl:*features*))
 
       ;; register the systems root:
-      (push *systems-root*
-	    (symbol-value (intern (symbol-name :*central-registry*)
-				  (find-package :asdf))))
+      (pushnew *systems-root*
+	    	(symbol-value (intern (symbol-name :*central-registry*)
+					  (find-package :asdf)))
+		:test #'equal)
 
-      (push '(merge-pathnames ".clc/systems/" 
-			      (user-homedir-pathname))
-	     (symbol-value (intern (symbol-name :*central-registry*)
-			           (find-package :asdf))))))
+      (pushnew '(merge-pathnames ".clc/systems/" 
+			      	(user-homedir-pathname))
+	     	(symbol-value (intern (symbol-name :*central-registry*)
+				           (find-package :asdf)))
+		:test #'equal)))
   (values))
 
 

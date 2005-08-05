@@ -3,8 +3,11 @@ common-lisp-controller (4.17) UNRELEASED; urgency=low
   René van Bevern:
     * install clc-register-user-package and clc-unregister-user-package
       to /usr/bin instead of /usr/sbin
+  Peter Van Eynde:
+    * Use pushnew when modifying the *central-registry*, from a suggestion
+      by François-René Rideau.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  3 Aug 2005 19:39:21 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri,  5 Aug 2005 08:47:56 +0200
 
 common-lisp-controller (4.16) unstable; urgency=low
 

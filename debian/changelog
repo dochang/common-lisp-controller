@@ -8,7 +8,8 @@ common-lisp-controller (4.17) unstable; urgency=high
       by François-René Rideau.
     * Also from Faré: check if we are the owner of the cache directory
       as this could be used to let other users run code you planted
-      for them. This does look like a security issue.
+      for them. This does is a grave security issue. Fixes: 
+      CAN-2005-2657
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  1 Sep 2005 11:42:14 +0200
 

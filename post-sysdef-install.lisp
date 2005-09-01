@@ -9,30 +9,104 @@
   (unless (find-package :asdf)
     (error "You need to load the asdf system before loading or compiling this file!")))
 
+(defun get-homedir ()
+  #-cmu
+  (user-homedir-pathname)
+  #+cmu
+  (let ((dirs (extensions:search-list "home:")))
+    (when dirs
+      (first dirs))))
+
+#+clisp
+(defun check-spooldir-security (target)
+  ;; does target exist?
+  (cond
+   ;; probe-directory will fail if we are not the owner!
+   ((ignore-errors
+     (ext:probe-directory target))
+    ;; check who owns it
+    (let* ((stat (posix:file-stat target))
+	   (owner (posix:file-stat-uid stat))
+	   (me (ext:getenv "USER"))
+	   (uid (posix:user-data-uid
+		 (posix:user-data me))))
+      (unless (= owner uid)
+	(error "Security problem: The owner of ~S is not ~S as I wanted"
+	       target
+	       me))))
+   ((not
+     (ignore-errors
+       (not (ext:probe-directory target))))
+    ;; check who owns it
+    (error "Security problem: The owner of ~S is incorrect"
+	   target))
+   (t
+    (let ((old-umask (posix:umask #o077)))
+      (unwind-protect
+	  (ensure-directories-exist target)
+	(posix:umask old-umask)))))
+  (values))
+
+#+sbcl
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (require :sb-posix))
+
+#+sbcl
+(defun check-spooldir-security (target)
+  ;; does target exist?
+  (cond
+   ((eq :directory
+	(sb-unix:unix-file-kind (namestring target)))
+    ;; check who owns it
+    (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
+	(sb-unix:unix-stat (namestring target))
+
+      (declare (ignore res dev ino mode nlink gid rdev size atime mtime))      
+      (let* ((my-uid (sb-unix:unix-getuid)))
+	(unless (= uid my-uid)
+	  (error "Security problem: The owner of ~S is not ~S as I wanted"
+		 target
+		 my-uid)))))
+   (t
+    (let ((old-umask (sb-posix:umask #o077)))
+      (unwind-protect
+	  (ensure-directories-exist target)
+	(sb-posix:umask old-umask)))))
+  (values))
+
+#+cmu
+(defun check-spooldir-security (target)
+  ;; does target exist?
+  (cond
+   ((eq :directory
+	(unix:unix-file-kind (namestring target)))
+    ;; check who owns it
+    (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
+	(unix:unix-stat (namestring target))
+
+      (declare (ignore res dev ino mode nlink gid rdev size atime mtime))
+      (let* ((my-uid (unix:unix-getuid)))
+	(unless (= uid my-uid)
+	  (error "Security problem: The owner of ~S is not ~S as I wanted"
+		 target
+		 my-uid)))))
+   (t
+    (let ((old-umask (unix::unix-umask #o077)))
+      (unwind-protect	   
+	  (ensure-directories-exist target)
+	(unix::unix-umask old-umask)))))
+  (values))
+      
 (defun calculate-fasl-root  ()
   "Inits common-lisp controller for this user"
   (unless *fasl-root*
     (setf *fasl-root*
 	  ;; set it to the username of the user:
-	  (let* (#-cmu
-		 (homedir (pathname-directory
-			   (user-homedir-pathname)))
-		 ;; cmucl has searchlist home (!)
-		 #+cmu
-		 (homedirs (extensions:search-list "home:"))
-		 #+cmu
-		 (homedir (when homedirs
-			    (pathname-directory
-			     (first homedirs))))
-		 #-cmu
-		 (homepath (user-homedir-pathname))
-		 #+cmu
-		 (homepaths (extensions:search-list "home:"))
-		 #+cmu
-		 (homepath (when homepaths
-			     (first homepaths))))
-	    (unless (and homedir homepath)
+	  (let* ((homedir (pathname-directory
+			   (get-homedir))))
+	    (unless homedir
 	      (error "cannot determine homedir?"))
+	    
 	    ;; strip off :re or :abs
 	    (when (or (eq (first homedir)
 			  :relative)
@@ -43,30 +117,24 @@
 	    (when (string= (first homedir)
 			   "home")
 	      (setf homedir (rest homedir)))
-	    ;; now append *implementation-name*
-	    (let ((new-root (append homedir
-				    (list *implementation-name*))))
-	      ;; this should be able to cope with
-	      ;; homedirs like /home/p/pv/pvaneynd ...
-	      (let ((target (merge-pathnames
-			     (make-pathname
-			      :directory `(:relative ,@new-root))
-			     #p"/var/cache/common-lisp-controller/"))
-		    (target-root (merge-pathnames
-				  (make-pathname
-				   :directory `(:relative ,@homedir))
-				  #p"/var/cache/common-lisp-controller/")))
-		;; now check if we are the owner of that directory
-		;; otherwise another person could pre-load that with
-		;; 'bad' fasls
-		(ensure-directories-exist target-root :verbose t)
-		(unless (string= (file-author homepath)
-				 (file-author target-root))
-		  (error "security problem: the owner of ~A is not as expected ~A but ~A"
-			 target-root
-			 (file-author homepath)
-			 (file-author target-root)))
-		target))))))3
+	    
+
+	    ;; this should be able to cope with
+	    ;; homedirs like /home/p/pv/pvaneynd ...
+	    (let ((target (merge-pathnames
+			   (make-pathname
+			    :directory `(:relative ,@homedir
+						   ;; now append *implementation-name*
+						   ,*implementation-name*))
+			   #p"/var/cache/common-lisp-controller/"))
+		  (target-root (merge-pathnames
+				(make-pathname
+				 :directory `(:relative ,@homedir))
+				#p"/var/cache/common-lisp-controller/")))
+
+	      (check-spooldir-security target-root)
+	      
+	      target)))))
 
 (defun asdf-system-compiled-p (system)
   "Returns T is an ASDF system is already compiled" 

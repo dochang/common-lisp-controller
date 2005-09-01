@@ -1,4 +1,4 @@
-common-lisp-controller (4.17) UNRELEASED; urgency=low
+common-lisp-controller (4.17) unstable; urgency=high
 
   René van Bevern:
     * install clc-register-user-package and clc-unregister-user-package
@@ -6,8 +6,11 @@ common-lisp-controller (4.17) UNRELEASED; urgency=low
   Peter Van Eynde:
     * Use pushnew when modifying the *central-registry*, from a suggestion
       by François-René Rideau.
+    * Also from Faré: check if we are the owner of the cache directory
+      as this could be used to let other users run code you planted
+      for them. This does look like a security issue.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri,  5 Aug 2005 08:47:56 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  1 Sep 2005 11:42:14 +0200
 
 common-lisp-controller (4.16) unstable; urgency=low
 

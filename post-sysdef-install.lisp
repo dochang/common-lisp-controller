@@ -23,7 +23,16 @@
 		 #+cmu
 		 (homedir (when homedirs
 			    (pathname-directory
-			     (first homedirs)))))
+			     (first homedirs))))
+		 #-cmu
+		 (homepath (user-homedir-pathname))
+		 #+cmu
+		 (homepaths (extensions:search-list "home:"))
+		 #+cmu
+		 (homepath (when homepaths
+			     (first homepaths))))
+	    (unless (and homedir homepath)
+	      (error "cannot determine homedir?"))
 	    ;; strip off :re or :abs
 	    (when (or (eq (first homedir)
 			  :relative)
@@ -35,14 +44,29 @@
 			   "home")
 	      (setf homedir (rest homedir)))
 	    ;; now append *implementation-name*
-	    (setf homedir (append homedir
-				  (list *implementation-name*)))
-	    ;; this should be able to cope with
-	    ;; homedirs like /home/p/pv/pvaneynd ...
-	    (merge-pathnames
-	     (make-pathname
-	      :directory `(:relative ,@homedir))
-	     #p"/var/cache/common-lisp-controller/")))))
+	    (let ((new-root (append homedir
+				    (list *implementation-name*))))
+	      ;; this should be able to cope with
+	      ;; homedirs like /home/p/pv/pvaneynd ...
+	      (let ((target (merge-pathnames
+			     (make-pathname
+			      :directory `(:relative ,@new-root))
+			     #p"/var/cache/common-lisp-controller/"))
+		    (target-root (merge-pathnames
+				  (make-pathname
+				   :directory `(:relative ,@homedir))
+				  #p"/var/cache/common-lisp-controller/")))
+		;; now check if we are the owner of that directory
+		;; otherwise another person could pre-load that with
+		;; 'bad' fasls
+		(ensure-directories-exist target-root :verbose t)
+		(unless (string= (file-author homepath)
+				 (file-author target-root))
+		  (error "security problem: the owner of ~A is not as expected ~A but ~A"
+			 target-root
+			 (file-author homepath)
+			 (file-author target-root)))
+		target))))))3
 
 (defun asdf-system-compiled-p (system)
   "Returns T is an ASDF system is already compiled" 
@@ -63,7 +87,6 @@
 
 (defun source-root-path-to-fasl-path (source)
   "Converts a path in the source root into the equivalent path in the fasl root"
-  (calculate-fasl-root)
   (merge-pathnames 
    (enough-namestring source (asdf::resolve-symlinks *source-root*))
    *fasl-root*))
@@ -73,6 +96,7 @@
   (let ((orig (call-next-method)))
     (cond
       ((beneath-source-root? c)
+       (calculate-fasl-root)
        (mapcar #'source-root-path-to-fasl-path orig))
       (t
        orig))))

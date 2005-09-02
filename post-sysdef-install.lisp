@@ -26,6 +26,7 @@
      (ext:probe-directory target))
     ;; check who owns it
     (let* ((stat (posix:file-stat target))
+	   (mode (posix:file-stat-mode stat))
 	   (owner (posix:file-stat-uid stat))
 	   (me (ext:getenv "USER"))
 	   (uid (posix:user-data-uid
@@ -33,7 +34,13 @@
       (unless (= owner uid)
 	(error "Security problem: The owner of ~S is not ~S as I wanted"
 	       target
-	       me))))
+	       me))
+      (when (or (member :RWXO mode)
+		(member :RWXG mode)
+		(member :WOTH mode)
+		(member :WGRP mode))
+	(error "Security problem: the cache directory ~S is writable for other users"
+	       target))))
    ((not
      (ignore-errors
        (not (ext:probe-directory target))))
@@ -61,12 +68,16 @@
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
 	(sb-unix:unix-stat (namestring target))
 
-      (declare (ignore res dev ino mode nlink gid rdev size atime mtime))      
+      (declare (ignore res dev ino nlink gid rdev size atime mtime))
       (let* ((my-uid (sb-unix:unix-getuid)))
 	(unless (= uid my-uid)
 	  (error "Security problem: The owner of ~S is not ~S as I wanted"
 		 target
-		 my-uid)))))
+		 my-uid)))
+      (unless (= 0
+		 (logand mode #x022))
+	(error "Security problem: the cache directory ~S is writable for other users"
+	       target))))
    (t
     (let ((old-umask (sb-posix:umask #o077)))
       (unwind-protect
@@ -84,12 +95,17 @@
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
 	(unix:unix-stat (namestring target))
 
-      (declare (ignore res dev ino mode nlink gid rdev size atime mtime))
+      (declare (ignore res dev ino nlink gid rdev size atime mtime))
       (let* ((my-uid (unix:unix-getuid)))
 	(unless (= uid my-uid)
 	  (error "Security problem: The owner of ~S is not ~S as I wanted"
 		 target
-		 my-uid)))))
+		 my-uid)))
+      
+      (unless (= 0
+		 (logand mode #x022))
+	(error "Security problem: the cache directory ~S is writable for other users"
+	       target))))
    (t
     (let ((old-umask (unix::unix-umask #o077)))
       (unwind-protect	   

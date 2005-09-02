@@ -96,7 +96,18 @@
 	  (ensure-directories-exist target)
 	(unix::unix-umask old-umask)))))
   (values))
-      
+
+
+;; sucks but is portable ;-(
+#-(or cmu sbcl clisp)
+(defun check-spooldir-security (target)
+  (cerror "I have checked this"
+	  "The security of the directory ~A cannot be checked.
+Please check if you are the owner of that directory and
+that the permissions are such that nobody can write to it."
+	  target))
+
+
 (defun calculate-fasl-root  ()
   "Inits common-lisp controller for this user"
   (unless *fasl-root*

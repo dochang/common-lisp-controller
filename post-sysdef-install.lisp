@@ -113,9 +113,36 @@
 	(unix::unix-umask old-umask)))))
   (values))
 
+#+allergo
+(defun check-spooldir-security (target)
+  ;; does target exist?
+  (cond
+   ((file:file-directory-p (namestring target))
+    ;; check who owns it
+    (let* ((stat (excl.osi:stat (namestring target)))
+	   (mode (excl.osi:stat-mode stat))
+	   (uid  (excl.osi:stat-uid stat))
+	   (my-uid (excl.osi:getuid)))
+
+      (unless (= uid my-uid)
+	(error "Security problem: The owner of ~S is not ~S as I wanted"
+	       target
+	       my-uid))
+      
+      (unless (= 0
+		 (logand mode #x022))
+	(error "Security problem: the cache directory ~S is writable for other users"
+	       target))))
+   (t
+    (let ((old-umask (excl.osi:umask #o077)))
+      (unwind-protect	   
+	  (ensure-directories-exist target)
+	(excl.osi:umask old-umask)))))
+  (values))
+
 
 ;; sucks but is portable ;-(
-#-(or cmu sbcl clisp)
+#-(or cmu sbcl clisp allergo)
 (defun check-spooldir-security (target)
   (cerror "I have checked this"
 	  "The security of the directory ~A cannot be checked.

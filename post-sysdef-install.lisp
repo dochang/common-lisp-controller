@@ -113,7 +113,8 @@
 	(unix::unix-umask old-umask)))))
   (values))
 
-#+allergo
+;#+allergo
+#+(or)
 (defun check-spooldir-security (target)
   ;; does target exist?
   (cond
@@ -142,13 +143,39 @@
 
 
 ;; sucks but is portable ;-(
-#-(or cmu sbcl clisp allergo)
+#-(or cmu sbcl clisp)
 (defun check-spooldir-security (target)
+  #+(or)
   (cerror "I have checked this"
 	  "The security of the directory ~A cannot be checked.
 Please check if you are the owner of that directory and
 that the permissions are such that nobody can write to it."
-	  target))
+	  target)
+  (let ((result
+	 (asdf:run-shell-command "perl -W -e 'use File::stat; use User::pwent;
+umask 077;
+if (! -d \"~A~:*\") {
+  mkdir \"~A~:*\";
+}~
+my $stat=stat(\"~A~:*\") || exit 42;
+if (($stat->mode & 0040000) == 0) {
+   exit 43;
+}
+if (! -O \"~A~:*\" ) {
+   exit 44;
+}
+if (($stat->mode & 022) != 0) {
+   exit 45;
+}
+exit 0;' 2>&1 3>&1"
+				     target)))
+    (case result
+      (0 nil)
+      (42 (error "Security problem: Could not stat ~A" target))
+      (43 (error "Security problem: ~A is not a directory" target))
+      (44 (error "Security problem: ~A is not a owned by you" target))
+      (45 (error "Security problem: ~A is world writable" target)))))
+
 
 
 (defun calculate-fasl-root  ()

@@ -8,10 +8,12 @@ common-lisp-controller (4.17) unstable; urgency=high
       by François-René Rideau.
     * Also from Faré: check if we are the owner of the cache directory
       as this could be used to let other users run code you planted
-      for them. This does is a grave security issue. Fixes: 
+      for them. This does is a grave security issue. Fixes:
       CAN-2005-2657
+    * Improved the portability of the security fix with the help of 
+      Kevin Rosenberg. But clc now depends on perl...
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  1 Sep 2005 11:42:14 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun,  4 Sep 2005 09:56:58 +0200
 
 common-lisp-controller (4.16) unstable; urgency=low
 

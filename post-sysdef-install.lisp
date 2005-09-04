@@ -75,7 +75,7 @@
 		 target
 		 my-uid)))
       (unless (= 0
-		 (logand mode #x022))
+		 (logand mode #o022))
 	(error "Security problem: the cache directory ~S is writable for other users"
 	       target))))
    (t
@@ -103,7 +103,7 @@
 		 my-uid)))
       
       (unless (= 0
-		 (logand mode #x022))
+		 (logand mode #o022))
 	(error "Security problem: the cache directory ~S is writable for other users"
 	       target))))
    (t
@@ -131,7 +131,7 @@
 	       my-uid))
       
       (unless (= 0
-		 (logand mode #x022))
+		 (logand mode #o022))
 	(error "Security problem: the cache directory ~S is writable for other users"
 	       target))))
    (t

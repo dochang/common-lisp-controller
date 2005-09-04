@@ -1,3 +1,10 @@
+common-lisp-controller (4.18) unstable; urgency=high
+
+  * From Kevin Rosenberg: it should be #o22, not #x22!
+    Better fix for CAN-2005-2657
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun,  4 Sep 2005 21:56:54 +0200
+
 common-lisp-controller (4.17) unstable; urgency=high
 
   René van Bevern:

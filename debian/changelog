@@ -1,3 +1,9 @@
+common-lisp-controller (4.19) UNRELEASED; urgency=low
+
+  * From Kevin Rosenberg: improved allegro checks.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon,  5 Sep 2005 08:41:48 +0200
+
 common-lisp-controller (4.18) unstable; urgency=high
 
   * From Kevin Rosenberg: it should be #o22, not #x22!

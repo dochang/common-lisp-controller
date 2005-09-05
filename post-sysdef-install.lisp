@@ -113,12 +113,14 @@
 	(unix::unix-umask old-umask)))))
   (values))
 
-;#+allergo
-#+(or)
+#+allegro
+(require :osi)
+
+#+allergo
 (defun check-spooldir-security (target)
   ;; does target exist?
   (cond
-   ((file:file-directory-p (namestring target))
+   ((excl:probe-directory target)
     ;; check who owns it
     (let* ((stat (excl.osi:stat (namestring target)))
 	   (mode (excl.osi:stat-mode stat))
@@ -143,7 +145,7 @@
 
 
 ;; sucks but is portable ;-(
-#-(or cmu sbcl clisp)
+#-(or cmu sbcl clisp allegro)
 (defun check-spooldir-security (target)
   #+(or)
   (cerror "I have checked this"

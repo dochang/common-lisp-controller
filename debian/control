@@ -9,7 +9,7 @@ Standards-Version: 3.6.2.1
 Package: common-lisp-controller
 Architecture: all
 Depends:  ${misc:Depends}, ${shlibs:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0), cl-asdf (>= 1.55), realpath, perl
-Conflicts: cmucl (<< 3.1.0)
+Conflicts: cmucl (<< 3.1.0), clisp (<< 1:2.35-1)
 Replaces: cmucl (<< 3.1.0)
 Suggests: sbcl
 Description: This is a Common Lisp source and compiler manager

@@ -1,11 +1,11 @@
-common-lisp-controller (4.19) UNRELEASED; urgency=low
+common-lisp-controller (4.19) unstable; urgency=low
 
   * From Kevin Rosenberg: improved allegro checks.
   * Remove /var/cache/common-lisp-controller on purge.
     Closes: #328490
-  * Conflict with older clisps that do not have the posix package. 
+  * Conflict with older clisps that do not have the posix package.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 20 Sep 2005 22:09:55 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 29 Sep 2005 08:51:15 +0200
 
 common-lisp-controller (4.18) unstable; urgency=high
 

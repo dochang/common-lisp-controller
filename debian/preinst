@@ -29,7 +29,7 @@ case "$1" in
         if [ -d /usr/lib/common-lisp-controller ] ; then rmdir --ignore-fail-on-non-empty /usr/lib/common-lisp-controller ; fi
 
         for compiler in /usr/lib/common-lisp/bin/*.sh ; do
-           if [ -f "$compiler" -a -r "$compiler" ] ; then
+           if [ -f "$compiler" ] && [ -r "$compiler" ] ; then
              i=${compiler##*/}
              i=${i%.sh}
              if [ -d "/usr/lib/common-lisp/${i}" ] ; then

@@ -1,3 +1,9 @@
+common-lisp-controller (4.20) UNRELEASED; urgency=low
+
+  * Token new version
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 30 Sep 2005 14:31:48 +0200
+
 common-lisp-controller (4.19) unstable; urgency=low
 
   * From Kevin Rosenberg: improved allegro checks.

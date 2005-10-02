@@ -679,11 +679,11 @@ common-lisp-controller (3.21) unstable; urgency=low
 
 common-lisp-controller (3.20) unstable; urgency=low
 
- Peter Van Eynde <pvaneynd@debian.org>:
+  Peter Van Eynde <pvaneynd@debian.org>:
   * Add type of ".*" to source namestring for logical pathnames (Kevin M.
     Rosenberg)
 
- Kevin M. Rosenberg <kmr@debian.org>:
+  Kevin M. Rosenberg <kmr@debian.org>:
   * NMU
   * Add type of ".*" to source namestring for logical pathnames
   * Add reregister-common-lisp-implementations function and manpage

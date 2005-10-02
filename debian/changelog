@@ -1,5 +1,8 @@
 common-lisp-controller (4.20) UNRELEASED; urgency=low
 
+  * René van Bevern
+    + debian/preinst: specify -depth as first argument to find (Closes: #331160)
+
   * Token new version
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 30 Sep 2005 14:31:48 +0200

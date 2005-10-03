@@ -1,11 +1,12 @@
-common-lisp-controller (4.20) UNRELEASED; urgency=low
+common-lisp-controller (4.20) unstable; urgency=low
 
   * René van Bevern
     + debian/preinst: specify -depth as first argument to find (Closes: #331160)
 
-  * Token new version
+  * Added *clc-quiet* parameter to make clc work without 
+    printing messages, mainly for CL applications.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 30 Sep 2005 14:31:48 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon,  3 Oct 2005 08:38:57 +0200
 
 common-lisp-controller (4.19) unstable; urgency=low
 

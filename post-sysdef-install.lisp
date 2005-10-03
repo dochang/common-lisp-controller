@@ -284,7 +284,8 @@ exit 0;' 2>&1 3>&1"
       (if (asdf-system-compiled-p system)
 		  (asdf:oos 'asdf:load-op module-name)
 		(progn
-		  (format t "~&;;; Please wait, recompiling library...")
+		  (unless *clc-quiet*
+		    (format t "~&;;; Please wait, recompiling library..."))
 		  (asdf:oos 'asdf:compile-op module-name)
 		  (terpri)
 		  (asdf:oos 'asdf:load-op module-name)))

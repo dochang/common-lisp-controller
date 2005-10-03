@@ -12,6 +12,7 @@
 	   #:init-common-lisp-controller-v4
 	   #:clc-require
 	   #:clc-build-all-packages
+	   #:*clc-quiet*
 	   ;; depricated:
 	   #:make-clc-send-command-string
 	   #:send-clc-command)
@@ -22,6 +23,8 @@
 
 (in-package #:common-lisp-controller)
 
+(defvar *clc-quiet* nil
+  "If true then clc prints no messages")
 
 ;; Some general utilities to make the
 ;; descriptions shorter
@@ -91,7 +94,9 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
 			     :print nil
 			     :verbose nil)
 	       ;; then load it:
-	       (load compiled-file-pathname))))
+	       (load compiled-file-pathname
+		     :verbose nil
+		     :print nil))))
       ;; first ourselves:
       (compile-and-load  "common-lisp-controller"
 			 "common-lisp-controller.lisp")

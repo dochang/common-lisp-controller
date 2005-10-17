@@ -1,3 +1,11 @@
+common-lisp-controller (4.21) UNRELEASED; urgency=low
+
+  * Token new version
+  * [INTL:sv] Swedish debconf templates translation (Closes: #334189)
+    from Daniel Nylander
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 17 Oct 2005 07:47:24 +0200
+
 common-lisp-controller (4.20) unstable; urgency=low
 
   * René van Bevern

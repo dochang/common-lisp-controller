@@ -43,6 +43,8 @@
 (defvar *implementation-name* nil "The name of the implementation,
 used to name the directory in /var/cache/common-lisp-controller")
 
+(define-modify-macro appendf (&rest lists) append)
+
 (defun init-common-lisp-controller (fasl-root
                                     &key
                                     (source-root "/usr/share/common-lisp/")
@@ -114,18 +116,17 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
       (setq cl:*features* (delete :sbcl-hooks-require  cl:*features*))
 
       ;; register the systems root:
-      (pushnew *systems-root*
-	    	(symbol-value (intern (symbol-name :*central-registry*)
-					  (find-package :asdf)))
-		:test #'equal)
+      (appendf 
+           (symbol-value (intern (symbol-name :*central-registry*)
+                                 (find-package :asdf)))
+           (list *systems-root*))
 
-      (pushnew '(merge-pathnames ".clc/systems/" 
-			      	(user-homedir-pathname))
-	     	(symbol-value (intern (symbol-name :*central-registry*)
-				           (find-package :asdf)))
-		:test #'equal)))
+      (appendf 
+            (symbol-value (intern (symbol-name :*central-registry*)
+                                  (find-package :asdf)))
+            (list '(merge-pathnames ".clc/systems/" 
+                             (user-homedir-pathname))))))
   (values))
-
 
 
 

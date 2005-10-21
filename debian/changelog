@@ -1,11 +1,13 @@
-common-lisp-controller (4.21) UNRELEASED; urgency=low
+common-lisp-controller (4.21) unstable; urgency=low
 
-  * Token new version
   * [INTL:sv] Swedish debconf templates translation (Closes: #334189)
     from Daniel Nylander
   * Spanish debconf translation (Closes: #334550)
+  * reduce priority of common-lisp-control's asdf repository 
+    (Closes: #334406)
+    Even if it affects Gentoo :-)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 19 Oct 2005 09:45:52 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 21 Oct 2005 06:01:51 +0200
 
 common-lisp-controller (4.20) unstable; urgency=low
 

@@ -1,3 +1,9 @@
+common-lisp-controller (4.24) UNRELEASED; urgency=low
+
+  * token new verion
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 24 Oct 2005 21:23:20 +0200
+
 common-lisp-controller (4.23) unstable; urgency=low
 
   * Export calculate-fasl-root for slime

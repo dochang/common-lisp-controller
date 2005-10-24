@@ -13,6 +13,7 @@
 	   #:clc-require
 	   #:clc-build-all-packages
 	   #:*clc-quiet*
+	   #:calculate-fasl-root
 	   ;; depricated:
 	   #:make-clc-send-command-string
 	   #:send-clc-command)

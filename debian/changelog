@@ -1,8 +1,9 @@
 common-lisp-controller (4.23) unstable; urgency=low
 
-  * Export calculate-fasl-root for slime 
+  * Export calculate-fasl-root for slime
+  * Fixed calculate-fasl-root to not reply NIL 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 24 Oct 2005 15:11:43 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 24 Oct 2005 20:49:49 +0200
 
 common-lisp-controller (4.22) unstable; urgency=low
 

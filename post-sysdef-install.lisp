@@ -182,7 +182,7 @@ exit 0;' 2>&1 3>&1"
 
 (defun calculate-fasl-root  ()
   "Inits common-lisp controller for this user"
-  (unless *fasl-root*
+  (or *fasl-root*
     (setf *fasl-root*
 	  ;; set it to the username of the user:
 	  (let* ((homedir (pathname-directory

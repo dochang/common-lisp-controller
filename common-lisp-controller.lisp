@@ -67,6 +67,9 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
 
   (setf *implementation-name* implementation-name)
 
+  (pushnew :common-lisp-controller *features*)
+  (pushnew :clc-os-debian *features*)
+
   ;; force both parameters to directories...
   (let* ((fasl-root (merge-pathnames
 		     (make-pathname

@@ -1,8 +1,8 @@
 common-lisp-controller (4.24) UNRELEASED; urgency=low
 
-  * token new verion
+  * Push :common-lisp-controller and :clc-os-debian on *features* 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 24 Oct 2005 21:23:20 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  2 Nov 2005 18:00:34 +0100
 
 common-lisp-controller (4.23) unstable; urgency=low
 

@@ -116,7 +116,7 @@
 #+allegro
 (require :osi)
 
-#+allergo
+#+allegro
 (defun check-spooldir-security (target)
   ;; does target exist?
   (cond

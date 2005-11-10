@@ -66,10 +66,10 @@
 #+sbcl
 (defun get-uid-mode-and-my-uid (directory)
   (when (eq :directory
-	    (sb-unix:unix-file-kind (namestring target)))
+	    (sb-unix:unix-file-kind (namestring directory)))
     ;; check who owns it
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
-	(sb-unix:unix-stat (namestring target))
+	(sb-unix:unix-stat (namestring directory))
       
       (declare (ignore res dev ino nlink gid rdev size atime mtime))
 
@@ -78,10 +78,10 @@
 #+cmu
 (defun get-uid-mode-and-my-uid (directory)
   (when (eq :directory
-	    (unix:unix-file-kind (namestring target)))
+	    (unix:unix-file-kind (namestring directory)))
     ;; check who owns it
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
-	(unix:unix-stat (namestring target))
+	(unix:unix-stat (namestring directory))
 
       (declare (ignore res dev ino nlink gid rdev size atime mtime))
       

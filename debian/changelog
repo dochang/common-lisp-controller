@@ -1,11 +1,13 @@
-common-lisp-controller (4.24) UNRELEASED; urgency=low
+common-lisp-controller (4.24) unstable; urgency=low
 
   * Push :common-lisp-controller and :clc-os-debian on *features*
   * Put the users' system files at the front of the locations
     to be searched list.
   * fixed typo in post-sysdef-install.lisp (Closes: #338271)
+  * give better error messages when checking of permissions 
+    of the output directory (Closes: #329347)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 10 Nov 2005 09:03:25 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 10 Nov 2005 10:09:10 +0100
 
 common-lisp-controller (4.23) unstable; urgency=low
 

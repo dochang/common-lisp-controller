@@ -36,10 +36,12 @@
 	       target
 	       me))
       (when (or (member :RWXO mode)
-		(member :RWXG mode)
-		(member :WOTH mode)
-		(member :WGRP mode))
+		(member :WOTH mode))
 	(error "Security problem: the cache directory ~S is writable for other users"
+	       target))
+      (when (or (member :RWXG mode)
+		(member :WGRP mode))
+	(error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
 	       target))))
    ((not
      (ignore-errors
@@ -58,91 +60,93 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require :sb-posix))
 
+#+allegro
+(require :osi)
+
 #+sbcl
-(defun check-spooldir-security (target)
-  ;; does target exist?
-  (cond
-   ((eq :directory
-	(sb-unix:unix-file-kind (namestring target)))
+(defun get-uid-mode-and-my-uid (directory)
+  (when (eq :directory
+	    (sb-unix:unix-file-kind (namestring target)))
     ;; check who owns it
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
 	(sb-unix:unix-stat (namestring target))
-
+      
       (declare (ignore res dev ino nlink gid rdev size atime mtime))
-      (let* ((my-uid (sb-unix:unix-getuid)))
-	(unless (= uid my-uid)
-	  (error "Security problem: The owner of ~S is not ~S as I wanted"
-		 target
-		 my-uid)))
-      (unless (= 0
-		 (logand mode #o022))
-	(error "Security problem: the cache directory ~S is writable for other users"
-	       target))))
-   (t
-    (let ((old-umask (sb-posix:umask #o077)))
-      (unwind-protect
-	  (ensure-directories-exist target)
-	(sb-posix:umask old-umask)))))
-  (values))
+
+      (values uid mode (sb-unix:unix-getuid)))))
 
 #+cmu
-(defun check-spooldir-security (target)
-  ;; does target exist?
-  (cond
-   ((eq :directory
-	(unix:unix-file-kind (namestring target)))
+(defun get-uid-mode-and-my-uid (directory)
+  (when (eq :directory
+	    (unix:unix-file-kind (namestring target)))
     ;; check who owns it
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
 	(unix:unix-stat (namestring target))
 
       (declare (ignore res dev ino nlink gid rdev size atime mtime))
-      (let* ((my-uid (unix:unix-getuid)))
-	(unless (= uid my-uid)
-	  (error "Security problem: The owner of ~S is not ~S as I wanted"
-		 target
-		 my-uid)))
       
-      (unless (= 0
-		 (logand mode #o022))
-	(error "Security problem: the cache directory ~S is writable for other users"
-	       target))))
-   (t
-    (let ((old-umask (unix::unix-umask #o077)))
-      (unwind-protect	   
-	  (ensure-directories-exist target)
-	(unix::unix-umask old-umask)))))
-  (values))
+      (values uid mode (unix:unix-getuid)))))
 
 #+allegro
-(require :osi)
-
-#+allegro
-(defun check-spooldir-security (target)
-  ;; does target exist?
-  (cond
-   ((excl:probe-directory target)
+(defun get-uid-mode-and-my-uid (directory)
+  (when (excl:probe-directory directory)
     ;; check who owns it
-    (let* ((stat (excl.osi:stat (namestring target)))
+    (let* ((stat (excl.osi:stat (namestring directory)))
 	   (mode (excl.osi:stat-mode stat))
 	   (uid  (excl.osi:stat-uid stat))
 	   (my-uid (excl.osi:getuid)))
 
+      (values uid mode my-uid))))
+
+#+sbcl
+(defun make-secure-cache-directory (directory)
+  (let ((old-umask (sb-posix:umask #o077)))
+    (unwind-protect
+	(ensure-directories-exist directory)
+      (sb-posix:umask old-umask)))
+  (values))
+
+#+cmu
+(defun make-secure-cache-directory (directory)
+  (let ((old-umask (unix::unix-umask #o077)))
+    (unwind-protect	   
+	(ensure-directories-exist directory)
+      (unix::unix-umask old-umask)))
+  (values))
+
+
+#+allegro
+(defun make-secure-cache-directory (directory)
+  (let ((old-umask (excl.osi:umask #o077)))
+      (unwind-protect	   
+	  (ensure-directories-exist directory)
+	(excl.osi:umask old-umask)))
+  (values))
+
+#+(or sbcl cmu allegro)
+(defun check-spooldir-security (target)
+  ;; does target exist?
+  (multiple-value-bind (uid mode my-uid)
+      (get-uid-mode-and-my-uid (namestring target))
+
+    (cond
+     (uid
       (unless (= uid my-uid)
 	(error "Security problem: The owner of ~S is not ~S as I wanted"
 	       target
 	       my-uid))
-      
       (unless (= 0
-		 (logand mode #o022))
+		 (logand mode #o002))
 	(error "Security problem: the cache directory ~S is writable for other users"
-	       target))))
-   (t
-    (let ((old-umask (excl.osi:umask #o077)))
-      (unwind-protect	   
-	  (ensure-directories-exist target)
-	(excl.osi:umask old-umask)))))
+	       target))
+      (unless (= 0
+		 (logand mode #o020))
+	(error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
+	       target)))
+     (t
+      ;; does not exist, make it
+      (make-secure-cache-directory target))))
   (values))
-
 
 ;; sucks but is portable ;-(
 #-(or cmu sbcl clisp allegro)
@@ -166,8 +170,11 @@ if (($stat->mode & 0040000) == 0) {
 if (! -O \"~A~:*\" ) {
    exit 44;
 }
-if (($stat->mode & 022) != 0) {
+if (($stat->mode & 002) != 0) {
    exit 45;
+}
+if (($stat->mode & 020) != 0) {
+   exit 46;
 }
 exit 0;' 2>&1 3>&1"
 				     target)))
@@ -176,8 +183,8 @@ exit 0;' 2>&1 3>&1"
       (42 (error "Security problem: Could not stat ~A" target))
       (43 (error "Security problem: ~A is not a directory" target))
       (44 (error "Security problem: ~A is not a owned by you" target))
-      (45 (error "Security problem: ~A is world writable" target)))))
-
+      (45 (error "Security problem: ~A is world writable" target))
+      (46 (error "Security problem: ~A is writable by a group, we do not allow this" target)))))
 
 
 (defun calculate-fasl-root  ()

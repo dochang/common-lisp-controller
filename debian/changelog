@@ -3,9 +3,9 @@ common-lisp-controller (4.25) unstable; urgency=low
   * restore quote in adding the users system directory,
     so the users directory will be added, and not just
     root.
-  * 
+  * Added clc:list-systems function
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 16 Nov 2005 11:11:09 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 16 Nov 2005 11:48:13 +0100
 
 common-lisp-controller (4.24) unstable; urgency=low
 

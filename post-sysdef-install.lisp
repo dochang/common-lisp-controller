@@ -346,3 +346,31 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 		  (push package-name failed-packages)
 		  nil)))))
 
+(defun list-systems ()
+  (let ((systems (make-hash-table :test #'equal)))
+    (loop :for item :in asdf:*central-registry*
+	  :for location = (eval item)
+	  :for files = (when location
+			 (directory
+			  (merge-pathnames
+			   (make-pathname
+			    :version :newest
+			    :name :wild
+			    :type "asd"
+			    :case :local)
+			   location)))
+	  :when  files
+	  :do
+	  (loop :for filename :in files
+		:for system = (when filename
+				(pathname-name filename))
+		:do
+		(setf (gethash system systems)
+		      system)))
+    (format t
+	    "~&Known systems:~%~@<~;:~A~_ ~;~:>~%"
+	    (sort 
+	     (loop :for system :being :the :hash-key :of systems
+		   :collect system)
+	     #'string<))
+    (values)))

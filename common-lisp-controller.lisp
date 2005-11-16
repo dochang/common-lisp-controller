@@ -14,6 +14,7 @@
 	   #:clc-build-all-packages
 	   #:*clc-quiet*
 	   #:calculate-fasl-root
+	   #:list-systems
 	   ;; depricated:
 	   #:make-clc-send-command-string
 	   #:send-clc-command)

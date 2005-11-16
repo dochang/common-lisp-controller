@@ -126,10 +126,11 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
            (list *systems-root*))
 
       ;; put the users asdf files at the FRONT
-      (push (merge-pathnames ".clc/systems/"
-			     (user-homedir-pathname))
+      (pushnew '(merge-pathnames ".clc/systems/"
+			         (user-homedir-pathname))
             (symbol-value (intern (symbol-name :*central-registry*)
-                                  (find-package :asdf))))))
+                                  (find-package :asdf)))
+	    :test #'equalp)))
   (values))
 
 

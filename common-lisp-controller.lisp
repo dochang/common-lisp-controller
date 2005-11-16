@@ -47,19 +47,6 @@ used to name the directory in /var/cache/common-lisp-controller")
 
 (define-modify-macro appendf (&rest lists) append)
 
-(defun init-common-lisp-controller (fasl-root
-                                    &key
-                                    (source-root "/usr/share/common-lisp/")
-                                    (version 2))
-  (declare (ignore source-root version))
-  ;; vodoo: extract the name of the implementation
-  ;; from the old fasl directory... 
-  (init-common-lisp-controller-v4
-   (first
-    (last
-     (pathname-directory
-      (parse-namestring
-       fasl-root))))))
 
 (defun init-common-lisp-controller-v4 (implementation-name)
   "configures common-lisp-controller. IMPLEMENTATION-NAME
@@ -136,4 +123,17 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
 
 
 
+(defun init-common-lisp-controller (fasl-root
+                                    &key
+                                    (source-root "/usr/share/common-lisp/")
+                                    (version 2))
+  (declare (ignore source-root version))
+  ;; vodoo: extract the name of the implementation
+  ;; from the old fasl directory... 
+  (init-common-lisp-controller-v4
+   (first
+    (last
+     (pathname-directory
+      (parse-namestring
+       fasl-root))))))
 

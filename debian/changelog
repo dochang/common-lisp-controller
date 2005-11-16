@@ -4,8 +4,11 @@ common-lisp-controller (4.25) unstable; urgency=low
     so the users directory will be added, and not just
     root.
   * Added clc:list-systems function
+  * Moved functions round to avoid 'unknown function
+    INIT-COMMON-LISP-CONTROLLER-V4
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 16 Nov 2005 11:48:13 +0100
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 16 Nov 2005 19:37:07 +0100
 
 common-lisp-controller (4.24) unstable; urgency=low
 

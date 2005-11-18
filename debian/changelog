@@ -1,8 +1,13 @@
-common-lisp-controller (4.26) UNRELEASED; urgency=low
+common-lisp-controller (4.26) unstable; urgency=medium
 
-  * token new verion
+  * Check the return code of the configuration
+    of the lisp implementation. Otherwise it might fail but
+    the implementation will claim to be 'configured'.
+    Closes: #338529
+    Medium urgency because this can cause the build of other
+    packages to fail seemingly without reason.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 18 Nov 2005 20:59:47 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 18 Nov 2005 20:59:57 +0100
 
 common-lisp-controller (4.25) unstable; urgency=low
 

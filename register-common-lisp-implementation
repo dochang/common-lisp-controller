@@ -3,6 +3,8 @@
 # Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
 # Licensed under the LLGPL, see debian/copyright file
 
+set -e
+
 if [ -x /usr/lib/common-lisp/bin/${1}.sh ] ; then
   sh /usr/lib/common-lisp/bin/${1}.sh install-clc
 else

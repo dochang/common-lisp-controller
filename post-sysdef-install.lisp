@@ -29,7 +29,7 @@
 	   (mode (posix:file-stat-mode stat))
 	   (owner (posix:file-stat-uid stat))
 	   (me (ext:getenv "USER"))
-	   (uid (posix:user-data-uid
+	   (uid (posix:user-info-uid
 		 (posix:user-data me))))
       (unless (= owner uid)
 	(error "Security problem: The owner of ~S is not ~S as I wanted"

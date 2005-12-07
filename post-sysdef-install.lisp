@@ -30,7 +30,7 @@
 	   (owner (posix:file-stat-uid stat))
 	   (me (ext:getenv "USER"))
 	   (uid (posix:user-info-uid
-		 (posix:user-data me))))
+		 (posix:user-info me))))
       (unless (= owner uid)
 	(error "Security problem: The owner of ~S is not ~S as I wanted"
 	       target
@@ -315,22 +315,22 @@ exit 0;' 2>&1 3>&1"
   "Tries to build all known packages.
 Looks in /usr/share/commmon-lisp/systems/ for .asd files
 If IGNORE-ERRORS is true ignores all errors while rebuilding"
-  (loop for registry-object in asdf:*central-registry*
-	for registry-location = (eval registry-object)
-	with failed-packages = ()
-	finally (when failed-packages
+  (loop :for registry-object :in asdf:*central-registry*
+	:for registry-location = (eval registry-object)
+	:with failed-packages = ()
+	:finally (when failed-packages
 		  (format t "~&~%Failed the following packages failed: ~{~A~^, ~}"
 			  failed-packages))
 	
-	do
-	(loop for pathname in (directory
-			       (merge-pathnames
-				(make-pathname
-				 :name :wild
-				 :type "asd")
-				registry-location))
-	      for package-name = (pathname-name pathname)
-	      do
+	:do
+	(loop :for pathname :in (directory
+			         (merge-pathnames
+			      	  (make-pathname
+				    :name :wild
+				    :type "asd")
+				  registry-location))
+	      :for package-name = (pathname-name pathname)
+	      :do
 	      (restart-case
 		  (handler-case
 		      (asdf:oos 'asdf:compile-op package-name)
@@ -370,7 +370,7 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
     (format t
 	    "~&Known systems:~%~@<~;:~A~_ ~;~:>~%"
 	    (sort 
-	     (loop :for system :being :the :hash-key :of systems
+	     (loop :for system :being :the :hash-keys :of systems
 		   :collect system)
 	     #'string<))
     (values)))

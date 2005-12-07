@@ -1,8 +1,8 @@
-common-lisp-controller (4.27) UNRELEASED; urgency=low
+common-lisp-controller (4.27) unstable; urgency=low
 
   * clisp changed a posix function.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  6 Dec 2005 22:51:34 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  7 Dec 2005 07:48:59 +0100
 
 common-lisp-controller (4.26) unstable; urgency=medium
 

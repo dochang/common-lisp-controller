@@ -1,3 +1,9 @@
+common-lisp-controller (4.28) UNRELEASED; urgency=low
+
+  * token new verion
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  8 Dec 2005 12:06:40 +0100
+
 common-lisp-controller (4.27) unstable; urgency=low
 
   * clisp changed a posix function.

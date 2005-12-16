@@ -1,6 +1,8 @@
-common-lisp-controller (4.28) UNRELEASED; urgency=low
+common-lisp-controller (5.9) UNRELEASED; urgency=low
 
-  * token new verion
+  * Split up compiling, loading and initialization
+    for the benefit of 'create new image with these 
+    files' implementations like ecl.
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  8 Dec 2005 12:06:40 +0100
 

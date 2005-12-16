@@ -10,6 +10,8 @@
   (:use #:common-lisp)
   (:export #:init-common-lisp-controller
 	   #:init-common-lisp-controller-v4
+	   #:compile-common-lisp-controller-v5
+	   #:init-common-lisp-controller-v5
 	   #:clc-require
 	   #:clc-build-all-packages
 	   #:*clc-quiet*
@@ -47,81 +49,104 @@ used to name the directory in /var/cache/common-lisp-controller")
 
 (define-modify-macro appendf (&rest lists) append)
 
-
-(defun init-common-lisp-controller-v4 (implementation-name)
-  "configures common-lisp-controller. IMPLEMENTATION-NAME
-is the name of this implementation.
-Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementation>"
-
+(defun init-common-lisp-controller-v5 (implementation-name)
+  ;; register the systems root:
   (setf *implementation-name* implementation-name)
-
+  
   (pushnew :common-lisp-controller *features*)
   (pushnew :clc-os-debian *features*)
 
-  ;; force both parameters to directories...
+  (appendf 
+   (symbol-value (intern (symbol-name :*central-registry*)
+			 (find-package :asdf)))
+   (list *systems-root*))
+  
+  ;; put the users asdf files at the FRONT
+  (pushnew '(merge-pathnames ".clc/systems/"
+			     (user-homedir-pathname))
+	   (symbol-value (intern (symbol-name :*central-registry*)
+				 (find-package :asdf)))
+	   :test #'equalp))
+
+(defun compile-common-lisp-controller-v5 (implementation-name)
+  "Compiles the clc files. Returns a list of fasls
+that should be loaded in the list to enable clc"
+  (setf *implementation-name* implementation-name)
+  
+  (pushnew :common-lisp-controller *features*)
+  (pushnew :clc-os-debian *features*)
+  
   (let* ((fasl-root (merge-pathnames
 		     (make-pathname
 		      :directory
 		      `(:relative "root" ,*implementation-name*))
 		     #p"/var/cache/common-lisp-controller/")))
-    (flet ((compile-and-load (package-name filename)
-	     (let* ((file (parse-namestring filename))
-		    (file-path
-		     (merge-pathnames
-		      (make-pathname :name (pathname-name file)
-				     :type (pathname-type file)
-				     :directory (list :relative package-name))
-		      *source-root*))
-		    (output-path
-		     (merge-pathnames
-		      (make-pathname :name (pathname-name file)
-				     :type (pathname-type file)
-				     :directory (list :relative package-name))
-		      fasl-root))
-		    (compiled-file-pathname
-		     (compile-file-pathname output-path)))
-	       ;; first make the target directory:
-	       (ensure-directories-exist compiled-file-pathname)
-	       ;; now compile it:
-	       (compile-file file-path
-			     :output-file compiled-file-pathname
-			     :print nil
-			     :verbose nil)
-	       ;; then load it:
-	       (load compiled-file-pathname
-		     :verbose nil
-		     :print nil))))
-      ;; first ourselves:
-      (compile-and-load  "common-lisp-controller"
-			 "common-lisp-controller.lisp")
+    (labels ((source-filename (package-name filename)
+		(let* ((file (parse-namestring filename))
+		       (file-path
+			(merge-pathnames
+			 (make-pathname :name (pathname-name file)
+					:type (pathname-type file)
+					:directory (list :relative package-name))
+			 *source-root*)))
+		  file-path))
+	     (fasl-filename (package-name filename)
+	         (let* ((file (parse-namestring filename))
+			(output-path
+			 (merge-pathnames
+			  (make-pathname :name (pathname-name file)
+					 :type (pathname-type file)
+					 :directory (list :relative package-name))
+			  fasl-root))
+			(compiled-file-pathname
+			 (compile-file-pathname output-path)))
+		   compiled-file-pathname))
+	     (compile-and-load (package-name filename)
+	        (let ((file-path (source-filename package-name filename))
+		      (compiled-file-pathname
+		       (fasl-filename package-name filename)))
+		  ;; first make the target directory:
+		  (ensure-directories-exist compiled-file-pathname)
+		  ;; now compile it:
+		  (compile-file file-path
+				:output-file compiled-file-pathname
+				:print nil
+				:verbose nil)
+		  ;; then load it:
+		  (load compiled-file-pathname
+			:verbose nil
+			:print nil)
+		  ;; return fasl filename
+		  compiled-file-pathname)))
       ;; then asdf:
       ;; For SBCL, take advantage of it's REQUIRE/contrib directories integration
       #+sbcl
       (when (boundp 'sb-ext::*module-provider-functions*)
 	(pushnew :sbcl-hooks-require cl:*features*))
-      (compile-and-load  "asdf" "asdf.lisp")
-      (compile-and-load  "asdf" "wild-modules.lisp")
-      ;; now patch it::
-      (compile-and-load "common-lisp-controller"
-			"post-sysdef-install.lisp")
-      #+sbcl
-      (setq cl:*features* (delete :sbcl-hooks-require  cl:*features*))
 
-      ;; register the systems root:
-      (appendf 
-           (symbol-value (intern (symbol-name :*central-registry*)
-                                 (find-package :asdf)))
-           (list *systems-root*))
+      ;; return a list
+      (prog1
+	  (list 
+	   ;; first ourselves:
+	   #+(or)
+	   (compile-and-load  "common-lisp-controller"
+			      "common-lisp-controller.lisp")
+	   ;; asdf
+	   (compile-and-load  "asdf" "asdf.lisp")
+	   (compile-and-load  "asdf" "wild-modules.lisp")
+	   ;; now patch it::
+	   (compile-and-load "common-lisp-controller"
+			     "post-sysdef-install.lisp"))
+	#+sbcl
+	(setq cl:*features* (delete :sbcl-hooks-require  cl:*features*))))))
 
-      ;; put the users asdf files at the FRONT
-      (pushnew '(merge-pathnames ".clc/systems/"
-			         (user-homedir-pathname))
-            (symbol-value (intern (symbol-name :*central-registry*)
-                                  (find-package :asdf)))
-	    :test #'equalp)))
-  (values))
-
-
+(defun init-common-lisp-controller-v4 (implementation-name)
+  "configures common-lisp-controller. IMPLEMENTATION-NAME
+is the name of this implementation.
+Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementation>"
+  (compile-common-lisp-controller-v5 implementation-name)
+  ;; no need to load them as they are already loaded
+  (init-common-lisp-controller-v5 implementation-name))
 
 (defun init-common-lisp-controller (fasl-root
                                     &key

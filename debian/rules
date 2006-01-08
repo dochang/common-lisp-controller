@@ -11,7 +11,7 @@ CLC_LIB		:= usr/lib/common-lisp-controller/
 
 SBIN_PROGS 	:= register-common-lisp-source unregister-common-lisp-source \
 		register-common-lisp-implementation \
-		unregister-common-lisp-implementation 
+		unregister-common-lisp-implementation clc-update-customized-images
 
 BIN_PROGS	:= clc-register-user-package   \
 		clc-unregister-user-package

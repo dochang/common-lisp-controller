@@ -1,6 +1,9 @@
 #!/bin/sh
 
-# Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+# Copyright (C) 2006 René van Bevern <rvb@progn.org>
 # Licensed under the LLGPL, see debian/copyright file
 
-exit 0
+if [ "$1" ]; then
+    /sbin/clc-update-customized-images "$1"
+fi
+

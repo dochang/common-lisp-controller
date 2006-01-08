@@ -1,0 +1,31 @@
+#!/bin/sh
+# Copyright (C) 2006 René van Bevern <rvb@progn.org>
+# Licensed under the LLGPL, see debian/copyright file
+
+library="$1"
+
+if [ -z "$library" ]; then
+    cat <<EOF
+usage: $(basename $0) system-name
+
+checks if "system-name" is wished to be part of the default image of an
+implementation as specified in /etc/common-lisp/images/implementation and
+re-creates the implementation's image in that case.
+EOF
+    exit 1
+fi
+
+# It is not using "register-common-lisp-implementation" intentionally,
+# since this should really only reinstall CLC and the function of
+# "register-common-lisp-implementation" might change
+
+for implementation in /etc/common-lisp/images/*; do
+    impl_name=$(basename "$implementation")
+    if [ -x /usr/lib/common-lisp/bin/"$impl_name".sh ] &&
+      grep "$library" "$implementation" > /dev/null; then
+	echo "Recreating image of \"$impl_name\" for \"$library\"..."
+	sh /usr/lib/common-lisp/bin/"$impl_name".sh install-clc
+    fi
+done
+
+exit 0

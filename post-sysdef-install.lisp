@@ -403,3 +403,16 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 		   :collect system)
 	     #'string<))
     (values)))
+
+(defun load-user-image-components ()
+  (with-open-file (components (merge-pathnames
+			       *image-preferences*
+			       *implementation-name*)
+		   :direction :input :if-does-not-exist nil)
+    (when components
+      (loop for component = (read-line components nil)
+	    while component do
+	    (if (asdf:find-system component nil)
+		(progn (asdf:operate 'asdf:compile-op component)
+		       (asdf:operate 'asdf:load-op component))
+		(warn "System ~S not found, not loading it into implementation image" component))))))

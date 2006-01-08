@@ -44,6 +44,9 @@
 	"Root of source directories")
 (defvar *systems-root* #p"/usr/share/common-lisp/systems/"
         "Root of systems directory")
+(defvar *image-preferences* #p"/etc/common-lisp/images/"
+	"Directory where user can choose what systems shall be added to
+Images per default")
 (defvar *implementation-name* nil "The name of the implementation,
 used to name the directory in /var/cache/common-lisp-controller")
 
@@ -69,7 +72,14 @@ used to name the directory in /var/cache/common-lisp-controller")
 			     (user-homedir-pathname))
 	   (symbol-value (intern (symbol-name :*central-registry*)
 				 (find-package :asdf)))
-	   :test #'equalp))
+	   :test #'equalp)
+
+  (funcall (symbol-function
+	    (find-symbol (symbol-name :load-user-image-components)
+			 (find-package :clc))))
+  ; need to reset *fasl-root*, because it is set to root's one after
+  ; the above operation. Side effects are evil! ;-)
+  (setf *fasl-root* nil))
 
 (defun compile-common-lisp-controller-v5 (implementation-name)
   "Compiles the clc files. Returns a list of fasls

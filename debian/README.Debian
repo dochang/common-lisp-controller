@@ -1,0 +1,9 @@
+Common-Lisp-Controller for Debian
+---------------------------------
+
+To customize the CLC-generated images, add system names (one per line)
+to /etc/common-lisp/images/implementation-name. For example. if you always
+want McCLIM to be present in the default image of SBCL, create a file
+/etc/common-lisp/images/sbcl containing the line "clim".
+
+ -- René van Bevern <rvb@progn.org>, Sun Jan  8 23:07:57 2006

@@ -18,43 +18,20 @@
       (first dirs))))
 
 #+clisp
-(defun check-spooldir-security (target)
-  ;; does target exist?
-  (cond
-   ;; probe-directory will fail if we are not the owner!
-   ((ignore-errors
-     (ext:probe-directory target))
-    ;; check who owns it
-    (let* ((stat (posix:file-stat target))
-	   (mode (posix:file-stat-mode stat))
-	   (owner (posix:file-stat-uid stat))
-	   (me (ext:getenv "USER"))
-	   (uid (posix:user-info-uid
-		 (posix:user-info me))))
-      (unless (= owner uid)
-	(error "Security problem: The owner of ~S is not ~S as I wanted"
-	       target
-	       me))
-      (when (or (member :RWXO mode)
-		(member :WOTH mode))
-	(error "Security problem: the cache directory ~S is writable for other users"
-	       target))
-      (when (or (member :RWXG mode)
-		(member :WGRP mode))
-	(error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
-	       target))))
-   ((not
-     (ignore-errors
-       (not (ext:probe-directory target))))
-    ;; check who owns it
-    (error "Security problem: The owner of ~S is incorrect"
-	   target))
-   (t
-    (let ((old-umask (posix:umask #o077)))
-      (unwind-protect
-	  (ensure-directories-exist target)
-	(posix:umask old-umask)))))
-  (values))
+(defun world-writable? (mode)
+  (or (member :RWXO mode) (member :WOTH mode)))
+
+#+clisp
+(defun group-writable? (mode)
+  (or (member :RWXG mode) (member :WGRP mode)))
+
+#-clisp
+(defun world-writable? (mode)
+  (/= 0 (logand mode #o002)))
+
+#-clisp
+(defun group-writable? (mode)
+  (/= 0 (logand mode #o020)))
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
@@ -64,20 +41,32 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require :osi))
 
+#+clisp (defun get-uid () (posix:user-info-uid (posix:user-info (ext:getenv "USER"))))
+#+sbcl (defun get-uid () (sb-unix:unix-getuid))
+#+cmu (defun get-uid () (unix:unix-getuid))
+#+allegro (defun get-uid () (excl.osi:getuid))
+
+#+clisp
+(defun get-owner-and-mode (directory)
+  (when (ignore-errors (ext:probe-directory directory))
+    (let* ((stat (posix:file-stat directory))
+	   (mode (posix:file-stat-mode stat))
+	   (owner (posix:file-stat-uid stat)))
+      (values owner mode))))
+
 #+sbcl
-(defun get-uid-mode-and-my-uid (directory)
+(defun get-owner-and-mode (directory)
   (when (eq :directory
 	    (sb-unix:unix-file-kind (namestring directory)))
     ;; check who owns it
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
 	(sb-unix:unix-stat (namestring directory))
-      
-      (declare (ignore res dev ino nlink gid rdev size atime mtime))
 
-      (values uid mode (sb-unix:unix-getuid)))))
+      (declare (ignore res dev ino nlink gid rdev size atime mtime))
+      (values uid mode))))
 
 #+cmu
-(defun get-uid-mode-and-my-uid (directory)
+(defun get-owner-and-mode (directory)
   (when (eq :directory
 	    (unix:unix-file-kind (namestring directory)))
     ;; check who owns it
@@ -85,18 +74,15 @@
 	(unix:unix-stat (namestring directory))
 
       (declare (ignore res dev ino nlink gid rdev size atime mtime))
-      
-      (values uid mode (unix:unix-getuid)))))
+      (values uid mode))))
 
 #+allegro
-(defun get-uid-mode-and-my-uid (directory)
+(defun get-owner-and-mode (directory)
   (when (excl:probe-directory directory)
     ;; check who owns it
     (let* ((stat (excl.osi:stat (namestring directory)))
 	   (mode (excl.osi:stat-mode stat))
-	   (uid  (excl.osi:stat-uid stat))
-	   (my-uid (excl.osi:getuid)))
-
+	   (uid  (excl.osi:stat-uid stat)))
       (values uid mode my-uid))))
 
 #+sbcl
@@ -107,46 +93,48 @@
       (sb-posix:umask old-umask)))
   (values))
 
+#+clisp
+(defun make-secure-cache-directory (directory)
+  (let ((old-umask (posix:umask #o077)))
+    (unwind-protect
+	 (ensure-directories-exist directory)
+      (posix:umask old-umask)))
+  (values))
+
 #+cmu
 (defun make-secure-cache-directory (directory)
   (let ((old-umask (unix::unix-umask #o077)))
-    (unwind-protect	   
+    (unwind-protect
 	(ensure-directories-exist directory)
       (unix::unix-umask old-umask)))
   (values))
 
-
 #+allegro
 (defun make-secure-cache-directory (directory)
   (let ((old-umask (excl.osi:umask #o077)))
-      (unwind-protect	   
+      (unwind-protect
 	  (ensure-directories-exist directory)
 	(excl.osi:umask old-umask)))
   (values))
 
-#+(or sbcl cmu allegro)
+#+(or clisp sbcl cmu allegro)
 (defun check-spooldir-security (target)
   ;; does target exist?
-  (multiple-value-bind (uid mode my-uid)
-      (get-uid-mode-and-my-uid (namestring target))
-
-    (cond
-     (uid
-      (unless (= uid my-uid)
-	(error "Security problem: The owner of ~S is not ~S as I wanted"
-	       target
-	       my-uid))
-      (unless (= 0
-		 (logand mode #o002))
-	(error "Security problem: the cache directory ~S is writable for other users"
-	       target))
-      (unless (= 0
-		 (logand mode #o020))
-	(error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
-	       target)))
-     (t
-      ;; does not exist, make it
-      (make-secure-cache-directory target))))
+  (multiple-value-bind (uid mode)
+      (get-owner-and-mode (namestring target))
+    (if uid
+	(let ((my-uid (get-uid)))
+	  (unless (= uid my-uid)
+	    (error "Security problem: The owner of ~S is not ~S as I wanted"
+		   target
+		   my-uid))
+	  (when (world-writable? mode)
+	    (error "Security problem: the cache directory ~S is writable for other users"
+		   target))
+	  (when (group-writable? mode)
+	    (error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
+		   target)))
+	(make-secure-cache-directory target)))
   (values))
 
 ;; sucks but is portable ;-(
@@ -186,7 +174,6 @@ exit 0;' 2>&1 3>&1"
       (44 (error "Security problem: ~A is not a owned by you" target))
       (45 (error "Security problem: ~A is world writable" target))
       (46 (error "Security problem: ~A is writable by a group, we do not allow this" target)))))
-
 
 (defun calculate-fasl-root  ()
   "Inits common-lisp controller for this user"

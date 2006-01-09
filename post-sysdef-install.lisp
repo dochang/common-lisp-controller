@@ -192,40 +192,14 @@ exit 0;' 2>&1 3>&1"
   "Inits common-lisp controller for this user"
   (or *fasl-root*
     (setf *fasl-root*
-	  ;; set it to the username of the user:
-	  (let* ((homedir (pathname-directory
-			   (get-homedir))))
-	    (unless homedir
-	      (error "cannot determine homedir?"))
-	    
-	    ;; strip off :re or :abs
-	    (when (or (eq (first homedir)
-			  :relative)
-		      (eq (first homedir)
-			  :absolute))
-	      (setf homedir (rest homedir)))
-	    ;; if it starts with home, nuke it
-	    (when (string= (first homedir)
-			   "home")
-	      (setf homedir (rest homedir)))
-	    
-
-	    ;; this should be able to cope with
-	    ;; homedirs like /home/p/pv/pvaneynd ...
-	    (let ((target (merge-pathnames
-			   (make-pathname
-			    :directory `(:relative ,@homedir
-						   ;; now append *implementation-name*
-						   ,*implementation-name*))
-			   #p"/var/cache/common-lisp-controller/"))
-		  (target-root (merge-pathnames
-				(make-pathname
-				 :directory `(:relative ,@homedir))
-				#p"/var/cache/common-lisp-controller/")))
-
-	      (check-spooldir-security target-root)
-	      
-	      target)))))
+	  (let ((target-root (merge-pathnames
+			      (make-pathname
+			       :directory (list :relative (format nil "~A" (get-uid))))
+			      #p"/var/cache/common-lisp-controller/")))
+	    (check-spooldir-security target-root)
+	    (merge-pathnames (make-pathname
+			      :directory (list :relative *implementation-name*))
+			     target-root)))))
 
 (defun asdf-system-compiled-p (system)
   "Returns T is an ASDF system is already compiled" 

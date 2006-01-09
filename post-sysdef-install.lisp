@@ -46,7 +46,7 @@
 #+cmu (defun get-uid () (unix:unix-getuid))
 #+allegro (defun get-uid () (excl.osi:getuid))
 
-;#-(or cmu sbcl clisp allegro)
+#-(or cmu sbcl clisp allegro)
 (defun get-uid ()
   (labels ((mktemp ()
 	     (let ((temp-name (format nil "/tmp/clc-~A" (random 50000))))

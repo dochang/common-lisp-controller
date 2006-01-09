@@ -1,10 +1,49 @@
 common-lisp-controller (5.9) UNRELEASED; urgency=low
 
+  [Peter Van Eynde]
   * Split up compiling, loading and initialization
     for the benefit of 'create new image with these 
     files' implementations like ecl.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  8 Dec 2005 12:06:40 +0100
+  [René van Bevern]
+
+  * Use user IDs to determine the location of the FASL cache instead of
+    home dirs, because multiple users might have the same home dir and
+    therefore would end up with the same FASL cache, what CLC won't let
+    them do. post-sysdef-install.lisp:
+
+    + split get-uid-mode-and-my-uid into get-owner-and-mode and get-uid
+    + caclulate-fasl-root uses get-uid to build up *fasl-root*
+
+  * Some more code reuse to get rid of the duplicate
+    check-spooldir-security. post-sysdef-install.lisp:
+
+    + add group-writable? and world-writable? for clisp and others
+    + add get-owner-and-mode, get-uid, make-secure-cache-directory for clisp
+    + Have only one check-spooldir-security using the generic functions above
+
+  * You can now customize each implementation's default images by
+    giving a list of ASDF systems to include in
+    /etc/common-lisp/images/$implementation-name
+
+    + Load desired systems at image creation
+      - post-sysdef-install.lisp: add function load-user-image-components,
+        that loads the systems as said above
+      - common-lisp-controller.lisp: set path for image settings and call
+        load-user-image-components in CLC initialization phase
+
+    + recreate images if new lisp source is installed, handle updates
+      - clc-update-customized-images: new script to recreate an
+        implementation's image if the system given at the command line is
+        desired to be part of it
+      - (un)register-common-lisp-source: call clc-update-customized-images
+      - debian/rules: install clc-update-customized-images to /sbin
+
+    + debian/README.Debian: document the whole thing
+
+  * enough for one evening, I'm getting some coffee
+
+ -- René van Bevern <rvb@progn.org>  Mon,  9 Jan 2006 01:37:45 +0100
 
 common-lisp-controller (4.27) unstable; urgency=low
 

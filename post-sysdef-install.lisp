@@ -46,6 +46,20 @@
 #+cmu (defun get-uid () (unix:unix-getuid))
 #+allegro (defun get-uid () (excl.osi:getuid))
 
+;#-(or cmu sbcl clisp allegro)
+(defun get-uid ()
+  (labels ((mktemp ()
+	     (let ((temp-name (format nil "/tmp/clc-~A" (random 50000))))
+	       (with-open-file (file temp-name :direction :input :if-does-not-exist nil)
+		 (if file (mktemp) temp-name)))))
+    (let ((file (mktemp)))
+      (unwind-protect
+	   (progn (asdf:run-shell-command "umask 077 && echo $UID > ~A" file)
+		  (with-open-file (uid file :direction :input)
+		    (handler-case (parse-integer (read-line uid))
+		      (error () (error "Unable to find out user ID")))))
+	(asdf:run-shell-command "rm ~A" file)))))
+
 #+clisp
 (defun get-owner-and-mode (directory)
   (when (ignore-errors (ext:probe-directory directory))
@@ -86,36 +100,32 @@
       (values uid mode my-uid))))
 
 #+sbcl
-(defun make-secure-cache-directory (directory)
-  (let ((old-umask (sb-posix:umask #o077)))
-    (unwind-protect
-	(ensure-directories-exist directory)
-      (sb-posix:umask old-umask)))
-  (values))
+(defmacro with-secure-umask (&body forms)
+  (let ((old-umask (gensym)))
+    `(let ((,old-umask (sb-posix:umask #o0077)))
+      (unwind-protect (progn ,@forms)
+	(sb-posix:umask ,old-umask)))))
 
 #+clisp
-(defun make-secure-cache-directory (directory)
-  (let ((old-umask (posix:umask #o077)))
-    (unwind-protect
-	 (ensure-directories-exist directory)
-      (posix:umask old-umask)))
-  (values))
+(defmacro with-secure-umask (&body forms)
+  (let ((old-umask (gensym)))
+    `(let ((,old-umask (posix:umask #o077)))
+      (unwind-protect ,@forms
+	(posix:umask ,old-umask)))))
 
 #+cmu
-(defun make-secure-cache-directory (directory)
-  (let ((old-umask (unix::unix-umask #o077)))
-    (unwind-protect
-	(ensure-directories-exist directory)
-      (unix::unix-umask old-umask)))
-  (values))
+(defmacro with-secure-umask (&body forms)
+  (let ((old-umask (gensym)))
+    `(let ((,old-umask (unix::unix-umask #o077)))
+      (unwind-protect ,@forms
+	(unix::unix-umask ,old-umask)))))
 
 #+allegro
-(defun make-secure-cache-directory (directory)
-  (let ((old-umask (excl.osi:umask #o077)))
-      (unwind-protect
-	  (ensure-directories-exist directory)
-	(excl.osi:umask old-umask)))
-  (values))
+(defmacro with-secure-umask (&body forms)
+  (let ((old-umask (gensym)))
+    `(let ((,old-umask (excl.osi:umask #o077)))
+      (unwind-protect ,@forms
+	(excl.osi:umask old-umask)))))
 
 #+(or clisp sbcl cmu allegro)
 (defun check-spooldir-security (target)
@@ -134,7 +144,7 @@
 	  (when (group-writable? mode)
 	    (error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
 		   target)))
-	(make-secure-cache-directory target)))
+	(with-secure-umask (ensure-directories-exist target))))
   (values))
 
 ;; sucks but is portable ;-(
@@ -175,6 +185,7 @@ exit 0;' 2>&1 3>&1"
       (45 (error "Security problem: ~A is world writable" target))
       (46 (error "Security problem: ~A is writable by a group, we do not allow this" target)))))
 
+
 (defun calculate-fasl-root  ()
   "Inits common-lisp controller for this user"
   (or *fasl-root*
@@ -193,8 +204,6 @@ exit 0;' 2>&1 3>&1"
   (notany #'(lambda (op) (and (typep (car op) 'asdf:compile-op)
 			      (not (asdf:operation-done-p (car op) (cdr op)))))
 	  (asdf::traverse (make-instance 'asdf:compile-op) system)))
-
-
 
 (defun beneath-source-root? (c)
   "Returns T if component's directory below *source-root*"

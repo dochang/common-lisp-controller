@@ -374,15 +374,30 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	     #'string<))
     (values)))
 
-(defun load-user-image-components ()
+(defun asdf-system-files-to-load (system)
+  (let ((package-name
+	 (car (last (pathname-directory
+		     (asdf:component-pathname system))))))
+    (labels ((filename (x)
+	       (when (and (typep (car x) 'asdf:load-op)
+			  (typep (cdr x) 'asdf:cl-source-file))
+		 (list package-name
+		       (enough-namestring
+			(asdf:component-pathname (cdr x))
+			(make-pathname :directory
+				       (append (pathname-directory *source-root*)
+					       (list package-name))))))))
+      (mapcar #'filename
+	      (asdf::traverse (make-instance 'asdf:load-op) system)))))
+
+(defun user-image-components ()
   (with-open-file (components (merge-pathnames
 			       *image-preferences*
 			       *implementation-name*)
 		   :direction :input :if-does-not-exist nil)
-    (when components
+    (when components (delete nil
       (loop for component = (read-line components nil)
-	    while component do
-	    (if (asdf:find-system component nil)
-		(progn (asdf:operate 'asdf:compile-op component)
-		       (asdf:operate 'asdf:load-op component))
-		(warn "System ~S not found, not loading it into implementation image" component))))))
+	    while component nconcing
+	    (let ((system (asdf:find-system component nil)))
+	      (if system (asdf-system-files-to-load system)
+		(warn "System ~S not found, not loading it into implementation image." component))))))))

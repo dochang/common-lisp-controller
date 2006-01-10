@@ -84,7 +84,7 @@ that should be loaded in the list to enable clc"
   (let* ((fasl-root (merge-pathnames
 		     (make-pathname
 		      :directory
-		      `(:relative "root" ,*implementation-name*))
+		      `(:relative "0" ,*implementation-name*))
 		     #p"/var/cache/common-lisp-controller/")))
 
     (labels ((source-filename (package-name filename)

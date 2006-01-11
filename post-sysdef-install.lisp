@@ -61,7 +61,8 @@
   (require :sb-posix))
 
 #+allegro
-(require :osi)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (require :osi))
 
 #+sbcl
 (defun get-uid-mode-and-my-uid (directory)
@@ -243,11 +244,39 @@ exit 0;' 2>&1 3>&1"
 	       (length root-dir))
 	   (equalp root-dir (subseq comp-dir 0 (length root-dir)))))))
 
+(defvar *warned-for-broken-enough-namestring* nil)
+
 (defun source-root-path-to-fasl-path (source)
   "Converts a path in the source root into the equivalent path in the fasl root"
+  (let* ((source-root (asdf::resolve-symlinks *source-root*))
+	 (relative-source (enough-namestring source source-root)))
+
+    #-(or clisp sbcl allergo cmu)
+    (when (equalp source
+		  (pathname relative-source))
+      (unless *warned-for-broken-enough-namestring*
+	(warn "your enough-namestring implementation is not reducting a pathname like it should, correcting for this")
+	(setf *warned-for-broken-enough-namestring* t))
+      (let ((source-root-path (pathname-directory source-root))
+	    (source-path (pathname-directory source)))
+	(setf relative-source
+	      (make-pathname :directory (cons :RELATIVE
+					      (loop :for tail :on source-path
+						    :for root :in source-root-path
+						    :while root
+						    :unless (equal root (first tail))
+						    :do
+						    (error "Path ~S not beneath ~S? ~S /= ~S"
+							   source
+							   source-root
+							   root
+							   (first tail))
+						    :finally
+						    (return tail)))
+			     :defaults source-root))))
   (merge-pathnames 
-   (enough-namestring source (asdf::resolve-symlinks *source-root*))
-   *fasl-root*))
+   relative-source
+   *fasl-root*)))
 
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
   "Method to rewrite output files to fasl-root"

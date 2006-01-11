@@ -56,12 +56,15 @@ used to name the directory in /var/cache/common-lisp-controller")
   (pushnew :common-lisp-controller *features*)
   (pushnew :clc-os-debian *features*)
 
+  ;; put the central registry at the *end*
+  ;; of the search list
   (appendf 
    (symbol-value (intern (symbol-name :*central-registry*)
 			 (find-package :asdf)))
    (list *systems-root*))
   
   ;; put the users asdf files at the FRONT
+  ;; of the same search list
   (pushnew '(merge-pathnames ".clc/systems/"
 			     (user-homedir-pathname))
 	   (symbol-value (intern (symbol-name :*central-registry*)
@@ -82,42 +85,61 @@ that should be loaded in the list to enable clc"
 		      `(:relative "root" ,*implementation-name*))
 		     #p"/var/cache/common-lisp-controller/")))
     (labels ((source-filename (package-name filename)
-		(let* ((file (parse-namestring filename))
-		       (file-path
-			(merge-pathnames
-			 (make-pathname :name (pathname-name file)
-					:type (pathname-type file)
-					:directory (list :relative package-name))
-			 *source-root*)))
-		  file-path))
+			      (let* ((file (parse-namestring filename))
+				     (file-path
+				      (merge-pathnames
+				       (make-pathname :name (pathname-name file)
+						      :type (pathname-type file)
+						      :directory (list :relative package-name))
+				       *source-root*)))
+				file-path))
 	     (fasl-filename (package-name filename)
-	         (let* ((file (parse-namestring filename))
-			(output-path
-			 (merge-pathnames
-			  (make-pathname :name (pathname-name file)
-					 :type (pathname-type file)
-					 :directory (list :relative package-name))
-			  fasl-root))
-			(compiled-file-pathname
-			 (compile-file-pathname output-path)))
-		   compiled-file-pathname))
+			    ;; this is complex because ecl
+			    ;; should produce system fasls,
+			    ;; and they have .o extension
+			    (let* ((file (parse-namestring filename))
+				   (output-path
+				    (merge-pathnames
+				     (make-pathname :name (pathname-name file)
+						    :type #-ecl (pathname-type file)
+						          #+ecl "o"
+						    :directory (list :relative package-name))
+				     fasl-root))
+				   (compiled-file-pathname
+				    (#-ecl compile-file-pathname
+				     #+ecl compile-file-pathname
+					   output-path
+					   #+ecl #+ecl
+					   :output-file :o)))
+			      compiled-file-pathname))
 	     (compile-and-load (package-name filename)
-	        (let ((file-path (source-filename package-name filename))
-		      (compiled-file-pathname
-		       (fasl-filename package-name filename)))
-		  ;; first make the target directory:
-		  (ensure-directories-exist compiled-file-pathname)
-		  ;; now compile it:
-		  (compile-file file-path
-				:output-file compiled-file-pathname
-				:print nil
-				:verbose nil)
-		  ;; then load it:
-		  (load compiled-file-pathname
-			:verbose nil
-			:print nil)
-		  ;; return fasl filename
-		  compiled-file-pathname)))
+			       (let* ((file-path (source-filename package-name filename))
+				      (compiled-file-pathname
+				       (progn
+					 ;; first make the target directory:
+					 (ensure-directories-exist
+					  (fasl-filename package-name filename))
+					 ;; now compile it:
+					 (compile-file file-path
+						       :output-file (fasl-filename package-name filename)
+						       :print nil
+						       :verbose nil
+						       ;; make 'linkable object files' for ecl:
+						       #+ecl #+ecl
+						       :system-p t))))
+				 ;; then load it:
+				 (load #-ecl compiled-file-pathname
+				       ;; for ecl, first _really compile_ the file, then load it
+				       #+ecl (compile-file file-path
+							   :output-file
+							   (compile-file-pathname
+							    (fasl-filename package-name filename))
+							   :print nil
+							   :verbose nil)
+				       :verbose nil
+				       :print nil)
+				 ;; return fasl filename
+				 compiled-file-pathname)))
       ;; then asdf:
       ;; For SBCL, take advantage of it's REQUIRE/contrib directories integration
       #+sbcl
@@ -128,7 +150,6 @@ that should be loaded in the list to enable clc"
       (prog1
 	  (list 
 	   ;; first ourselves:
-	   #+(or)
 	   (compile-and-load  "common-lisp-controller"
 			      "common-lisp-controller.lisp")
 	   ;; asdf

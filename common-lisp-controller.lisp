@@ -87,16 +87,14 @@ that should be loaded in the list to enable clc"
 		      :directory
 		      `(:relative "root" ,*implementation-name*))
 		     #p"/var/cache/common-lisp-controller/")))
-    (labels ((filename (package-name filename root)
-		(let ((file (parse-namestring filename)))
-		  (merge-pathnames
-		   (make-pathname
-		    :name (pathname-name file)
-		    :type (pathname-type file)
-		    :directory (list :relative package-name))
-		 root)))
-	     (source-filename (package-name filename)
-	       (filename package-name filename *source-root*))
+    (labels ((source-filename (package-name filename)
+	       (let ((file (parse-namestring filename)))
+		 (merge-pathnames
+		  (make-pathname
+		   :name (pathname-name file)
+		   :type (pathname-type file)
+		   :directory (list :relative package-name))
+		  *source-root*)))
 	     (fasl-filename (package-name filename)
 		;; this is complex because ecl
 		;; should produce system fasls,

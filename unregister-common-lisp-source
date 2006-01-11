@@ -15,4 +15,4 @@ echo "$library" | grep -q '\/\/' && echo "Found // in $1!" && exit 2
 
 rm -rf /var/cache/common-lisp-controller/*/*/"$1"
 
-/sbin/clc-update-customized-images "$1"
+/usr/sbin/clc-update-customized-images "$1"

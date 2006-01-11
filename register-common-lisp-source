@@ -4,6 +4,6 @@
 # Licensed under the LLGPL, see debian/copyright file
 
 if [ "$1" ]; then
-    /sbin/clc-update-customized-images "$1"
+    /usr/sbin/clc-update-customized-images "$1"
 fi
 

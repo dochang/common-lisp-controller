@@ -1,8 +1,9 @@
-common-lisp-controller (5.9) UNRELEASED; urgency=low
+common-lisp-controller (5.10) UNRELEASED; urgency=low
 
+  [ René van Bevern ]
   [Peter Van Eynde]
   * Split up compiling, loading and initialization
-    for the benefit of 'create new image with these 
+    for the benefit of 'create new image with these
     files' implementations like ecl.
 
   [René van Bevern]
@@ -43,7 +44,12 @@ common-lisp-controller (5.9) UNRELEASED; urgency=low
 
   * enough for one evening, I'm getting some coffee
 
- -- René van Bevern <rvb@progn.org>  Mon,  9 Jan 2006 01:37:45 +0100
+  [ Peter Van Eynde ]
+   
+  * fix /sbin /usr/bin confusion in register-common-lisp-source
+    and unregister-common-lisp-source 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 11 Jan 2006 22:51:58 +0100
 
 common-lisp-controller (4.27) unstable; urgency=low
 

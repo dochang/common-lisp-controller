@@ -274,15 +274,7 @@ exit 0;' 2>&1 3>&1"
 
 (defun find-system-def (module-name)
   "Looks for name of system. Returns :asdf if found asdf file."
-  (cond
-   ;; probing is for weenies: just do
-   ;; it and ignore the errors :-)
-   ((ignore-errors
-	  (let ((system (asdf:find-system module-name)))
-		(when system
-		  :asdf))))
-   (t
-	nil)))
+  (when (asdf:find-system module-name nil) :asdf))
 
 (defun require-asdf (module-name)
   (let ((system (asdf:find-system module-name)))

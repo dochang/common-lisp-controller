@@ -16,19 +16,30 @@
 .B unregister-common-lisp-source 
 .I source-package
 
+.B clc-update-customized-images
+.I source-package
+
 .SH DESCRIPTION
 These are internal 
 .I common lisp controller
-commands that the common lisp source and implementation packages
-can use to register themselves to clc.
+commands. Common lisp source and implementation packages
+use them to register themselves to the
+.I common lisp controller
+or to cause regeneration of implementation images if they were
+selected to be present in such.
 
 .SH BUGS
 
 Bug reports should be sent to the debian BTS, preferably with
 reportbug.
 
+.SH SEE ALSO
+.TP
+The Common Lisp in Debian Manual at
+.B http://cl-debian.alioth.debian.org/clid/clid.html/
+
 .SH AUTHOR
-Peter Van Eynde (pvaneynd@debian.org) and Kevin M. Rosenberg
-(kmr@debian.org) 2001-2004
+Peter Van Eynde (pvaneynd@debian.org), Kevin M. Rosenberg
+(kmr@debian.org) and Ren\('e van Bevern (rvb@progn.org) 2001-2006
 
 .PP

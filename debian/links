@@ -1,4 +1,5 @@
 usr/share/man/man8/register-common-lisp-implementation.8.gz usr/share/man/man8/unregister-common-lisp-implementation.8.gz
 usr/share/man/man8/register-common-lisp-implementation.8.gz usr/share/man/man8/register-common-lisp-source.8.gz
 usr/share/man/man8/register-common-lisp-implementation.8.gz usr/share/man/man8/unregister-common-lisp-source.8.gz
+usr/share/man/man8/register-common-lisp-implementation.8.gz usr/share/man/man8/clc-update-customized-images.8.gz
 usr/share/man/man1/clc-register-user-package.1.gz usr/share/man/man1/clc-unregister-user-package.1.gz

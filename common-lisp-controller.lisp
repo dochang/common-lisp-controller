@@ -143,17 +143,8 @@ that should be loaded in the list to enable clc"
 			:verbose nil
 			:print nil)
 		  ;; return fasl filename
-		  compiled-file-pathname))
-	     (compile-and-load-customized-image ()
-	       (appendf (symbol-value
-			 (find-symbol (symbol-name :*central-registry*)
-				      (find-package :asdf)))
-			(list *systems-root*))
-	       (let ((*fasl-root* fasl-root))
-		 (mapcar (lambda (x) (apply #'compile-and-load x))
-			 (funcall (symbol-function
-				   (find-symbol (symbol-name :user-image-components)
-						:common-lisp-controller)))))))
+		  compiled-file-pathname)))
+
       ;; then asdf:
       ;; For SBCL, take advantage of it's REQUIRE/contrib directories integration
       #+sbcl
@@ -162,17 +153,27 @@ that should be loaded in the list to enable clc"
 
       ;; return a list
       (prog1
-	  (append (list
-	   ;; first ourselves:
-	   (compile-and-load  "common-lisp-controller"
-			      "common-lisp-controller.lisp")
-	   ;; asdf
-	   (compile-and-load  "asdf" "asdf.lisp")
-	   (compile-and-load  "asdf" "wild-modules.lisp")
-	   ;; now patch it::
-	   (compile-and-load "common-lisp-controller"
-			     "post-sysdef-install.lisp"))
-	   (compile-and-load-customized-image))
+	  (nconc
+	   (list
+	    ;; first ourselves:
+	    #+(or)
+	    (compile-and-load  "common-lisp-controller"
+			       "common-lisp-controller.lisp")
+	    ;; asdf
+	    (compile-and-load  "asdf" "asdf.lisp")
+	    (compile-and-load  "asdf" "wild-modules.lisp")
+	    ;; now patch it::
+	    (compile-and-load "common-lisp-controller"
+			      "post-sysdef-install.lisp"))
+
+	   ;; so that it will neither recalculate it nor save it in our image
+	   (let ((*fasl-root* fasl-root))
+	     ;; "load-user-image-components" is in the above-loaded files.
+	     (funcall (symbol-function
+		       (find-symbol
+			(symbol-name :load-user-image-components)
+			:common-lisp-controller)))))
+
 	#+sbcl
 	(setq cl:*features* (delete :sbcl-hooks-require  cl:*features*))))))
 

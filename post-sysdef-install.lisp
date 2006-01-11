@@ -374,30 +374,28 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	     #'string<))
     (values)))
 
-(defun asdf-system-files-to-load (system)
-  (let ((package-name
-	 (car (last (pathname-directory
-		     (asdf:component-pathname system))))))
-    (labels ((filename (x)
-	       (when (and (typep (car x) 'asdf:load-op)
-			  (typep (cdr x) 'asdf:cl-source-file))
-		 (list package-name
-		       (enough-namestring
-			(asdf:component-pathname (cdr x))
-			(make-pathname :directory
-				       (append (pathname-directory *source-root*)
-					       (list package-name))))))))
-      (mapcar #'filename
-	      (asdf::traverse (make-instance 'asdf:load-op) system)))))
+(defun load-component (system)
+  (prog1
+      ;;; get a list of objects that ASDF would output for compilation
+      (mapcan (lambda (x)
+		(when (typep (car x) 'asdf:compile-op)
+		  (asdf:output-files (car x) (cdr x))))
+	      (asdf::traverse (make-instance 'asdf:compile-op :force t) system))
 
-(defun user-image-components ()
+    ;;; And finally compile and load it
+    (asdf:operate 'asdf:compile-op system)
+    (asdf:operate 'asdf:load-op system)))
+
+(defun load-user-image-components ()
   (with-open-file (components (merge-pathnames
 			       *image-preferences*
 			       *implementation-name*)
-		   :direction :input :if-does-not-exist nil)
-    (when components (delete nil
-      (loop for component = (read-line components nil)
-	    while component nconcing
-	    (let ((system (asdf:find-system component nil)))
-	      (if system (asdf-system-files-to-load system)
-		(warn "System ~S not found, not loading it into implementation image." component))))))))
+			      :direction :input :if-does-not-exist nil)
+    (when components
+      (let ((asdf:*central-registry*
+	     (append asdf:*central-registry* (list *systems-root*))))
+	(loop for component = (read-line components nil)
+	      while component nconc
+	      (let ((system (asdf:find-system component nil)))
+		(if system (load-component system)
+		    (warn "System ~S not found, not loading it into implementation image" component))))))))

@@ -104,16 +104,14 @@ that should be loaded in the list to enable clc"
 		       (output-path
 			(merge-pathnames
 			 (make-pathname :name (pathname-name file)
-					:type #-ecl (pathname-type file)
-					#+ecl "o"
+					:type (pathname-type file)
 					:directory (list :relative package-name))
 			 fasl-root))
 		       (compiled-file-pathname
-			(#-ecl compile-file-pathname
-			       #+ecl compile-file-pathname
+			(compile-file-pathname
 			       output-path
 			       #+ecl #+ecl
-			       :output-file :o)))
+			       :type :o)))
 		  compiled-file-pathname))
 
 	     (compile-and-load (package-name filename)

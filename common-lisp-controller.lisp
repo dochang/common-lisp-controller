@@ -24,7 +24,6 @@
 	      ; depricated:
 	      #:c-l-c))
 
-
 (in-package #:common-lisp-controller)
 
 (defvar *clc-quiet* nil
@@ -55,17 +54,17 @@ used to name the directory in /var/cache/common-lisp-controller")
 (defun init-common-lisp-controller-v5 (implementation-name)
   ;; register the systems root:
   (setf *implementation-name* implementation-name)
-  
+
   (pushnew :common-lisp-controller *features*)
   (pushnew :clc-os-debian *features*)
 
   ;; put the central registry at the *end*
   ;; of the search list
-  (appendf 
+  (appendf
    (symbol-value (intern (symbol-name :*central-registry*)
 			 (find-package :asdf)))
    (list *systems-root*))
-  
+
   ;; put the users asdf files at the FRONT
   ;; of the same search list
   (pushnew '(merge-pathnames ".clc/systems/"
@@ -78,15 +77,16 @@ used to name the directory in /var/cache/common-lisp-controller")
   "Compiles the clc files. Returns a list of fasls
 that should be loaded in the list to enable clc"
   (setf *implementation-name* implementation-name)
-  
+
   (pushnew :common-lisp-controller *features*)
   (pushnew :clc-os-debian *features*)
-  
+
   (let* ((fasl-root (merge-pathnames
 		     (make-pathname
 		      :directory
 		      `(:relative "root" ,*implementation-name*))
 		     #p"/var/cache/common-lisp-controller/")))
+
     (labels ((source-filename (package-name filename)
 	       (let ((file (parse-namestring filename)))
 		 (merge-pathnames
@@ -95,6 +95,7 @@ that should be loaded in the list to enable clc"
 		   :type (pathname-type file)
 		   :directory (list :relative package-name))
 		  *source-root*)))
+
 	     (fasl-filename (package-name filename)
 		;; this is complex because ecl
 		;; should produce system fasls,
@@ -114,6 +115,7 @@ that should be loaded in the list to enable clc"
 			       #+ecl #+ecl
 			       :output-file :o)))
 		  compiled-file-pathname))
+
 	     (compile-and-load (package-name filename)
 		(let* ((file-path (source-filename package-name filename))
 		       (compiled-file-pathname
@@ -153,6 +155,7 @@ that should be loaded in the list to enable clc"
       (prog1
 	  (nconc
 	   (list
+
 	    ;; first ourselves:
 	    #+(or)
 	    (compile-and-load  "common-lisp-controller"
@@ -160,6 +163,7 @@ that should be loaded in the list to enable clc"
 	    ;; asdf
 	    (compile-and-load  "asdf" "asdf.lisp")
 	    (compile-and-load  "asdf" "wild-modules.lisp")
+
 	    ;; now patch it::
 	    (compile-and-load "common-lisp-controller"
 			      "post-sysdef-install.lisp"))
@@ -177,8 +181,8 @@ that should be loaded in the list to enable clc"
 
 (defun init-common-lisp-controller-v4 (implementation-name)
   "configures common-lisp-controller. IMPLEMENTATION-NAME
-is the name of this implementation.
-Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementation>"
+is the name of this implementation. Fasl's will be created in
+/var/cache/common-lisp-controller/<userid>/<implementation>"
   (compile-common-lisp-controller-v5 implementation-name)
   ;; no need to load them as they are already loaded
   (init-common-lisp-controller-v5 implementation-name))
@@ -189,11 +193,10 @@ Fasl's will be created in /var/cache/common-lisp-controller/<userid>/<implementa
                                     (version 2))
   (declare (ignore source-root version))
   ;; vodoo: extract the name of the implementation
-  ;; from the old fasl directory... 
+  ;; from the old fasl directory...
   (init-common-lisp-controller-v4
    (first
     (last
      (pathname-directory
       (parse-namestring
        fasl-root))))))
-

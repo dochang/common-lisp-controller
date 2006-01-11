@@ -17,22 +17,6 @@
     (when dirs
       (first dirs))))
 
-#+clisp
-(defun world-writable? (mode)
-  (or (member :RWXO mode) (member :WOTH mode)))
-
-#+clisp
-(defun group-writable? (mode)
-  (or (member :RWXG mode) (member :WGRP mode)))
-
-#-clisp
-(defun world-writable? (mode)
-  (/= 0 (logand mode #o002)))
-
-#-clisp
-(defun group-writable? (mode)
-  (/= 0 (logand mode #o020)))
-
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require :sb-posix))
@@ -45,6 +29,10 @@
 #+sbcl (defun get-uid () (sb-unix:unix-getuid))
 #+cmu (defun get-uid () (unix:unix-getuid))
 #+allegro (defun get-uid () (excl.osi:getuid))
+#+clisp (defun world-writable? (mode) (or (member :RWXO mode) (member :WOTH mode)))
+#+clisp (defun group-writable? (mode) (or (member :RWXG mode) (member :WGRP mode)))
+#-clisp (defun world-writable? (mode) (/= 0 (logand mode #o002)))
+#-clisp (defun group-writable? (mode) (/= 0 (logand mode #o020)))
 
 #-(or cmu sbcl clisp allegro)
 (defun get-uid ()
@@ -52,6 +40,7 @@
 	     (let ((temp-name (format nil "/tmp/clc-~A" (random 50000))))
 	       (with-open-file (file temp-name :direction :input :if-does-not-exist nil)
 		 (if file (mktemp) temp-name)))))
+
     (let ((file (mktemp)))
       (unwind-protect
 	   (progn (asdf:run-shell-command "umask 077 && echo $UID > ~A" file)
@@ -227,50 +216,43 @@ exit 0;' 2>&1 3>&1"
       (unless *warned-for-broken-enough-namestring*
 	(warn "your enough-namestring implementation is not reducting a pathname like it should, correcting for this")
 	(setf *warned-for-broken-enough-namestring* t))
+
       (let ((source-root-path (pathname-directory source-root))
 	    (source-path (pathname-directory source)))
 	(setf relative-source
-	      (make-pathname :directory (cons :RELATIVE
-					      (loop :for tail :on source-path
-						    :for root :in source-root-path
-						    :while root
-						    :unless (equal root (first tail))
-						    :do
-						    (error "Path ~S not beneath ~S? ~S /= ~S"
-							   source
-							   source-root
-							   root
-							   (first tail))
-						    :finally
-						    (return tail)))
-			     :defaults source-root))))
-  (merge-pathnames 
-   relative-source
-   *fasl-root*)))
+	      (make-pathname
+	       :directory (cons :RELATIVE
+				(loop :for tail :on source-path
+				      :for root :in source-root-path
+				      :while root
+				      :unless (equal root (first tail)) :do
+				      (error "Path ~S not beneath ~S? ~S /= ~S"
+					  source source-root root (first tail))
+				      :finally (return tail)))
+	       :defaults source-root))))
+  (merge-pathnames  relative-source *fasl-root*)))
 
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
   "Method to rewrite output files to fasl-root"
   (let ((orig (call-next-method)))
-    (cond
-      ((beneath-source-root? c)
-       (calculate-fasl-root)
-       (mapcar #'source-root-path-to-fasl-path orig))
-      (t
-       orig))))
+    (cond ((beneath-source-root? c)
+	   (calculate-fasl-root)
+	   (mapcar #'source-root-path-to-fasl-path orig))
+	  (t orig))))
 
 (defun system-in-source-root? (c)
   "Returns T if component's directory is the same as *source-root* + component's name"
   ;; asdf::resolve-symlinks gives an error for non-existent pathnames
   ;; on lispworks
   (ignore-errors
-    (and c
-	 (equalp (pathname-directory (asdf:component-pathname c))
-		 (pathname-directory
-		  (asdf::resolve-symlinks
-		   (merge-pathnames
-		    (make-pathname
-		     :directory (list :relative (asdf:component-name c)))
-		    *source-root*)))))))
+    (when c
+      (equalp (pathname-directory (asdf:component-pathname c))
+	      (pathname-directory
+	       (asdf::resolve-symlinks
+		(merge-pathnames
+		 (make-pathname
+		  :directory (list :relative (asdf:component-name c)))
+		 *source-root*)))))))
 
 (defun find-system-def (module-name)
   "Looks for name of system. Returns :asdf if found asdf file."
@@ -312,27 +294,19 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	:finally (when failed-packages
 		  (format t "~&~%Failed the following packages failed: ~{~A~^, ~}"
 			  failed-packages))
-	
 	:do
 	(loop :for pathname :in (directory
 			         (merge-pathnames
-			      	  (make-pathname
-				    :name :wild
-				    :type "asd")
+			      	  (make-pathname :name :wild :type "asd")
 				  registry-location))
-	      :for package-name = (pathname-name pathname)
-	      :do
+	      :for package-name = (pathname-name pathname) :do
 	      (restart-case
-		  (handler-case
-		      (asdf:oos 'asdf:compile-op package-name)
+		  (handler-case (asdf:oos 'asdf:compile-op package-name)
 		    (error (error)
-		      (cond
-			(ignore-errors
-			  (format t "~&Ignoring error: ~A~%"
-				  error)
-			  nil)
-			(t
-			 (error error)))))
+		      (cond (ignore-errors
+			      (format t "~&Ignoring error: ~A~%" error)
+			      nil)
+			    (t (error error)))))
 		(skip-package ()
 		  (push package-name failed-packages)
 		  nil)))))
@@ -344,20 +318,14 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	  :for files = (when location
 			 (directory
 			  (merge-pathnames
-			   (make-pathname
-			    :version :newest
-			    :name :wild
-			    :type "asd"
-			    :case :local)
+			   (make-pathname  :version :newest :name :wild
+					   :type "asd" :case :local)
 			   location)))
-	  :when  files
-	  :do
+	  :when files :do
 	  (loop :for filename :in files
-		:for system = (when filename
-				(pathname-name filename))
+		:for system = (when filename (pathname-name filename))
 		:do
-		(setf (gethash system systems)
-		      system)))
+		(setf (gethash system systems) system)))
     (format t
 	    "~&Known systems:~%~@<~;:~A~_ ~;~:>~%"
 	    (sort 

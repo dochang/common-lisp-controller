@@ -53,7 +53,14 @@ common-lisp-controller (5.10) UNRELEASED; urgency=low
 
   * enough for one evening, I'm getting some coffee
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 11 Jan 2006 23:08:37 +0100
+  [ Peter Van Eynde ]
+
+  * fix /sbin /usr/bin confusion in register-common-lisp-source
+    and unregister-common-lisp-source
+  * Slight ecl compile-file-pathname related fixes
+  * We need to load and compile common-lisp-controller too. 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 11 Jan 2006 23:13:48 +0100
 
 common-lisp-controller (4.27) unstable; urgency=low
 

@@ -155,7 +155,6 @@ that should be loaded in the list to enable clc"
 	   (list
 
 	    ;; first ourselves:
-	    #+(or)
 	    (compile-and-load  "common-lisp-controller"
 			       "common-lisp-controller.lisp")
 	    ;; asdf

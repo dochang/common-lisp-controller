@@ -17,6 +17,11 @@
     (when dirs
       (first dirs))))
 
+;;; ECL has the asdf::build-op operation
+#+ecl
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (require :asdf))
+
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require :sb-posix))
@@ -334,17 +339,17 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	     #'string<))
     (values)))
 
+#-ecl
 (defun load-component (system)
-  (prog1
-      ;;; get a list of objects that ASDF would output for compilation
-      (mapcan (lambda (x)
-		(when (typep (car x) 'asdf:compile-op)
-		  (asdf:output-files (car x) (cdr x))))
-	      (asdf::traverse (make-instance 'asdf:compile-op :force t) system))
+  (asdf:operate 'asdf:compile-op system)
+  (asdf:operate 'asdf:load-op system)
+  nil)
 
-    ;;; And finally compile and load it
-    (asdf:operate 'asdf:compile-op system)
-    (asdf:operate 'asdf:load-op system)))
+#+ecl
+(defun load-component (system)
+  (asdf:operate 'asdf:build-op system)
+  (asdf:operate 'asdf:load-op system)
+  (asdf::get-object-files system))
 
 (defun load-user-image-components ()
   (with-open-file (components (merge-pathnames

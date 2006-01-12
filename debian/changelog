@@ -1,12 +1,15 @@
 common-lisp-controller (5.10) UNRELEASED; urgency=low
 
-  [ René van Bevern ]
-  [Peter Van Eynde]
+  [ Peter Van Eynde ]
+
   * Split up compiling, loading and initialization
     for the benefit of 'create new image with these
     files' implementations like ecl.
+  * fix /sbin /usr/bin confusion in register-common-lisp-source
+    and unregister-common-lisp-source
+  * Slight ecl compile-file-pathname related fixes
 
-  [René van Bevern]
+  [ René van Bevern ]
 
   * Use user IDs to determine the location of the FASL cache instead of
     home dirs, because multiple users might have the same home dir and
@@ -28,27 +31,27 @@ common-lisp-controller (5.10) UNRELEASED; urgency=low
     /etc/common-lisp/images/$implementation-name
 
     + Load desired systems at image creation
+
       - post-sysdef-install.lisp: add function load-user-image-components,
         that loads the systems as said above
+
+        + for ECL, its ASDF operation build-op is used to compile systems
+          natively and a list of .o files is returned that shall be linked
+          into the image
+
       - common-lisp-controller.lisp: set path for image settings and call
-        load-user-image-components in CLC initialization phase
+        load-user-image-components in CLC compilation phase
 
     + recreate images if new lisp source is installed, handle updates
       - clc-update-customized-images: new script to recreate an
         implementation's image if the system given at the command line is
         desired to be part of it
       - (un)register-common-lisp-source: call clc-update-customized-images
-      - debian/rules: install clc-update-customized-images to /sbin
+      - debian/rules: install clc-update-customized-images to /usr/sbin
 
     + debian/README.Debian: document the whole thing
 
   * enough for one evening, I'm getting some coffee
-
-  [ Peter Van Eynde ]
-
-  * fix /sbin /usr/bin confusion in register-common-lisp-source
-    and unregister-common-lisp-source
-  * Slight ecl compile-file-pathname related fixes 
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 11 Jan 2006 23:08:37 +0100
 

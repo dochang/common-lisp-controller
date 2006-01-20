@@ -1,3 +1,9 @@
+common-lisp-controller (5.11) UNRELEASED; urgency=low
+
+  * token new version
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 20 Jan 2006 08:40:25 +0100
+
 common-lisp-controller (5.10) UNRELEASED; urgency=low
 
   [ Peter Van Eynde ]

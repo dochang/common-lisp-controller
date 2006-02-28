@@ -234,7 +234,7 @@ exit 0;' 2>&1 3>&1"
 				      (error "Path ~S not beneath ~S? ~S /= ~S"
 					  source source-root root (first tail))
 				      :finally (return tail)))
-	       :defaults source-root))))
+	       :defaults source))))
   (merge-pathnames  relative-source *fasl-root*)))
 
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
@@ -347,7 +347,7 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 
 #+ecl
 (defun load-component (system)
-  (asdf:operate 'asdf:build-op system)
+  (asdf:operate 'asdf:compile-op system)
   (asdf:operate 'asdf:load-op system)
   (asdf::get-object-files system))
 

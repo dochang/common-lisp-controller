@@ -54,7 +54,7 @@ used to name the directory in /var/cache/common-lisp-controller")
 (defun init-common-lisp-controller-v5 (implementation-name)
   ;; register the systems root:
   (setf *implementation-name* implementation-name)
-
+  
   (pushnew :common-lisp-controller *features*)
   (pushnew :clc-os-debian *features*)
 
@@ -95,53 +95,62 @@ that should be loaded in the list to enable clc"
 		   :type (pathname-type file)
 		   :directory (list :relative package-name))
 		  *source-root*)))
-
+	     (system-fasl-filename (package-name filename)
+	       ;; this is complex because ecl
+	       ;; should produce system fasls,
+	       ;; and they have .o extension
+	       (let* ((file (parse-namestring filename))
+		      (output-path
+		       (merge-pathnames
+			(make-pathname :name (pathname-name file)
+				       :type #-ecl (pathname-type file)
+				       #+ecl "o"
+				       :directory (list :relative package-name))
+			fasl-root)))
+		 #-ecl
+		 (setf output-path (compile-file-pathname output-path))
+		 output-path))
 	     (fasl-filename (package-name filename)
-		;; this is complex because ecl
-		;; should produce system fasls,
-		;; and they have .o extension
-		(let* ((file (parse-namestring filename))
-		       (output-path
-			(merge-pathnames
-			 (make-pathname :name (pathname-name file)
-					:type (pathname-type file)
-					:directory (list :relative package-name))
-			 fasl-root))
-		       (compiled-file-pathname
-			(compile-file-pathname
-			       output-path
-			       #+ecl #+ecl
-			       :type :o)))
-		  compiled-file-pathname))
+	       ;; this is complex because ecl
+	       ;; should produce system fasls,
+	       ;; and they have .o extension
+	       (let* ((file (parse-namestring filename))
+		      (output-path
+		       (merge-pathnames
+			(make-pathname :name (pathname-name file)
+				       :type (pathname-type file)
+				       :directory (list :relative package-name))
+			fasl-root))
+		      (compiled-file-pathname
+		       (compile-file-pathname
+			output-path)))
+		 compiled-file-pathname))
 
 	     (compile-and-load (package-name filename)
-		(let* ((file-path (source-filename package-name filename))
-		       (compiled-file-pathname
-			(progn
-			  ;; first make the target directory:
-			  (ensure-directories-exist
-			   (fasl-filename package-name filename))
-			  ;; now compile it:
-			  (compile-file file-path
-					:output-file (fasl-filename package-name filename)
-					:print nil
-					:verbose nil
-					;; make 'linkable object files' for ecl:
-					#+ecl #+ecl
-					:system-p t))))
-		  ;; then load it:
-		  (load #-ecl compiled-file-pathname
-			;; for ecl, first _really compile_ the file, then load it
-			#+ecl (compile-file file-path
-					    :output-file
-					    (compile-file-pathname
-					     (fasl-filename package-name filename))
-					    :print nil
-					    :verbose nil)
-			:verbose nil
-			:print nil)
-		  ;; return fasl filename
-		  compiled-file-pathname)))
+	       (let* ((file-path (source-filename package-name filename))
+		      (compiled-file-pathname
+		       (progn
+			 ;; first make the target directory:
+			 (ensure-directories-exist
+			  (fasl-filename package-name filename))
+			 ;; now compile it:
+			 (compile-file file-path
+				       :output-file (fasl-filename package-name filename)
+				       :print nil
+				       :verbose nil))))
+		 ;; then load it:
+		 (load compiled-file-pathname)
+		 ;; return fasl filename
+		 compiled-file-pathname
+		 ;; now for ecl: make the system file
+		 #+ecl 
+		 (compile-file file-path
+			       :output-file
+			       (system-fasl-filename package-name filename)
+			       :print nil
+			       :verbose nil
+			       ;; make 'linkable object files' 
+			       :system-p t))))
 
       ;; then asdf:
       ;; For SBCL, take advantage of it's REQUIRE/contrib directories integration

@@ -1,6 +1,7 @@
 common-lisp-controller (5.11) unstable; urgency=low
 
   * New ecl related fixes.
+  * Main common-lisp-controller manpage.
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 15 Mar 2006 21:45:49 +0100
 

@@ -20,7 +20,7 @@ CLC_SRC_FILES	:= common-lisp-controller.lisp post-sysdef-install.lisp
 #CLC_UTILS	:= debug-daemon-problems.sh
 
 MAN_FILES := man/register-common-lisp-implementation.8  \
- man/clc-register-user-package.1
+ man/clc-register-user-package.1 man/common-lisp-controller.3
 
 configure: configure-stamp
 configure-stamp:

@@ -1,0 +1,86 @@
+.\" 	-*- Mode: Nroff -*-
+.TH "common-lisp-controller" "3" "March, 15, 2006"
+.AT 3
+.SH NAME
+common-lisp-controller - Common Lisp system management tool
+
+.SH DESCRIPTION
+
+The
+.I common-lisp-controller
+system will manage the installed Common
+Lisp
+.I implementations
+and 
+.I libraries
+on the system. The main function is to enable
+every user to load any available 
+.I library
+and to store the compiled files in a user and
+implementation specific cache directory.
+
+On upgrades of either 
+.I implementations
+or 
+.I libraries
+these directories will be cleared so that no
+old fasl files will remain.
+
+There are also options to add libraries by default
+to new images, see
+.I /usr/share/doc/common-lisp-controller/README.Debian
+, or to add user specific libraries to
+the management system, see
+.I clc-register-user-package.
+ 
+.SH EXAMPLES
+
+To load a clc library
+.I :foo
+on a clc enabled implementation simply do
+
+.B (clc:clc-require :foo)
+
+To build all known libraries for this
+implementation do
+
+.B (clc:clc-build-all-packages 
+.I (&optional (ignore-errors nil))
+
+To list all known libraries do
+
+.B (clc:list-systems)
+
+.SH FILES
+
+.I /var/cache/common-lisp/
+.IB <uid>
+.I /
+.IB <implementation-name>
+.I /
+.IB <library>
+the cache directory for a library fir a given user 
+with associated uid and a certain implementation.
+
+.I /usr/share/common-lisp/systems/ 
+the location of the libraries.
+
+.SH BUGS
+
+Bug reports should be sent to the Debian BTS, preferably with
+reportbug.
+
+.SH AUTHOR
+Peter Van Eynde (pvaneynd@debian.org) 2001-2006
+
+Kevin M. Rosenberg (kmr@debian.org) 2001-2004
+
+René van Bevern 2005-2006
+
+.SH "SEE ALSO"
+.BR clc-register-user-package (1),
+.BR clc-unregister-user-package (1)
+.BR register-common-lisp-implementation (8)
+.BR register-common-lisp-source (8)
+.BR unregister-common-lisp-implementation|source (8)
+.BR unregister-common-lisp-source (8)

@@ -1,8 +1,8 @@
-common-lisp-controller (5.11) UNRELEASED; urgency=low
+common-lisp-controller (5.11) unstable; urgency=low
 
   * New ecl related fixes.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 28 Feb 2006 17:22:21 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 15 Mar 2006 21:45:49 +0100
 
 common-lisp-controller (5.10) UNRELEASED; urgency=low
 

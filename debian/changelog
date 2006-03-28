@@ -1,9 +1,12 @@
 common-lisp-controller (5.12) unstable; urgency=low
 
-  * Fix asdf issues with new sbcl 0.9.11.0, use the 
+  * Fix asdf issues with new sbcl 0.9.11.0, use the
     native sbcl asdf version.
+  * system-fasl-filename is only needed on ecl,
+    makes clc on sbcl much more silent.
+    (Closes: #357842)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 28 Mar 2006 09:13:33 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 28 Mar 2006 09:19:36 +0200
 
 common-lisp-controller (5.11) unstable; urgency=low
 

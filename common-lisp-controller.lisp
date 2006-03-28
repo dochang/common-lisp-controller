@@ -95,6 +95,7 @@ that should be loaded in the list to enable clc"
 		   :type (pathname-type file)
 		   :directory (list :relative package-name))
 		  *source-root*)))
+	     #+ecl
 	     (system-fasl-filename (package-name filename)
 	       ;; this is complex because ecl
 	       ;; should produce system fasls,

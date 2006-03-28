@@ -157,6 +157,12 @@ that should be loaded in the list to enable clc"
       #+sbcl
       (when (boundp 'sb-ext::*module-provider-functions*)
 	(pushnew :sbcl-hooks-require cl:*features*))
+	
+      ;; use the sbcl asdf version for increased
+      ;; compatibility with the normal sbcl
+      
+      #+sbcl
+      (require :asdf)
 
       ;; return a list
       (prog1
@@ -167,9 +173,11 @@ that should be loaded in the list to enable clc"
 	    (compile-and-load  "common-lisp-controller"
 			       "common-lisp-controller.lisp")
 	    ;; asdf
+	    #-sbcl
 	    (compile-and-load  "asdf" "asdf.lisp")
+	    
 	    (compile-and-load  "asdf" "wild-modules.lisp")
-
+	    
 	    ;; now patch it::
 	    (compile-and-load "common-lisp-controller"
 			      "post-sysdef-install.lisp"))

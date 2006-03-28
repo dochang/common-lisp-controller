@@ -5,8 +5,10 @@ common-lisp-controller (5.12) unstable; urgency=low
   * system-fasl-filename is only needed on ecl,
     makes clc on sbcl much more silent.
     (Closes: #357842)
+  * Silenced find error message on upgrade from 
+    4.27. Reported by Martin Schulze.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 28 Mar 2006 09:19:36 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 28 Mar 2006 09:51:20 +0200
 
 common-lisp-controller (5.11) unstable; urgency=low
 

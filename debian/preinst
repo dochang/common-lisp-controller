@@ -22,7 +22,7 @@ case "$1" in
         # cleanup fasl files:
         find  /usr/share/common-lisp/source/defsystem \
 	      /usr/share/common-lisp/source/asdf \
-	      /usr/share/common-lisp/source/common-lisp-controller 
+	      /usr/share/common-lisp/source/common-lisp-controller \
 	      -type f -not -name "*.lisp" -print0 2> /dev/null \
 	      | xargs --null rm --force 2> /dev/null
         # remove old autobuild files:

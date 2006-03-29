@@ -1,8 +1,8 @@
-common-lisp-controller (5.13) UNRELEASED; urgency=low
+common-lisp-controller (5.13) unstable; urgency=high
 
-  * token new version
+  * Fixed pre-installation script error (Closes: #359761)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 29 Mar 2006 05:23:02 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 29 Mar 2006 05:23:40 +0200
 
 common-lisp-controller (5.12) unstable; urgency=low
 

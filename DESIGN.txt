@@ -12,7 +12,6 @@ Common Lisp Libraries:
    /usr/share/common-lisp/source/<library>/<library>.asd
  - after install call "/usr/sbin/register-common-lisp-source <library>"
  - before removal of the package call "/usr/sbin/unregister-common-lisp-source <library>"
- Libraries can be automaticly created with the "asdf-install-2-deb" package.
 
 Common Lisp Implementations::
 
@@ -22,8 +21,10 @@ Common Lisp Implementations::
   /usr/lib/common-lisp/bin/<impl>.sh install-clc
    This should load /usr/share/common-lisp/source/common-lisp-controller/common-lisp-controller.lisp
    then call
-(common-lisp-controller:init-common-lisp-controller-v4 <implementation)
-   and then save the resulting image as default for the system.
+(common-lisp-controller:init-common-lisp-controller-v4 "<name of implementation>")
+   and then save the resulting image as default for the system for implementations that do
+   not support a 'dump the current running image as new image' there is a v5 interface. See the 
+   ecl implementation for an example.
  - after install call "/usr/sbin/register-common-lisp-implementation <implementation>"
  - before removal call "/usr/sbin/unregister-common-lisp-implementation <implementation>"
  - should load /etc/lisp-config.lisp on startup.

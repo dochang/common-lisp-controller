@@ -1,3 +1,9 @@
+common-lisp-controller (5.14) UNRELEASED; urgency=low
+
+  * small source fixes
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun,  9 Apr 2006 18:13:18 +0200
+
 common-lisp-controller (5.13) unstable; urgency=high
 
   * Fixed pre-installation script error (Closes: #359761)

@@ -108,7 +108,6 @@ that should be loaded in the list to enable clc"
 				       #+ecl "o"
 				       :directory (list :relative package-name))
 			fasl-root)))
-		 #-ecl
 		 (setf output-path (compile-file-pathname output-path))
 		 output-path))
 	     (fasl-filename (package-name filename)

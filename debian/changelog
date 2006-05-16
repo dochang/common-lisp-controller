@@ -1,8 +1,10 @@
-common-lisp-controller (5.14) UNRELEASED; urgency=low
+common-lisp-controller (6.0) UNRELEASED; urgency=low
 
   * small source fixes
+  * If non-clc controlled files are compiled we now place them in
+    /var/cache/common-lisp/<implementation>/local/<original path>
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sun,  9 Apr 2006 18:13:18 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 17 May 2006 00:02:18 +0200
 
 common-lisp-controller (5.13) unstable; urgency=high
 

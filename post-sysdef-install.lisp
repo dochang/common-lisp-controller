@@ -237,13 +237,35 @@ exit 0;' 2>&1 3>&1"
 	       :defaults source))))
   (merge-pathnames  relative-source *fasl-root*)))
 
+(defun alternative-root-path-to-fasl-path (source)
+  "Converts a path in anywhere to a path beneath the fasl root"
+  (let ((source-path (pathname-directory source
+					 :case :local)))
+    ;; it could already be beneath /var/cache/common-lisp
+    (cond
+      ((and (eq (first source-path) :ABSOLUTE)
+	    (eq (second source-path) "var")
+	    (eq (third source-path) "cache")
+	    (eq (fourth source-path) "common-lisp"))
+       ;; just let it be
+       source)
+      (t
+       (merge-pathnames
+	(make-pathname :directory
+		       (append (list :RELATIVE "local")
+			       (rest source-path))
+		       :case :local
+		       :defaults source)
+	*fasl-root*)))))
+
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
   "Method to rewrite output files to fasl-root"
   (let ((orig (call-next-method)))
+    (calculate-fasl-root)
     (cond ((beneath-source-root? c)
-	   (calculate-fasl-root)
 	   (mapcar #'source-root-path-to-fasl-path orig))
-	  (t orig))))
+	  (t
+	   (mapcar #'alternative-root-path-to-fasl-path orig)))))
 
 (defun system-in-source-root? (c)
   "Returns T if component's directory is the same as *source-root* + component's name"

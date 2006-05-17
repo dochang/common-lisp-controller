@@ -100,16 +100,9 @@ that should be loaded in the list to enable clc"
 	       ;; this is complex because ecl
 	       ;; should produce system fasls,
 	       ;; and they have .o extension
-	       (let* ((file (parse-namestring filename))
-		      (output-path
-		       (merge-pathnames
-			(make-pathname :name (pathname-name file)
-				       :type #-ecl (pathname-type file)
-				       #+ecl "o"
-				       :directory (list :relative package-name))
-			fasl-root)))
-		 (setf output-path (compile-file-pathname output-path))
-		 output-path))
+	       (merge-pathnames 
+		 (make-pathname :type "o")
+		 (fasl-filename package-name filename)))
 	     (fasl-filename (package-name filename)
 	       ;; this is complex because ecl
 	       ;; should produce system fasls,

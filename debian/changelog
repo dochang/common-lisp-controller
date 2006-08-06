@@ -1,9 +1,10 @@
-common-lisp-controller (6.2) UNRELEASED; urgency=low
+common-lisp-controller (6.2) unstable; urgency=low
 
-  * token new version
-  * Added debconf-updatepo to clean target 
+  * Added debconf-updatepo to clean target
+  * Included Portuguese translation for common-lisp-controller
+    (Closes: #381375, #381374)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sun, 21 May 2006 00:19:48 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun,  6 Aug 2006 23:22:36 +0200
 
 
 common-lisp-controller (6.1) unstable; urgency=low

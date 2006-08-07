@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 4.12\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 16:40+0200\n"
+"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
+"POT-Creation-Date: 2006-08-06 23:24+0200\n"
 "PO-Revision-Date: 2005-04-18 22:14+0200\n"
 "Last-Translator: Martin Sin <martin.sin@seznam.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -14,46 +14,48 @@ msgstr ""
 
 #. Type: string
 #. Default
-#: ../templates:3
+#: ../templates:1001
 msgid "Unknown"
 msgstr "Neznámý"
 
 #. Type: string
 #. Description
-#: ../templates:4
+#: ../templates:1002
 msgid "The short common LISP site name"
 msgstr "Krátký název umístìní LISPu"
 
 #. Type: string
 #. Description
-#: ../templates:4
+#: ../templates:1002
 msgid ""
 "You can configure what the common LISP implementations are going to use as "
 "\"short site name\". This is mostly unused except in some error reporting "
 "tools."
 msgstr ""
 "Mù¾ete nastavit co má bì¾ná implementace LISPu pou¾ívat jako \"krátký název "
-"umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje informující o " "chybách."
+"umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje informující o "
+"chybách."
 
 #. Type: string
 #. Default
-#: ../templates:11
+#: ../templates:2001
 msgid "Site name not initialized"
 msgstr "Jméno umístìní nebylo inicializováno"
 
 #. Type: string
 #. Description
-#: ../templates:12
+#: ../templates:2002
 msgid "The long common LISP site name"
 msgstr "Dlouhý název umístìní LISPu"
 
 #. Type: string
 #. Description
-#: ../templates:12
+#: ../templates:2002
 msgid ""
 "You can configure what the common LISP implementations are going to use as "
 "\"long site name\". This is mostly unused except in some error reporting "
 "tools."
 msgstr ""
-"Mù¾ete nastavit co má bì¾ná implementace LISPu pou¾ívat jako "
-"\"dlouhý název umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje " "informující o chybách."
+"Mù¾ete nastavit co má bì¾ná implementace LISPu pou¾ívat jako \"dlouhý název "
+"umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje informující o "
+"chybách."

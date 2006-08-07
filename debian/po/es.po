@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 16:40+0200\n"
+"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
+"POT-Creation-Date: 2006-08-06 23:24+0200\n"
 "PO-Revision-Date: 2005-09-02 17:53+0100\n"
 "Last-Translator: César Gómez Martín <cesar.gomez@gmail.com>\n"
 "Language-Team: Debian l10n spanish <debian-l10n-spanish@lists.debian.org>\n"
@@ -39,33 +39,49 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #. Type: string
-#: ../templates:3
+#. Default
+#: ../templates:1001
 msgid "Unknown"
 msgstr "Desconocido"
 
 #. Type: string
-#: ../templates:4
+#. Description
+#: ../templates:1002
 msgid "The short common LISP site name"
 msgstr "Nombre corto del sitio de common LISP"
 
 #. Type: string
-#: ../templates:4
-msgid "You can configure what the common LISP implementations are going to use as \"short site name\". This is mostly unused except in some error reporting tools."
-msgstr "Puede configurar el parámetro que las implementaciones de common LISP van a usar como «nombre corto del sitio». Esto no se usa normalmente, excepto en algunas herramientas de informe de errores."
+#. Description
+#: ../templates:1002
+msgid ""
+"You can configure what the common LISP implementations are going to use as "
+"\"short site name\". This is mostly unused except in some error reporting "
+"tools."
+msgstr ""
+"Puede configurar el parámetro que las implementaciones de common LISP van a "
+"usar como «nombre corto del sitio». Esto no se usa normalmente, excepto en "
+"algunas herramientas de informe de errores."
 
 #. Type: string
-#: ../templates:11
+#. Default
+#: ../templates:2001
 msgid "Site name not initialized"
 msgstr "El nombre del sitio no está inicializado"
 
 #. Type: string
-#: ../templates:12
+#. Description
+#: ../templates:2002
 msgid "The long common LISP site name"
 msgstr "Nombre largo del sitio de common LISP"
 
 #. Type: string
-#: ../templates:12
-msgid "You can configure what the common LISP implementations are going to use as \"long site name\". This is mostly unused except in some error reporting tools."
-msgstr "Puede configurar el parámetro que las implementaciones de common LISP van a usar como «nombre largo del sitio». Esto no se usa normalmente, excepto en algunas herramientas de informe de errores."
-
-
+#. Description
+#: ../templates:2002
+msgid ""
+"You can configure what the common LISP implementations are going to use as "
+"\"long site name\". This is mostly unused except in some error reporting "
+"tools."
+msgstr ""
+"Puede configurar el parámetro que las implementaciones de common LISP van a "
+"usar como «nombre largo del sitio». Esto no se usa normalmente, excepto en "
+"algunas herramientas de informe de errores."

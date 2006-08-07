@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 4.14\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 16:40+0200\n"
+"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
+"POT-Creation-Date: 2006-08-06 23:24+0200\n"
 "PO-Revision-Date: 2005-05-21 17:13+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
@@ -15,45 +15,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#.Type: string
-#.Default
-#:../templates:3
+#. Type: string
+#. Default
+#: ../templates:1001
 msgid "Unknown"
 msgstr "Không biết"
 
-#.Type: string
-#.Description
-#:../templates:4
+#. Type: string
+#. Description
+#: ../templates:1002
 msgid "The short common LISP site name"
 msgstr "Tên nơi LISP chung vắn"
 
-#.Type: string
-#.Description
-#:../templates:4
+#. Type: string
+#. Description
+#: ../templates:1002
 msgid ""
 "You can configure what the common LISP implementations are going to use as "
 "\"short site name\". This is mostly unused except in some error reporting "
 "tools."
-msgstr "Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong chỗ «tên nơi vắn». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."
+msgstr ""
+"Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong "
+"chỗ «tên nơi vắn». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."
 
-#.Type: string
-#.Default
-#:../templates:11
+#. Type: string
+#. Default
+#: ../templates:2001
 msgid "Site name not initialized"
 msgstr "Chưa khởi động tên nơi"
 
-#.Type: string
-#.Description
-#:../templates:12
+#. Type: string
+#. Description
+#: ../templates:2002
 msgid "The long common LISP site name"
 msgstr "Tên nơi LISP chung dài"
 
-#.Type: string
-#.Description
-#:../templates:12
+#. Type: string
+#. Description
+#: ../templates:2002
 msgid ""
 "You can configure what the common LISP implementations are going to use as "
 "\"long site name\". This is mostly unused except in some error reporting "
 "tools."
-msgstr "Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong chỗ «tên nơi dài». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."
-""
+msgstr ""
+"Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong "
+"chỗ «tên nơi dài». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."

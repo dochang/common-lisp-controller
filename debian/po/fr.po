@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller (3.71)\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 16:40+0200\n"
+"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
+"POT-Creation-Date: 2006-08-06 23:24+0200\n"
 "PO-Revision-Date: 2004-01-02 15:27+0100\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -25,19 +25,19 @@ msgstr ""
 
 #. Type: string
 #. Default
-#: ../templates:3
+#: ../templates:1001
 msgid "Unknown"
 msgstr "Inconnu"
 
 #. Type: string
 #. Description
-#: ../templates:4
+#: ../templates:1002
 msgid "The short common LISP site name"
 msgstr "Nom court du site LISP commun"
 
 #. Type: string
 #. Description
-#: ../templates:4
+#: ../templates:1002
 msgid ""
 "You can configure what the common LISP implementations are going to use as "
 "\"short site name\". This is mostly unused except in some error reporting "
@@ -49,19 +49,19 @@ msgstr ""
 
 #. Type: string
 #. Default
-#: ../templates:11
+#: ../templates:2001
 msgid "Site name not initialized"
 msgstr "Nom de site indéfini"
 
 #. Type: string
 #. Description
-#: ../templates:12
+#: ../templates:2002
 msgid "The long common LISP site name"
 msgstr "Nom long du site LISP commun"
 
 #. Type: string
 #. Description
-#: ../templates:12
+#: ../templates:2002
 msgid ""
 "You can configure what the common LISP implementations are going to use as "
 "\"long site name\". This is mostly unused except in some error reporting "

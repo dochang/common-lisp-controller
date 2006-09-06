@@ -241,12 +241,18 @@ exit 0;' 2>&1 3>&1"
   "Converts a path in anywhere to a path beneath the fasl root"
   (let ((source-path (pathname-directory source
 					 :case :local)))
-    ;; it could already be beneath /var/cache/common-lisp
     (cond
+      ;; it could already be beneath /var/cache/common-lisp
       ((and (eq (first source-path) :ABSOLUTE)
 	    (eq (second source-path) "var")
 	    (eq (third source-path) "cache")
 	    (eq (fourth source-path) "common-lisp"))
+       ;; just let it be
+       source)
+      ;; it could be a library package
+      ((and (eq (first source-path) :ABSOLUTE)
+	    (eq (second source-path) "usr")
+	    (eq (third source-path) "lib"))
        ;; just let it be
        source)
       (t

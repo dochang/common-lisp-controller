@@ -2,6 +2,7 @@ Source: common-lisp-controller
 Section: devel
 Priority: optional
 Build-Depends: debhelper (>= 4.1.16)
+Build-Depends-Indep: po-debconf
 Maintainer: Peter Van Eynde <pvaneynd@debian.org>
 Uploaders: Kevin M. Rosenberg <kmr@debian.org>
 Standards-Version: 3.7.2.0

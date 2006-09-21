@@ -7,8 +7,9 @@ common-lisp-controller (6.3) UNRELEASED; urgency=low
     to the /var/cache directory. By default we will only redirect
     when compiling as the result of a clc-require call.
     (Closes: #384457)
+  * Added po-debconf Build-Depends
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 21 Sep 2006 14:24:55 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 21 Sep 2006 14:29:30 +0200
 
 common-lisp-controller (6.2) unstable; urgency=low
 

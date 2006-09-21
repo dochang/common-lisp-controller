@@ -2,8 +2,13 @@ common-lisp-controller (6.3) UNRELEASED; urgency=low
 
   * Ignore source files beneath /usr/lib/
     (Closes: #382582)
+  * Introduce the *redirect-fasl-files-to-cache* variable.
+    If the value of this variable is true we redirect fasl files
+    to the /var/cache directory. By default we will only redirect
+    when compiling as the result of a clc-require call.
+    (Closes: #384457)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  6 Sep 2006 09:54:26 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 21 Sep 2006 14:24:55 +0200
 
 common-lisp-controller (6.2) unstable; urgency=low
 

@@ -17,6 +17,7 @@
 	   #:*clc-quiet*
 	   #:calculate-fasl-root
 	   #:list-systems
+	   #:*redirect-fasl-files-to-cache*
 	   ;; depricated:
 	   #:make-clc-send-command-string
 	   #:send-clc-command)
@@ -28,6 +29,9 @@
 
 (defvar *clc-quiet* nil
   "If true then clc prints no messages")
+
+(defvar *redirect-fasl-files-to-cache* nil
+  "If true we redirect the fasl files to the local cache directory")
 
 ;; Some general utilities to make the
 ;; descriptions shorter

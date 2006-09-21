@@ -267,11 +267,14 @@ exit 0;' 2>&1 3>&1"
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
   "Method to rewrite output files to fasl-root"
   (let ((orig (call-next-method)))
-    (calculate-fasl-root)
-    (cond ((beneath-source-root? c)
-	   (mapcar #'source-root-path-to-fasl-path orig))
-	  (t
-	   (mapcar #'alternative-root-path-to-fasl-path orig)))))
+    (if (not *redirect-fasl-files-to-cache*)
+	orig
+      (progn
+	(calculate-fasl-root)
+	(cond ((beneath-source-root? c)
+	       (mapcar #'source-root-path-to-fasl-path orig))
+	      (t
+	       (mapcar #'alternative-root-path-to-fasl-path orig)))))))
 
 (defun system-in-source-root? (c)
   "Returns T if component's directory is the same as *source-root* + component's name"
@@ -305,16 +308,17 @@ exit 0;' 2>&1 3>&1"
       t)))
 
 (defun clc-require (module-name &optional (pathname 'clc::unspecified))
-  (if (not (eq pathname 'clc::unspecified))
-      (common-lisp:require module-name pathname)
-	(let ((system-type (find-system-def module-name)))
-	  (case system-type
-		(:asdf
-		 (require-asdf module-name))
-		;; Don't call original-require with SBCL since we are called by that function
-		#-sbcl 
-		(otherwise
-		 (common-lisp:require module-name))))))
+  (let ((*redirect-fasl-files-to-cache* t))
+    (if (not (eq pathname 'clc::unspecified))
+	(common-lisp:require module-name pathname)
+      (let ((system-type (find-system-def module-name)))
+	(case system-type
+	  (:asdf
+	   (require-asdf module-name))
+	  ;; Don't call original-require with SBCL since we are called by that function
+	  #-sbcl 
+	  (otherwise
+	   (common-lisp:require module-name)))))))
 
 
 (defun clc-build-all-packages (&optional (ignore-errors nil))
@@ -325,8 +329,8 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	:for registry-location = (eval registry-object)
 	:with failed-packages = ()
 	:finally (when failed-packages
-		  (format t "~&~%Failed the following packages failed: ~{~A~^, ~}"
-			  failed-packages))
+		   (format t "~&~%Failed the following packages failed: ~{~A~^, ~}"
+			   failed-packages))
 	:do
 	(loop :for pathname :in (directory
 			         (merge-pathnames
@@ -334,15 +338,17 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 				  registry-location))
 	      :for package-name = (pathname-name pathname) :do
 	      (restart-case
-		  (handler-case (asdf:oos 'asdf:compile-op package-name)
-		    (error (error)
-		      (cond (ignore-errors
-			      (format t "~&Ignoring error: ~A~%" error)
-			      nil)
-			    (t (error error)))))
-		(skip-package ()
-		  (push package-name failed-packages)
-		  nil)))))
+	       (handler-case 
+		(let ((*redirect-fasl-files-to-cache* t))
+		  (asdf:oos 'asdf:compile-op package-name))
+		(error (error)
+		       (cond (ignore-errors
+			       (format t "~&Ignoring error: ~A~%" error)
+			       nil)
+			     (t (error error)))))
+	       (skip-package ()
+			     (push package-name failed-packages)
+			     nil)))))
 
 (defun list-systems ()
   (let ((systems (make-hash-table :test #'equal)))

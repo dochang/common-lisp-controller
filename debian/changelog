@@ -1,4 +1,4 @@
-common-lisp-controller (6.3) UNRELEASED; urgency=low
+common-lisp-controller (6.3) unstable; urgency=low
 
   * Ignore source files beneath /usr/lib/
     (Closes: #382582)
@@ -10,7 +10,7 @@ common-lisp-controller (6.3) UNRELEASED; urgency=low
   * Added po-debconf Build-Depends
   * Added XS-X-Vcs-Darcs header
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 25 Sep 2006 07:57:48 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 25 Sep 2006 09:38:52 +0200
 
 common-lisp-controller (6.2) unstable; urgency=low
 

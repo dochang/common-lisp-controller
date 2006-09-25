@@ -8,8 +8,9 @@ common-lisp-controller (6.3) UNRELEASED; urgency=low
     when compiling as the result of a clc-require call.
     (Closes: #384457)
   * Added po-debconf Build-Depends
+  * Added XS-X-Vcs-Darcs header
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 21 Sep 2006 14:29:30 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 25 Sep 2006 07:57:48 +0200
 
 common-lisp-controller (6.2) unstable; urgency=low
 

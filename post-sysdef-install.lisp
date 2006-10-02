@@ -42,16 +42,16 @@
 #-(or cmu sbcl clisp allegro)
 (defun get-uid ()
   (labels ((mktemp ()
-		   (let ((temp-name (format nil "/tmp/clc-~A" (random 50000))))
-		     (with-open-file (file temp-name :direction :input :if-does-not-exist nil)
-				     (if file (mktemp) temp-name)))))
+	     (let ((temp-name (format nil "/tmp/clc-~A" (random 50000))))
+	       (with-open-file (file temp-name :direction :input :if-does-not-exist nil)
+		 (if file (mktemp) temp-name)))))
 
     (let ((file (mktemp)))
       (unwind-protect
-	  (progn (asdf:run-shell-command "umask 077 && echo $UID > ~A" file)
-		 (with-open-file (uid file :direction :input)
-				 (handler-case (parse-integer (read-line uid))
-					       (error () (error "Unable to find out user ID")))))
+	   (progn (asdf:run-shell-command "umask 077 && echo $UID > ~A" file)
+		  (with-open-file (uid file :direction :input)
+		    (handler-case (parse-integer (read-line uid))
+		      (error () (error "Unable to find out user ID")))))
 	(asdf:run-shell-command "rm ~A" file)))))
 
 #+clisp
@@ -97,29 +97,29 @@
 (defmacro with-secure-umask (&body forms)
   (let ((old-umask (gensym)))
     `(let ((,old-umask (sb-posix:umask #o0077)))
-       (unwind-protect (progn ,@forms)
-	 (sb-posix:umask ,old-umask)))))
+      (unwind-protect (progn ,@forms)
+	(sb-posix:umask ,old-umask)))))
 
 #+clisp
 (defmacro with-secure-umask (&body forms)
   (let ((old-umask (gensym)))
     `(let ((,old-umask (posix:umask #o077)))
-       (unwind-protect ,@forms
-	 (posix:umask ,old-umask)))))
+      (unwind-protect ,@forms
+	(posix:umask ,old-umask)))))
 
 #+cmu
 (defmacro with-secure-umask (&body forms)
   (let ((old-umask (gensym)))
     `(let ((,old-umask (unix::unix-umask #o077)))
-       (unwind-protect ,@forms
-	 (unix::unix-umask ,old-umask)))))
+      (unwind-protect ,@forms
+	(unix::unix-umask ,old-umask)))))
 
 #+allegro
 (defmacro with-secure-umask (&body forms)
   (let ((old-umask (gensym)))
     `(let ((,old-umask (excl.osi:umask #o077)))
-       (unwind-protect ,@forms
-	 (excl.osi:umask old-umask)))))
+      (unwind-protect ,@forms
+	(excl.osi:umask old-umask)))))
 
 #+(or clisp sbcl cmu allegro)
 (defun check-spooldir-security (target)
@@ -138,7 +138,7 @@
 	  (when (group-writable? mode)
 	    (error "Security problem: the cache directory ~S is writable for a group, for better security we do not allow this"
 		   target)))
-      (with-secure-umask (ensure-directories-exist target))))
+	(with-secure-umask (ensure-directories-exist target))))
   (values))
 
 ;; sucks but is portable ;-(
@@ -170,7 +170,7 @@ if (($stat->mode & 020) != 0) {
    exit 46;
 }
 exit 0;' 2>&1 3>&1"
-				 target)))
+				     target)))
     (case result
       (0 nil)
       (42 (error "Security problem: Could not stat ~A" target))
@@ -183,18 +183,18 @@ exit 0;' 2>&1 3>&1"
 (defun calculate-fasl-root  ()
   "Inits common-lisp controller for this user"
   (or *fasl-root*
-      (setf *fasl-root*
-	    (let ((target-root (merge-pathnames
-				(make-pathname
-				 :directory (list :relative (format nil "~A" (get-uid))))
-				#p"/var/cache/common-lisp-controller/")))
-	      (check-spooldir-security target-root)
-	      (merge-pathnames (make-pathname
-				:directory (list :relative *implementation-name*))
-			       target-root)))))
+    (setf *fasl-root*
+	  (let ((target-root (merge-pathnames
+			      (make-pathname
+			       :directory (list :relative (format nil "~A" (get-uid))))
+			      #p"/var/cache/common-lisp-controller/")))
+	    (check-spooldir-security target-root)
+	    (merge-pathnames (make-pathname
+			      :directory (list :relative *implementation-name*))
+			     target-root)))))
 
 (defun asdf-system-compiled-p (system)
-  "Returns T is an ASDF system is already compiled"
+  "Returns T is an ASDF system is already compiled" 
   (notany #'(lambda (op) (and (typep (car op) 'asdf:compile-op)
 			      (not (asdf:operation-done-p (car op) (cdr op)))))
 	  (asdf::traverse (make-instance 'asdf:compile-op) system)))
@@ -232,46 +232,49 @@ exit 0;' 2>&1 3>&1"
 				      :while root
 				      :unless (equal root (first tail)) :do
 				      (error "Path ~S not beneath ~S? ~S /= ~S"
-					     source source-root root (first tail))
+					  source source-root root (first tail))
 				      :finally (return tail)))
 	       :defaults source))))
-    (merge-pathnames  relative-source *fasl-root*)))
+  (merge-pathnames  relative-source *fasl-root*)))
 
 (defun alternative-root-path-to-fasl-path (source)
   "Converts a path in anywhere to a path beneath the fasl root"
   (let ((source-path (pathname-directory source
 					 :case :local)))
     (cond
-     ;; it could already be beneath /var/cache/common-lisp
-     ((and (eq (first source-path) :ABSOLUTE)
-	   (eq (second source-path) "var")
-	   (eq (third source-path) "cache")
-	   (eq (fourth source-path) "common-lisp"))
-      ;; just let it be
-      source)
-     ;; it could be a library package
-     ((and (eq (first source-path) :ABSOLUTE)
-	   (eq (second source-path) "usr")
-	   (eq (third source-path) "lib"))
-      ;; just let it be
-      source)
-     (t
-      (merge-pathnames
-       (make-pathname :directory
-		      (append (list :RELATIVE "local")
-			      (rest source-path))
-		      :case :local
-		      :defaults source)
-       *fasl-root*)))))
+      ;; it could already be beneath /var/cache/common-lisp
+      ((and (eq (first source-path) :ABSOLUTE)
+	    (eq (second source-path) "var")
+	    (eq (third source-path) "cache")
+	    (eq (fourth source-path) "common-lisp"))
+       ;; just let it be
+       source)
+      ;; it could be a library package
+      ((and (eq (first source-path) :ABSOLUTE)
+	    (eq (second source-path) "usr")
+	    (eq (third source-path) "lib"))
+       ;; just let it be
+       source)
+      (t
+       (merge-pathnames
+	(make-pathname :directory
+		       (append (list :RELATIVE "local")
+			       (rest source-path))
+		       :case :local
+		       :defaults source)
+	*fasl-root*)))))
 
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
   "Method to rewrite output files to fasl-root"
   (let ((orig (call-next-method)))
-    (calculate-fasl-root)
-    (cond ((beneath-source-root? c)
-	   (mapcar #'source-root-path-to-fasl-path orig))
-	  (t
-	   (mapcar #'alternative-root-path-to-fasl-path orig)))))
+    (if (not *redirect-fasl-files-to-cache*)
+	orig
+      (progn
+	(calculate-fasl-root)
+	(cond ((beneath-source-root? c)
+	       (mapcar #'source-root-path-to-fasl-path orig))
+	      (t
+	       (mapcar #'alternative-root-path-to-fasl-path orig)))))))
 
 (defun system-in-source-root? (c)
   "Returns T if component's directory is the same as *source-root* + component's name"
@@ -295,26 +298,27 @@ exit 0;' 2>&1 3>&1"
   (let ((system (asdf:find-system module-name)))
     (when system
       (if (asdf-system-compiled-p system)
-	  (asdf:oos 'asdf:load-op module-name)
-	(progn
-	  (unless *clc-quiet*
-	    (format t "~&;;; Please wait, recompiling library..."))
-	  (asdf:oos 'asdf:compile-op module-name)
-	  (terpri)
-	  (asdf:oos 'asdf:load-op module-name)))
+		  (asdf:oos 'asdf:load-op module-name)
+		(progn
+		  (unless *clc-quiet*
+		    (format t "~&;;; Please wait, recompiling library..."))
+		  (asdf:oos 'asdf:compile-op module-name)
+		  (terpri)
+		  (asdf:oos 'asdf:load-op module-name)))
       t)))
 
 (defun clc-require (module-name &optional (pathname 'clc::unspecified))
-  (if (not (eq pathname 'clc::unspecified))
-      (common-lisp:require module-name pathname)
-    (let ((system-type (find-system-def module-name)))
-      (case system-type
-	(:asdf
-	 (require-asdf module-name))
-	;; Don't call original-require with SBCL since we are called by that function
-	#-sbcl
-	(otherwise
-	 (common-lisp:require module-name))))))
+  (let ((*redirect-fasl-files-to-cache* t))
+    (if (not (eq pathname 'clc::unspecified))
+	(common-lisp:require module-name pathname)
+      (let ((system-type (find-system-def module-name)))
+	(case system-type
+	  (:asdf
+	   (require-asdf module-name))
+	  ;; Don't call original-require with SBCL since we are called by that function
+	  #-sbcl 
+	  (otherwise
+	   (common-lisp:require module-name)))))))
 
 
 (defun clc-build-all-packages (&optional (ignore-errors nil))
@@ -329,13 +333,14 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 			   failed-packages))
 	:do
 	(loop :for pathname :in (directory
-				 (merge-pathnames
-				  (make-pathname :name :wild :type "asd")
+			         (merge-pathnames
+			      	  (make-pathname :name :wild :type "asd")
 				  registry-location))
 	      :for package-name = (pathname-name pathname) :do
 	      (restart-case
-	       (handler-case
-		(asdf:oos 'asdf:compile-op package-name)
+	       (handler-case 
+		(let ((*redirect-fasl-files-to-cache* t))
+		  (asdf:oos 'asdf:compile-op package-name))
 		(error (error)
 		       (cond (ignore-errors
 			       (format t "~&Ignoring error: ~A~%" error)
@@ -362,7 +367,7 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 		(setf (gethash system systems) system)))
     (format t
 	    "~&Known systems:~%~@<~;:~A~_ ~;~:>~%"
-	    (sort
+	    (sort 
 	     (loop :for system :being :the :hash-keys :of systems
 		   :collect system)
 	     #'string<))
@@ -385,11 +390,11 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 			       *image-preferences*
 			       *implementation-name*)
 			      :direction :input :if-does-not-exist nil)
-		  (when components
-		    (let ((asdf:*central-registry*
-			   (append asdf:*central-registry* (list *systems-root*))))
-		      (loop for component = (read-line components nil)
-			    while component nconc
-			    (let ((system (asdf:find-system component nil)))
-			      (if system (load-component system)
-				(warn "System ~S not found, not loading it into implementation image" component))))))))
+    (when components
+      (let ((asdf:*central-registry*
+	     (append asdf:*central-registry* (list *systems-root*))))
+	(loop for component = (read-line components nil)
+	      while component nconc
+	      (let ((system (asdf:find-system component nil)))
+		(if system (load-component system)
+		    (warn "System ~S not found, not loading it into implementation image" component))))))))

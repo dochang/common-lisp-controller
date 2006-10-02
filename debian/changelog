@@ -1,8 +1,9 @@
-common-lisp-controller (6.4) UNRELEASED; urgency=low
+common-lisp-controller (6.4) unstable; urgency=low
 
-  * token new version
+  * Undoing the fix for 384457, defaulting the *redirect-fasl-files-to-cache*
+    variable to T.
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 26 Sep 2006 07:39:38 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon,  2 Oct 2006 18:19:54 +0200
 
 common-lisp-controller (6.3) unstable; urgency=low
 

@@ -30,7 +30,7 @@
 (defvar *clc-quiet* nil
   "If true then clc prints no messages")
 
-(defvar *redirect-fasl-files-to-cache* nil
+(defvar *redirect-fasl-files-to-cache* t
   "If true we redirect the fasl files to the local cache directory")
 
 ;; Some general utilities to make the

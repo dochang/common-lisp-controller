@@ -91,7 +91,7 @@
     (let* ((stat (excl.osi:stat (namestring directory)))
 	   (mode (excl.osi:stat-mode stat))
 	   (uid  (excl.osi:stat-uid stat)))
-      (values uid mode my-uid))))
+      (values uid mode uid))))
 
 #+sbcl
 (defmacro with-secure-umask (&body forms)
@@ -119,7 +119,7 @@
   (let ((old-umask (gensym)))
     `(let ((,old-umask (excl.osi:umask #o077)))
       (unwind-protect ,@forms
-	(excl.osi:umask old-umask)))))
+	(excl.osi:umask ,old-umask)))))
 
 #+(or clisp sbcl cmu allegro)
 (defun check-spooldir-security (target)

@@ -1,8 +1,9 @@
 common-lisp-controller (6.6) UNRELEASED; urgency=low
 
-  * token new version
+  * Included some acl patches I found by accident at
+    https://launchpad.net/distros/ubuntu/+source/common-lisp-controller/+bug/60835
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Oct 2006 15:44:15 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Oct 2006 15:46:04 +0200
 
 common-lisp-controller (6.5) unstable; urgency=low
 

@@ -244,15 +244,15 @@ exit 0;' 2>&1 3>&1"
     (cond
       ;; it could already be beneath /var/cache/common-lisp
       ((and (eq (first source-path) :ABSOLUTE)
-	    (eq (second source-path) "var")
-	    (eq (third source-path) "cache")
-	    (eq (fourth source-path) "common-lisp"))
+	    (string= (second source-path) "var")
+	    (string= (third source-path) "cache")
+	    (string= (fourth source-path) "common-lisp"))
        ;; just let it be
        source)
       ;; it could be a library package
       ((and (eq (first source-path) :ABSOLUTE)
-	    (eq (second source-path) "usr")
-	    (eq (third source-path) "lib"))
+	    (string= (second source-path) "usr")
+	    (string= (third source-path) "lib"))
        ;; just let it be
        source)
       (t

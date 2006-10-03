@@ -1,8 +1,9 @@
-common-lisp-controller (6.5) UNRELEASED; urgency=low
+common-lisp-controller (6.5) unstable; urgency=low
 
-  * token new version
+  * The "pass the brown paper bag" release:
+    strings are NOT EQ!
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Oct 2006 06:28:42 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Oct 2006 15:39:48 +0200
 
 common-lisp-controller (6.4) unstable; urgency=low
 

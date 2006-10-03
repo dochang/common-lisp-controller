@@ -1,3 +1,9 @@
+common-lisp-controller (6.6) UNRELEASED; urgency=low
+
+  * token new version
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Oct 2006 15:44:15 +0200
+
 common-lisp-controller (6.5) unstable; urgency=low
 
   * The "pass the brown paper bag" release:

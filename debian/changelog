@@ -2,8 +2,9 @@ common-lisp-controller (6.6) UNRELEASED; urgency=low
 
   * Included some acl patches I found by accident at
     https://launchpad.net/distros/ubuntu/+source/common-lisp-controller/+bug/60835
+  * modified S-X-Vcs-Darcs to XS-Vcs-Darcs field
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Oct 2006 15:46:04 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu,  5 Oct 2006 10:01:25 +0200
 
 common-lisp-controller (6.5) unstable; urgency=low
 

@@ -5,6 +5,11 @@
 
 # just nuke all caches of this library
 
+HOME=/tmp/
+LANG=C
+LC_ALL=C
+export HOME LANG LC_ALL
+
 library="$1"
 
 echo "$library" | grep -q '[^a-zA-Z0-9-]' && echo "Found special characters in $1!" && exit 42

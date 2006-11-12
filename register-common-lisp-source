@@ -3,6 +3,11 @@
 # Copyright (C) 2006 René van Bevern <rvb@progn.org>
 # Licensed under the LLGPL, see debian/copyright file
 
+HOME=/tmp/
+LANG=C
+LC_ALL=C
+export HOME LANG LC_ALL
+
 if [ "$1" ]; then
     /usr/sbin/clc-update-customized-images "$1"
 fi

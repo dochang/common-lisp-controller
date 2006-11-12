@@ -4,6 +4,11 @@
 
 set -e
 
+HOME=/tmp/
+LANG=C
+LC_ALL=C
+export HOME LANG LC_ALL
+
 progname=$(basename $0)
 
 if [ ! -d "$HOME" ]; then

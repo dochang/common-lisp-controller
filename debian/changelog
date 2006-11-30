@@ -1,8 +1,8 @@
-common-lisp-controller (6.8) UNRELEASED; urgency=low
+common-lisp-controller (6.8) unstable; urgency=low
 
-  * token new version
+  * clc-register-user-package and friends now work again. 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sun, 12 Nov 2006 22:55:34 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 30 Nov 2006 08:38:24 +0100
 
 common-lisp-controller (6.7) unstable; urgency=low
 

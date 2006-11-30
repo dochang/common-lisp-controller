@@ -4,7 +4,6 @@
 
 set -e
 
-HOME=/tmp/
 LANG=C
 LC_ALL=C
 export HOME LANG LC_ALL

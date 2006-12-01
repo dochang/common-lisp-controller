@@ -1,0 +1,66 @@
+# translation of po-debconf template to German
+# Copyright (C) 2006, Matthias Julius
+# This file is distributed under the same license as the common-lisp-controller package.
+#
+# Matthias Julius <mdeb@julius-net.net>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: common-lisp-controller 6.7\n"
+"Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
+"POT-Creation-Date: 2006-08-06 23:24+0200\n"
+"PO-Revision-Date: 2006-11-18 10:04-0500\n"
+"Last-Translator: Matthias Julius <mdeb@julius-net.net>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: string
+#. Default
+#: ../templates:1001
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#. Type: string
+#. Description
+#: ../templates:1002
+msgid "The short common LISP site name"
+msgstr "Der kurze Site-Name für common LISP"
+
+#. Type: string
+#. Description
+#: ../templates:1002
+msgid ""
+"You can configure what the common LISP implementations are going to use as "
+"\"short site name\". This is mostly unused except in some error reporting "
+"tools."
+msgstr ""
+"Sie können einstellen, was die common-Lisp-Implementationen als »short site "
+"name« verwenden sollen. Dies ist größtenteils unbenutzt außer in einigen "
+"Fehlerberichts-Werkzeugen."
+
+#. Type: string
+#. Default
+#: ../templates:2001
+msgid "Site name not initialized"
+msgstr "Site-Name nicht initialisiert"
+
+#. Type: string
+#. Description
+#: ../templates:2002
+msgid "The long common LISP site name"
+msgstr "Der lange Site-Name für common LISP"
+
+#. Type: string
+#. Description
+#: ../templates:2002
+msgid ""
+"You can configure what the common LISP implementations are going to use as "
+"\"long site name\". This is mostly unused except in some error reporting "
+"tools."
+msgstr ""
+"Sie können einstellen, was die common-LISP-Implementationen als »long site "
+"name« verwenden sollen. Dies ist größtenteils unbenutzt außer in einigen "
+"Fehlerberichts-Werkzeugen."
+

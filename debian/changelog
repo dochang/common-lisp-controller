@@ -1,8 +1,8 @@
-common-lisp-controller (6.9) UNRELEASED; urgency=low
+common-lisp-controller (6.9) unstable; urgency=low
 
-  * token new version
+  * Aded German po-debconf translation (Closes: #399207)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 30 Nov 2006 08:40:00 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri,  1 Dec 2006 09:05:25 +0100
 
 common-lisp-controller (6.8) unstable; urgency=low
 

@@ -1,8 +1,10 @@
 common-lisp-controller (6.10) UNRELEASED; urgency=low
 
   * token new version
+  * Run debconf-updatepo in the clean target to ensure uptodate PO
+    files. (from lintian)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri,  1 Dec 2006 13:16:43 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  5 Dec 2006 07:45:28 +0100
 
 common-lisp-controller (6.9) unstable; urgency=low
 

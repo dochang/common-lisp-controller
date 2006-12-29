@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 6.7\n"
-"Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
+"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
 "POT-Creation-Date: 2006-08-06 23:24+0200\n"
 "PO-Revision-Date: 2006-11-18 10:04-0500\n"
 "Last-Translator: Matthias Julius <mdeb@julius-net.net>\n"
@@ -63,4 +63,3 @@ msgstr ""
 "Sie können einstellen, was die common-LISP-Implementationen als »long site "
 "name« verwenden sollen. Dies ist größtenteils unbenutzt außer in einigen "
 "Fehlerberichts-Werkzeugen."
-

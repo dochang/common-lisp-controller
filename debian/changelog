@@ -1,9 +1,10 @@
 common-lisp-controller (6.10) unstable; urgency=low
 
-  * Now use 'id' to get the uid. Fixes the problem is the 
+  * Now use 'id' to get the uid. Fixes the problem is the
     UID not exported? (Closes: #418115)
+  * Fixed some lintian warnings in the template file. 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 25 Apr 2007 06:16:03 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 25 Apr 2007 06:23:03 +0200
 
 common-lisp-controller (6.9) unstable; urgency=low
 

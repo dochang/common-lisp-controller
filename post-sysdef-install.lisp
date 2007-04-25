@@ -41,18 +41,13 @@
 
 #-(or cmu sbcl clisp allegro)
 (defun get-uid ()
-  (labels ((mktemp ()
-	     (let ((temp-name (format nil "/tmp/clc-~A" (random 50000))))
-	       (with-open-file (file temp-name :direction :input :if-does-not-exist nil)
-		 (if file (mktemp) temp-name)))))
-
-    (let ((file (mktemp)))
-      (unwind-protect
-	   (progn (asdf:run-shell-command "umask 077 && echo $UID > ~A" file)
-		  (with-open-file (uid file :direction :input)
-		    (handler-case (parse-integer (read-line uid))
-		      (error () (error "Unable to find out user ID")))))
-	(asdf:run-shell-command "rm ~A" file)))))
+  (let ((uid-string 
+	 (with-output-to-string (asdf::*VERBOSE-OUT*)
+	   (asdf:run-shell-command "id -u"))))
+    (with-input-from-string (stream uid-string)
+      (read-line stream)
+      (handler-case (parse-integer (read-line stream))
+	(error () (error "Unable to find out user ID"))))))
 
 #+clisp
 (defun get-owner-and-mode (directory)

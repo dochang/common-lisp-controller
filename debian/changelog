@@ -1,8 +1,9 @@
-common-lisp-controller (6.10) UNRELEASED; urgency=low
+common-lisp-controller (6.10) unstable; urgency=low
 
-  * token new version
+  * Now use 'id' to get the uid. Fixes the problem is the 
+    UID not exported? (Closes: #418115)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 30 Dec 2006 00:50:59 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 25 Apr 2007 06:16:03 +0200
 
 common-lisp-controller (6.9) unstable; urgency=low
 

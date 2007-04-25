@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2006-08-06 23:24+0200\n"
+"POT-Creation-Date: 2007-04-25 06:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,13 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:1001
-msgid "Unknown"
+msgid "Unknown [ Default site name ]"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:1002
-msgid "The short common LISP site name"
+msgid "Short common LISP site name:"
 msgstr ""
 
 #. Type: string
@@ -40,13 +40,14 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:2001
-msgid "Site name not initialized"
+msgid ""
+"Site name not initialized [ Default long site name, just something longer ]"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:2002
-msgid "The long common LISP site name"
+msgid "Long common LISP site name:"
 msgstr ""
 
 #. Type: string

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 4.14\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2006-08-06 23:24+0200\n"
+"POT-Creation-Date: 2007-04-25 06:23+0200\n"
 "PO-Revision-Date: 2005-05-21 17:13+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
@@ -18,13 +18,14 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:1001
-msgid "Unknown"
-msgstr "Không biết"
+msgid "Unknown [ Default site name ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:1002
-msgid "The short common LISP site name"
+#, fuzzy
+msgid "Short common LISP site name:"
 msgstr "Tên nơi LISP chung vắn"
 
 #. Type: string
@@ -41,13 +42,15 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:2001
-msgid "Site name not initialized"
-msgstr "Chưa khởi động tên nơi"
+msgid ""
+"Site name not initialized [ Default long site name, just something longer ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:2002
-msgid "The long common LISP site name"
+#, fuzzy
+msgid "Long common LISP site name:"
 msgstr "Tên nơi LISP chung dài"
 
 #. Type: string
@@ -60,3 +63,9 @@ msgid ""
 msgstr ""
 "Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong "
 "chỗ «tên nơi dài». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."
+
+#~ msgid "Unknown"
+#~ msgstr "Không biết"
+
+#~ msgid "Site name not initialized"
+#~ msgstr "Chưa khởi động tên nơi"

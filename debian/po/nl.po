@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 3.87\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2006-08-06 23:24+0200\n"
+"POT-Creation-Date: 2007-04-25 06:23+0200\n"
 "PO-Revision-Date: 2004-03-29 10:44+0100\n"
 "Last-Translator: Luk Claes <luk.claes@ugent.be>\n"
 "Language-Team: Debian l10n Dutch <debian-l10n-dutch@lists.debian.org>\n"
@@ -26,13 +26,14 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:1001
-msgid "Unknown"
-msgstr "Onbekend"
+msgid "Unknown [ Default site name ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:1002
-msgid "The short common LISP site name"
+#, fuzzy
+msgid "Short common LISP site name:"
 msgstr "De korte common LISP-sitenaam"
 
 #. Type: string
@@ -50,13 +51,15 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:2001
-msgid "Site name not initialized"
-msgstr "Sitenaam niet geïnitialiseerd"
+msgid ""
+"Site name not initialized [ Default long site name, just something longer ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:2002
-msgid "The long common LISP site name"
+#, fuzzy
+msgid "Long common LISP site name:"
 msgstr "De lange common LISP-sitenaam"
 
 #. Type: string
@@ -70,6 +73,12 @@ msgstr ""
 "U kunt configureren wat de common LISP-implementaties gaan gebruiken als "
 "\"long site name\". Dit wordt meestal niet gebruikt, behalve in enkele "
 "foutrapporteringshulpmiddelen."
+
+#~ msgid "Unknown"
+#~ msgstr "Onbekend"
+
+#~ msgid "Site name not initialized"
+#~ msgstr "Sitenaam niet geïnitialiseerd"
 
 #~ msgid "Only build lisp libraries daily"
 #~ msgstr "Slechts dagelijks bouwen van lisp-bibliotheken"

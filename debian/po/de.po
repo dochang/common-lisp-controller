@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 6.7\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2006-08-06 23:24+0200\n"
+"POT-Creation-Date: 2007-04-25 06:23+0200\n"
 "PO-Revision-Date: 2006-11-18 10:04-0500\n"
 "Last-Translator: Matthias Julius <mdeb@julius-net.net>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -19,13 +19,14 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:1001
-msgid "Unknown"
-msgstr "Unbekannt"
+msgid "Unknown [ Default site name ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:1002
-msgid "The short common LISP site name"
+#, fuzzy
+msgid "Short common LISP site name:"
 msgstr "Der kurze Site-Name für common LISP"
 
 #. Type: string
@@ -43,13 +44,15 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:2001
-msgid "Site name not initialized"
-msgstr "Site-Name nicht initialisiert"
+msgid ""
+"Site name not initialized [ Default long site name, just something longer ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:2002
-msgid "The long common LISP site name"
+#, fuzzy
+msgid "Long common LISP site name:"
 msgstr "Der lange Site-Name für common LISP"
 
 #. Type: string
@@ -63,3 +66,9 @@ msgstr ""
 "Sie können einstellen, was die common-LISP-Implementationen als »long site "
 "name« verwenden sollen. Dies ist größtenteils unbenutzt außer in einigen "
 "Fehlerberichts-Werkzeugen."
+
+#~ msgid "Unknown"
+#~ msgstr "Unbekannt"
+
+#~ msgid "Site name not initialized"
+#~ msgstr "Site-Name nicht initialisiert"

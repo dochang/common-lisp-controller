@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 4.12\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2006-08-06 23:24+0200\n"
+"POT-Creation-Date: 2007-04-25 06:23+0200\n"
 "PO-Revision-Date: 2005-04-18 22:14+0200\n"
 "Last-Translator: Martin Sin <martin.sin@seznam.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -15,13 +15,14 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:1001
-msgid "Unknown"
-msgstr "Neznámý"
+msgid "Unknown [ Default site name ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:1002
-msgid "The short common LISP site name"
+#, fuzzy
+msgid "Short common LISP site name:"
 msgstr "Krátký název umístìní LISPu"
 
 #. Type: string
@@ -39,13 +40,15 @@ msgstr ""
 #. Type: string
 #. Default
 #: ../templates:2001
-msgid "Site name not initialized"
-msgstr "Jméno umístìní nebylo inicializováno"
+msgid ""
+"Site name not initialized [ Default long site name, just something longer ]"
+msgstr ""
 
 #. Type: string
 #. Description
 #: ../templates:2002
-msgid "The long common LISP site name"
+#, fuzzy
+msgid "Long common LISP site name:"
 msgstr "Dlouhý název umístìní LISPu"
 
 #. Type: string
@@ -59,3 +62,9 @@ msgstr ""
 "Mù¾ete nastavit co má bì¾ná implementace LISPu pou¾ívat jako \"dlouhý název "
 "umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje informující o "
 "chybách."
+
+#~ msgid "Unknown"
+#~ msgstr "Neznámý"
+
+#~ msgid "Site name not initialized"
+#~ msgstr "Jméno umístìní nebylo inicializováno"

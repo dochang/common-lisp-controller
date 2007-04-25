@@ -1,3 +1,9 @@
+common-lisp-controller (6.11) UNRELEASED; urgency=low
+
+  * token new version
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 25 Apr 2007 06:27:44 +0200
+
 common-lisp-controller (6.10) unstable; urgency=low
 
   * Now use 'id' to get the uid. Fixes the problem is the

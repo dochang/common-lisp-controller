@@ -1,0 +1,75 @@
+# translation of ru.po to Russian
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Yuri Kozlov <kozlov.y@gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: 6.10\n"
+"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
+"POT-Creation-Date: 2007-06-16 09:41+0200\n"
+"PO-Revision-Date: 2007-06-29 22:07+0400\n"
+"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
+"Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. Type: string
+#. Default
+#. Default site name
+#: ../templates:2001
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#. Type: string
+#. Description
+#: ../templates:2002
+msgid "Short Common Lisp site name:"
+msgstr "Сокращённое имя машины Common Lisp:"
+
+#. Type: string
+#. Description
+#: ../templates:2002
+msgid ""
+"You can configure what the Common Lisp implementations are going to use as "
+"'short site name'."
+msgstr ""
+"Здесь настраивается значение, которое будут использовать "
+"реализации Common Lisp в качестве 'short site name'."
+
+#. Type: string
+#. Description
+#. Type: string
+#. Description
+#: ../templates:2002 ../templates:3002
+msgid "This is mostly unused except in some error reporting tools."
+msgstr ""
+"Оно практически нигде не используется за исключением "
+"некоторых инструментов отчётов об ошибках."
+
+#. Type: string
+#. Default
+#. Default long site name, just something longer than th default site name
+#: ../templates:3001
+msgid "Site name not initialized"
+msgstr "Имя машины не задано"
+
+#. Type: string
+#. Description
+#: ../templates:3002
+msgid "Long Common Lisp site name:"
+msgstr "Полное имя машины Common Lisp:"
+
+#. Type: string
+#. Description
+#: ../templates:3002
+msgid ""
+"You can configure what the Common Lisp implementations are going to use as "
+"'long site name'."
+msgstr ""
+"Здесь настраивается значение, которое будут использовать "
+"реализации Common Lisp в качестве 'long site name'."
+

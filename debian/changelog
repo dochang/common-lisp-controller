@@ -2,10 +2,12 @@ common-lisp-controller (6.11) UNRELEASED; urgency=low
 
   * Debconf templates and debian/control review
     (Closes: #428482)
-  * Vietnamese debconf templates translation update 
+  * Vietnamese debconf templates translation update
     (Closes: #429904)
+  * Czech translation for common-lisp-controller 
+    (Closes: #429340)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 10 Jul 2007 18:23:50 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 10 Jul 2007 18:26:25 +0200
 
 common-lisp-controller (6.10) unstable; urgency=low
 

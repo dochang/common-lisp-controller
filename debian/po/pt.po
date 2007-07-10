@@ -30,10 +30,6 @@ msgstr "O nome curto do site Common LISP:"
 #. Type: string
 #. Description
 #: ../templates:2002
-#| msgid ""
-#| "You can configure what the common LISP implementations are going to use "
-#| "as \"short site name\". This is mostly unused except in some error "
-#| "reporting tools."
 msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'short site name'."
@@ -48,8 +44,8 @@ msgstr ""
 #: ../templates:2002 ../templates:3002
 msgid "This is mostly unused except in some error reporting tools."
 msgstr ""
-"A não ser em algumas ferramentas de relatório de erros, isto quase "
-"não é usado."
+"A não ser em algumas ferramentas de relatório de erros, isto quase não é "
+"usado."
 
 #. Type: string
 #. Default
@@ -67,10 +63,6 @@ msgstr "O nome longo do site Common LISP:"
 #. Type: string
 #. Description
 #: ../templates:3002
-#| msgid ""
-#| "You can configure what the common LISP implementations are going to use "
-#| "as \"long site name\". This is mostly unused except in some error "
-#| "reporting tools."
 msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'long site name'."

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-04-25 06:23+0200\n"
+"POT-Creation-Date: 2007-06-16 09:41+0200\n"
 "PO-Revision-Date: 2005-09-02 17:53+0100\n"
 "Last-Translator: César Gómez Martín <cesar.gomez@gmail.com>\n"
 "Language-Team: Debian l10n spanish <debian-l10n-spanish@lists.debian.org>\n"
@@ -40,57 +40,68 @@ msgstr ""
 
 #. Type: string
 #. Default
-#: ../templates:1001
-msgid "Unknown [ Default site name ]"
-msgstr ""
+#. Default site name
+#: ../templates:2001
+msgid "Unknown"
+msgstr "Desconocido"
 
 #. Type: string
 #. Description
-#: ../templates:1002
+#: ../templates:2002
 #, fuzzy
-msgid "Short common LISP site name:"
+msgid "Short Common Lisp site name:"
 msgstr "Nombre corto del sitio de common LISP"
 
 #. Type: string
 #. Description
-#: ../templates:1002
+#: ../templates:2002
+#, fuzzy
+#| msgid ""
+#| "You can configure what the common LISP implementations are going to use "
+#| "as \"short site name\". This is mostly unused except in some error "
+#| "reporting tools."
 msgid ""
-"You can configure what the common LISP implementations are going to use as "
-"\"short site name\". This is mostly unused except in some error reporting "
-"tools."
+"You can configure what the Common Lisp implementations are going to use as "
+"'short site name'."
 msgstr ""
 "Puede configurar el parámetro que las implementaciones de common LISP van a "
 "usar como «nombre corto del sitio». Esto no se usa normalmente, excepto en "
 "algunas herramientas de informe de errores."
 
 #. Type: string
-#. Default
-#: ../templates:2001
-msgid ""
-"Site name not initialized [ Default long site name, just something longer ]"
+#. Description
+#. Type: string
+#. Description
+#: ../templates:2002 ../templates:3002
+msgid "This is mostly unused except in some error reporting tools."
 msgstr ""
 
 #. Type: string
+#. Default
+#. Default long site name, just something longer than th default site name
+#: ../templates:3001
+msgid "Site name not initialized"
+msgstr "El nombre del sitio no está inicializado"
+
+#. Type: string
 #. Description
-#: ../templates:2002
+#: ../templates:3002
 #, fuzzy
-msgid "Long common LISP site name:"
+msgid "Long Common Lisp site name:"
 msgstr "Nombre largo del sitio de common LISP"
 
 #. Type: string
 #. Description
-#: ../templates:2002
+#: ../templates:3002
+#, fuzzy
+#| msgid ""
+#| "You can configure what the common LISP implementations are going to use "
+#| "as \"long site name\". This is mostly unused except in some error "
+#| "reporting tools."
 msgid ""
-"You can configure what the common LISP implementations are going to use as "
-"\"long site name\". This is mostly unused except in some error reporting "
-"tools."
+"You can configure what the Common Lisp implementations are going to use as "
+"'long site name'."
 msgstr ""
 "Puede configurar el parámetro que las implementaciones de common LISP van a "
 "usar como «nombre largo del sitio». Esto no se usa normalmente, excepto en "
 "algunas herramientas de informe de errores."
-
-#~ msgid "Unknown"
-#~ msgstr "Desconocido"
-
-#~ msgid "Site name not initialized"
-#~ msgstr "El nombre del sitio no está inicializado"

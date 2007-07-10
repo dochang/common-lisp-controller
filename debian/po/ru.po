@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. Type: string
 #. Default
@@ -37,8 +38,8 @@ msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'short site name'."
 msgstr ""
-"Здесь настраивается значение, которое будут использовать "
-"реализации Common Lisp в качестве 'short site name'."
+"Здесь настраивается значение, которое будут использовать реализации Common "
+"Lisp в качестве 'short site name'."
 
 #. Type: string
 #. Description
@@ -47,8 +48,8 @@ msgstr ""
 #: ../templates:2002 ../templates:3002
 msgid "This is mostly unused except in some error reporting tools."
 msgstr ""
-"Оно практически нигде не используется за исключением "
-"некоторых инструментов отчётов об ошибках."
+"Оно практически нигде не используется за исключением некоторых инструментов "
+"отчётов об ошибках."
 
 #. Type: string
 #. Default
@@ -70,6 +71,5 @@ msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'long site name'."
 msgstr ""
-"Здесь настраивается значение, которое будут использовать "
-"реализации Common Lisp в качестве 'long site name'."
-
+"Здесь настраивается значение, которое будут использовать реализации Common "
+"Lisp в качестве 'long site name'."

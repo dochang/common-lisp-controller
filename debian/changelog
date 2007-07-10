@@ -1,18 +1,15 @@
-common-lisp-controller (6.11) UNRELEASED; urgency=low
+common-lisp-controller (6.11) unstable; urgency=low
 
-  * Debconf templates and debian/control review
-    (Closes: #428482)
-  * Vietnamese debconf templates translation update
-    (Closes: #429904)
-  * Czech translation for common-lisp-controller
-    (Closes: #429340)
-  * Updated Portuguese translation for debconf messages
-    (Closes: #429358)
-  * Galician debconf template translation
-    (Closes: #429377)
-  * Russian debconf templates translation (Closes: #431097)
-  * German po-debconf translation update (Closes: #431138)
-  * French debconf templates translation (Closes: #432285)
+  * Debconf templates and debian/control reviewed by the debian-l10n-
+    english team as part of the Smith review project. Closes: #428482
+  * Debconf translation updates:
+    - French. Closes: #432285
+    - Czech. Closes: #429340
+    - Portuguese. Closes: #429358
+    - Galician. Closes: #429377
+    - Vietnamese. Closes: #429904
+    - Russian. Closes: #431097
+    - German. Closes: #431138
 
  -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 10 Jul 2007 18:30:33 +0200
 

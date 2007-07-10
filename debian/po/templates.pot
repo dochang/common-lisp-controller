@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-04-25 06:23+0200\n"
+"POT-Creation-Date: 2007-06-16 09:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,43 +18,50 @@ msgstr ""
 
 #. Type: string
 #. Default
-#: ../templates:1001
-msgid "Unknown [ Default site name ]"
+#. Default site name
+#: ../templates:2001
+msgid "Unknown"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:1002
-msgid "Short common LISP site name:"
+#: ../templates:2002
+msgid "Short Common Lisp site name:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:1002
+#: ../templates:2002
 msgid ""
-"You can configure what the common LISP implementations are going to use as "
-"\"short site name\". This is mostly unused except in some error reporting "
-"tools."
+"You can configure what the Common Lisp implementations are going to use as "
+"'short site name'."
+msgstr ""
+
+#. Type: string
+#. Description
+#. Type: string
+#. Description
+#: ../templates:2002 ../templates:3002
+msgid "This is mostly unused except in some error reporting tools."
 msgstr ""
 
 #. Type: string
 #. Default
-#: ../templates:2001
-msgid ""
-"Site name not initialized [ Default long site name, just something longer ]"
+#. Default long site name, just something longer than th default site name
+#: ../templates:3001
+msgid "Site name not initialized"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:2002
-msgid "Long common LISP site name:"
+#: ../templates:3002
+msgid "Long Common Lisp site name:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:2002
+#: ../templates:3002
 msgid ""
-"You can configure what the common LISP implementations are going to use as "
-"\"long site name\". This is mostly unused except in some error reporting "
-"tools."
+"You can configure what the Common Lisp implementations are going to use as "
+"'long site name'."
 msgstr ""

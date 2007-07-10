@@ -1,71 +1,76 @@
 # Vietnamese Translation for common-lisp-controller.
-# Copyright © 2005 Free Software Foundation, Inc.
-# Clytie Siddall <clytie@riverland.net.au>, 2005.
+# Copyright © 2007 Free Software Foundation, Inc.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
 # 
 msgid ""
-msgstr ""
-"Project-Id-Version: common-lisp-controller 4.14\n"
+""
+msgstr "Project-Id-Version: common-lisp-controller 6.11\n"
 "Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-04-25 06:23+0200\n"
-"PO-Revision-Date: 2005-05-21 17:13+0930\n"
+"POT-Creation-Date: 2007-06-16 09:41+0200\n"
+"PO-Revision-Date: 2007-06-21 17:12+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
-"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: LocFactoryEditor 1.6.4a1\n"
 
-#. Type: string
-#. Default
-#: ../templates:1001
-msgid "Unknown [ Default site name ]"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../templates:1002
-#, fuzzy
-msgid "Short common LISP site name:"
-msgstr "Tên nơi LISP chung vắn"
-
-#. Type: string
-#. Description
-#: ../templates:1002
-msgid ""
-"You can configure what the common LISP implementations are going to use as "
-"\"short site name\". This is mostly unused except in some error reporting "
-"tools."
-msgstr ""
-"Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong "
-"chỗ «tên nơi vắn». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."
-
-#. Type: string
-#. Default
+#.Type: string
+#.Default
+#.Default site name
 #: ../templates:2001
-msgid ""
-"Site name not initialized [ Default long site name, just something longer ]"
-msgstr ""
+msgid "Unknown"
+msgstr "Không rõ"
 
-#. Type: string
-#. Description
+#.Type: string
+#.Description
 #: ../templates:2002
-#, fuzzy
-msgid "Long common LISP site name:"
-msgstr "Tên nơi LISP chung dài"
+msgid "Short Common Lisp site name:"
+msgstr "Tên nơi Mạng Common Lisp ngắn:"
 
-#. Type: string
-#. Description
+#.Type: string
+#.Description
+# msgid ""
+# You can configure what the common LISP implementations are going to use 
+# as \"short site name\". This is mostly unused except in some error 
+# reporting tools.
 #: ../templates:2002
 msgid ""
-"You can configure what the common LISP implementations are going to use as "
-"\"long site name\". This is mostly unused except in some error reporting "
-"tools."
-msgstr ""
-"Bạn có thể cấu hình đoạn nào những cách thực hiện LISP chung sẽ dùng trong "
-"chỗ «tên nơi dài». Rất ít dùng trừ bởi một số công cụ thông báo lỗi."
+"You can configure what the Common Lisp implementations are going to use as "
+"'short site name'."
+msgstr "Bạn có khả năng cấu hình « tên nơi Mạng ngắn » dùng bởi các bản thực hiện Common Lisp."
 
-#~ msgid "Unknown"
-#~ msgstr "Không biết"
+#.Type: string
+#.Description
+#.Type: string
+#.Description
+#: ../templates:2002
+#: ../templates:3002
+msgid "This is mostly unused except in some error reporting tools."
+msgstr "Nó thường không dùng, trừ trong một số công cụ thông báo lỗi."
 
-#~ msgid "Site name not initialized"
-#~ msgstr "Chưa khởi động tên nơi"
+#.Type: string
+#.Default
+#.Default long site name, just something longer than th default site name
+#: ../templates:3001
+msgid "Site name not initialized"
+msgstr "Chưa sở khởi tên nơi Mạng"
+
+#.Type: string
+#.Description
+#: ../templates:3002
+msgid "Long Common Lisp site name:"
+msgstr "Tên nơi Mạng Common LISP dài:"
+
+#.Type: string
+#.Description
+# msgid ""
+# You can configure what the common LISP implementations are going to use 
+# as \"long site name\". This is mostly unused except in some error 
+# reporting tools.
+#: ../templates:3002
+msgid ""
+"You can configure what the Common Lisp implementations are going to use as "
+"'long site name'."
+msgstr "Bạn có khả năng cấu hình « tên nơi Mạng dài » dùng bởi các bản thực hiện Common Lisp."

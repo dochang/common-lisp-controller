@@ -11,8 +11,9 @@ common-lisp-controller (6.11) UNRELEASED; urgency=low
   * Galician debconf template translation
     (Closes: #429377)
   * Russian debconf templates translation (Closes: #431097)
+  * German po-debconf translation update (Closes: #431138)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 10 Jul 2007 18:29:08 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 10 Jul 2007 18:29:50 +0200
 
 common-lisp-controller (6.10) unstable; urgency=low
 

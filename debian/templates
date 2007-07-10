@@ -1,15 +1,28 @@
+# These templates have been reviewed by the debian-l10n-english
+# team
+#
+# If modifications/additions/rewording are needed, please ask
+# for an advice to debian-l10n-english@lists.debian.org
+#
+# Even minor modifications require translation updates and such
+# changes should be coordinated with translators and reviewers.
+
 Template: common-lisp-controller/short-site-name
 Type: string
-_Default: Unknown [ Default site name ]
-_Description: Short common LISP site name:
- You can configure what the common LISP implementations are going to use as
- "short site name". This is mostly unused except in some error reporting
- tools.
+#  Default site name
+_Default: Unknown
+_Description: Short Common Lisp site name:
+ You can configure what the Common Lisp implementations are going to use as
+ 'short site name'. 
+ .
+ This is mostly unused except in some error reporting tools.
 
 Template: common-lisp-controller/long-site-name
 Type: string
-_Default: Site name not initialized [ Default long site name, just something longer ]
-_Description: Long common LISP site name:
- You can configure what the common LISP implementations are going to use as
- "long site name". This is mostly unused except in some error reporting
- tools.
+# Default long site name, just something longer than th default site name
+_Default: Site name not initialized
+_Description: Long Common Lisp site name:
+ You can configure what the Common Lisp implementations are going to use as
+ 'long site name'.
+ .
+ This is mostly unused except in some error reporting tools.

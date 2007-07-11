@@ -1,3 +1,9 @@
+common-lisp-controller (6.12) UNRELEASED; urgency=low
+
+  * token new version
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 11 Jul 2007 18:05:56 +0200
+
 common-lisp-controller (6.11) unstable; urgency=low
 
   * Debconf templates and debian/control reviewed by the debian-l10n-

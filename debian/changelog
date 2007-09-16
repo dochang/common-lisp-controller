@@ -1,8 +1,8 @@
-common-lisp-controller (6.12) UNRELEASED; urgency=low
+common-lisp-controller (6.12) unstable; urgency=low
 
   * Fixed debconf dependency for cdebconf (Closes: #441941)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 14 Sep 2007 22:32:41 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun, 16 Sep 2007 07:57:06 +0200
 
 common-lisp-controller (6.11) unstable; urgency=low
 

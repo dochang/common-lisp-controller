@@ -171,9 +171,9 @@ that should be loaded in the list to enable clc"
 			       "common-lisp-controller.lisp")
 	    ;; asdf
 	    #-sbcl
-	    (compile-and-load  "asdf" "asdf.lisp")
+	    (compile-and-load  "cl-asdf" "asdf.lisp")
 	    
-	    (compile-and-load  "asdf" "wild-modules.lisp")
+	    (compile-and-load  "cl-asdf" "wild-modules.lisp")
 	    
 	    ;; now patch it::
 	    (compile-and-load "common-lisp-controller"

@@ -1,4 +1,4 @@
-common-lisp-controller (6.13) UNRELEASED; urgency=low
+common-lisp-controller (6.13) unstable; urgency=low
 
   * Use Vcs-Bzr in control file
   * Accepted path from Joubert Nel to create module subdirectories as

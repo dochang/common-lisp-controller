@@ -3,8 +3,7 @@ Section: devel
 Priority: optional
 Build-Depends: debhelper (>= 4.1.16), po-debconf
 Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.org>
-Uploaders: Peter Van Eynde <pvaneynd@debian.org>
-Uploaders: Kevin M. Rosenberg <kmr@debian.org>
+Uploaders: Peter Van Eynde <pvaneynd@debian.org>, Kevin M. Rosenberg <kmr@debian.org>
 Standards-Version: 3.7.3.0
 Vcs-Git: http://git.debian.org/git/pkg-common-lisp/XXX.git
 

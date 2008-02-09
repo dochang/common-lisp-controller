@@ -4,8 +4,8 @@ Priority: optional
 Build-Depends: debhelper (>= 4.1.16), po-debconf
 Maintainer: Peter Van Eynde <pvaneynd@debian.org>
 Uploaders: Kevin M. Rosenberg <kmr@debian.org>
-Standards-Version: 3.7.2.0
-XS-Vcs-Darcs: http://cl-debian.alioth.debian.org/repository/pvaneynd/common-lisp-controller/
+Standards-Version: 3.7.3.0
+Vcs-Darcs: http://cl-debian.alioth.debian.org/repository/pvaneynd/common-lisp-controller/
 
 Package: common-lisp-controller
 Architecture: all

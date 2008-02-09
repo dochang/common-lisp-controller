@@ -41,10 +41,6 @@ msgstr "De korte common LISP-sitenaam"
 #. Description
 #: ../templates:2002
 #, fuzzy
-#| msgid ""
-#| "You can configure what the common LISP implementations are going to use "
-#| "as \"short site name\". This is mostly unused except in some error "
-#| "reporting tools."
 msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'short site name'."
@@ -79,10 +75,6 @@ msgstr "De lange common LISP-sitenaam"
 #. Description
 #: ../templates:3002
 #, fuzzy
-#| msgid ""
-#| "You can configure what the common LISP implementations are going to use "
-#| "as \"long site name\". This is mostly unused except in some error "
-#| "reporting tools."
 msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'long site name'."

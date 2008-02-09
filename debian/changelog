@@ -1,3 +1,13 @@
+common-lisp-controller (6.13) UNRELEASED; urgency=low
+
+  * token new version
+  * Use Vcs-Darcs in control file
+  * Accepted path from Joubert Nel to create module subdirectories as
+    needed
+  * Updated standard version without real changes
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 29 Dec 2007 18:55:26 +0100
+
 common-lisp-controller (6.12) unstable; urgency=low
 
   * Fixed debconf dependency for cdebconf (Closes: #441941)

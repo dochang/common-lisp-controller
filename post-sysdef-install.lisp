@@ -251,13 +251,16 @@ exit 0;' 2>&1 3>&1"
        ;; just let it be
        source)
       (t
-       (merge-pathnames
-	(make-pathname :directory
-		       (append (list :RELATIVE "local")
-			       (rest source-path))
-		       :case :local
-		       :defaults source)
-	*fasl-root*)))))
+       (let ((result-path
+	      (merge-pathnames
+	       (make-pathname :directory
+			      (append (list :RELATIVE "local")
+				      (rest source-path))
+			      :case :local
+				    :defaults source)	 
+	       *fasl-root*)))
+	 (ensure-directories-exist result-path)
+	 result-path)))))
 
 (defmethod asdf:output-files :around ((op asdf:operation) (c asdf:component))
   "Method to rewrite output files to fasl-root"

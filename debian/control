@@ -6,7 +6,7 @@ Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.o
 Uploaders: Peter Van Eynde <pvaneynd@debian.org>
 Uploaders: Kevin M. Rosenberg <kmr@debian.org>
 Standards-Version: 3.7.3.0
-Vcs-Darcs: http://cl-debian.alioth.debian.org/repository/pvaneynd/common-lisp-controller/
+Vcs-Git: http://git.debian.org/git/pkg-common-lisp/XXX.git
 
 Package: common-lisp-controller
 Architecture: all

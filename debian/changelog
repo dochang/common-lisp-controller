@@ -1,12 +1,13 @@
 common-lisp-controller (6.13) UNRELEASED; urgency=low
 
-  * Use Vcs-Darcs in control file
+  * Use Vcs-Bzr in control file
   * Accepted path from Joubert Nel to create module subdirectories as
     needed
   * Updated standard version without real changes
   * asdf changed its path, fix this.
+  * Changed to group maintenance 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 09 Feb 2008 08:14:11 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 09 Feb 2008 08:15:56 +0100
 
 common-lisp-controller (6.12) unstable; urgency=low
 

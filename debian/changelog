@@ -3,9 +3,17 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
   * Debconf translations:
     + Finnish, thanks to Esko Arajärvi <edu@iki.fi> (Closes: #457305).
 
+  * debian/lintian-overrides:
+    + package-contains-empty-directory for /usr/lib/common-lisp/bin/
+      and /usr/share/common-lisp/systems/.
+    + non-standard-dir-perm for /var/cache/common-lisp-controller/.
+
   * debian/control:
     + add myself to Uploaders:.
     + add Vcs-Browser field.
+
+  * debian/rules:
+    + install lintian-overrides file.
 
   * post-sysdef-install.lisp:
     + use the built-in (posix:getuid) for CLISP instead of getting

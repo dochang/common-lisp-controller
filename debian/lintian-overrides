@@ -1,0 +1,7 @@
+# both /usr/lib/common-lisp/bin/ and /usr/share/common-lisp/systems/
+# belongs to common-lisp-controller, even if empties
+common-lisp-controller binary: package-contains-empty-directory
+
+# /var/cache/common-lisp-controller/ has non-standard dir permission
+# since only the owner of the subdirectories can be delete their content
+common-lisp-controller binary: non-standard-dir-perm

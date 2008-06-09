@@ -33,13 +33,14 @@
 #+clisp (defun get-uid () (posix:user-info-uid (posix:user-info (ext:getenv "USER"))))
 #+sbcl (defun get-uid () (sb-unix:unix-getuid))
 #+cmu (defun get-uid () (unix:unix-getuid))
+#+ecl (defun get-uid () (ffi:c-inline () () :int "getuid()" :one-liner t))
 #+allegro (defun get-uid () (excl.osi:getuid))
 #+clisp (defun world-writable? (mode) (or (member :RWXO mode) (member :WOTH mode)))
 #+clisp (defun group-writable? (mode) (or (member :RWXG mode) (member :WGRP mode)))
 #-clisp (defun world-writable? (mode) (/= 0 (logand mode #o002)))
 #-clisp (defun group-writable? (mode) (/= 0 (logand mode #o020)))
 
-#-(or cmu sbcl clisp allegro)
+#-(or cmu sbcl clisp allegro ecl)
 (defun get-uid ()
   (let ((uid-string 
 	 (with-output-to-string (asdf::*VERBOSE-OUT*)

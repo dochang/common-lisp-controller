@@ -4,6 +4,11 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
     + add myself to Uploaders:.
     + add Vcs-Browser field.
 
+  * post-sysdef-install.lisp:
+    + implement a working GET-UID for ECL which doesn't need to mess
+      with running shell commands nor do redirection, patch from
+      Mark Wooding <mdw@distorted.org.uk> (Closes: #477169).
+
  --
 
 common-lisp-controller (6.14) unstable; urgency=low

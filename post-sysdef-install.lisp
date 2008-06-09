@@ -44,7 +44,7 @@
 (defun get-uid ()
   (let ((uid-string 
 	 (with-output-to-string (asdf::*VERBOSE-OUT*)
-	   (asdf:run-shell-command "id -u"))))
+	   (asdf:run-shell-command "id -ur"))))
     (with-input-from-string (stream uid-string)
       (read-line stream)
       (handler-case (parse-integer (read-line stream))

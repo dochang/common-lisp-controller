@@ -11,6 +11,8 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
     + implement a working GET-UID for ECL which doesn't need to mess
       with running shell commands nor do redirection, patch from
       Mark Wooding <mdw@distorted.org.uk> (Closes: #477169).
+    + use the real UID for Lisps that do not provide a built-in
+      GET-UID, patch from Mark Wooding <mdw@distorted.org.uk>.
 
  --
 

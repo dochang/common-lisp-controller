@@ -1,6 +1,7 @@
 common-lisp-controller (6.15) UNRELEASED; urgency=low
 
   * debian/control:
+    + add myself to Uploaders:.
     + add Vcs-Browser field.
 
  --

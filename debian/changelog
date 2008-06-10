@@ -20,6 +20,8 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
 
   * man/clc-register-user-package.1:
     + remove trailing spaces.
+    + replace .Nm and .Nd commands since they generate man's warnings
+      (thanks to lintian).
 
   * post-sysdef-install.lisp:
     + use the built-in (posix:getuid) for CLISP instead of getting

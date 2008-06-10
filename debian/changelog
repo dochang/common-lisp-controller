@@ -18,6 +18,9 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
   * debian/rules:
     + install lintian-overrides file.
 
+  * man/clc-register-user-package.1:
+    + remove trailing spaces.
+
   * post-sysdef-install.lisp:
     + use the built-in (posix:getuid) for CLISP instead of getting
       the UID from the USER environment variable, patch from Mark

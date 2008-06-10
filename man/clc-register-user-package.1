@@ -1,34 +1,34 @@
 .\" 	-*- Mode: Nroff -*-
-.TH "clc-register-user-package" "1" "October 6, 2004"
+.TH "clc-register-user-package" "1" "June 11, 2008"
 .AT 3
 .SH NAME
-.Nm clc-(un)register-user-package  
+.Nm clc-(un)register-user-package
 .Nd registers a user asdf system
 .SH SYNOPSIS
-.B clc-register-user-package 
+.B clc-register-user-package
 .I package-file
 
 .B clc-unregister-user-package
 .I package-file
 
 .SH DESCRIPTION
-Registers a user defined system into the 
+Registers a user defined system into the
 .I common lisp controller
 system. This means that any Common Lisp implementation
 will know how to find the system.
 
-The system file itself will be symlinked from the 
+The system file itself will be symlinked from the
 .I ~/.clc/systems
-directory and the system will be recorded in the 
+directory and the system will be recorded in the
 .I ~/.clc/user-packages.db
 file.
 
 No removal of old fasl files during upgrades of Common Lisp
 Implementations will be done, nor will the fasls of different
-implementations will be separated by 
+implementations will be separated by
 .I clc
 , it is expected that the users who require this will create a
-full Debian package or create a symlink in 
+full Debian package or create a symlink in
 .I /usr/share/common-lisp/systems/
 to the system file.
 

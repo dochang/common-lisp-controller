@@ -12,6 +12,9 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
     + add myself to Uploaders:.
     + add Vcs-Browser field.
 
+  * debian/prerm:
+    - remove, nothing to be done at that point (thanks to lintian)
+
   * debian/rules:
     + install lintian-overrides file.
 

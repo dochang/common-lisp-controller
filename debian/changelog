@@ -22,6 +22,7 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
     + remove trailing spaces.
     + replace .Nm and .Nd commands since they generate man's warnings
       (thanks to lintian).
+    + update Copyright to 2008.
 
   * post-sysdef-install.lisp:
     + use the built-in (posix:getuid) for CLISP instead of getting

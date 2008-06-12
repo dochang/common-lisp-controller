@@ -3,7 +3,7 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
   * Debconf translations:
     + Finnish, thanks to Esko Arajärvi <edu@iki.fi> (Closes: #457305).
 
-  * debian/lintian-overrides:
+  * debian/binary.lintian-overrides:
     + package-contains-empty-directory for /usr/lib/common-lisp/bin/
       and /usr/share/common-lisp/systems/.
     + non-standard-dir-perm for /var/cache/common-lisp-controller/.
@@ -16,7 +16,7 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
     - remove, nothing to be done at that point (thanks to lintian)
 
   * debian/rules:
-    + install lintian-overrides file.
+    + install binary.lintian-overrides file.
 
   * man/clc-register-user-package.1:
     + remove trailing spaces.

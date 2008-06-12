@@ -18,6 +18,9 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
   * debian/rules:
     + install binary.lintian-overrides file.
 
+  * debian/source.lintian-overrides:
+    + translated-default-field for debian/templates.
+
   * man/clc-register-user-package.1:
     + remove trailing spaces.
     + replace .Nm and .Nd commands since they generate man's warnings

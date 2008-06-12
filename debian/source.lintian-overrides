@@ -1,0 +1,3 @@
+# debian/templates contains two _Default fields which it's better to
+# have translated, see http://bugs.debian.org/457305
+common-lisp-controller source: translated-default-field

@@ -1,4 +1,4 @@
-common-lisp-controller (6.15) UNRELEASED; urgency=low
+common-lisp-controller (6.15) unstable; urgency=low
 
   * Debconf translations:
     + Finnish, thanks to Esko Arajärvi <edu@iki.fi> (Closes: #457305).
@@ -37,7 +37,7 @@ common-lisp-controller (6.15) UNRELEASED; urgency=low
     + use the real UID for Lisps that do not provide a built-in
       GET-UID, patch from Mark Wooding <mdw@distorted.org.uk>.
 
- --
+ -- Luca Capello <luca@pca.it>  Fri, 13 Jun 2008 10:02:24 +0200
 
 common-lisp-controller (6.14) unstable; urgency=low
 

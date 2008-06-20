@@ -1,3 +1,11 @@
+common-lisp-controller (6.16) UNRELEASED; urgency=low
+
+  * debian/templates:
+    + remove trailing space and correct typo, patch from
+      Christian Perrier <bubulle@debian.org>.
+
+ --
+
 common-lisp-controller (6.15) unstable; urgency=low
 
   * Debconf translations:

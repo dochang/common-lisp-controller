@@ -13,13 +13,13 @@ Type: string
 _Default: Unknown
 _Description: Short Common Lisp site name:
  You can configure what the Common Lisp implementations are going to use as
- 'short site name'. 
+ 'short site name'.
  .
  This is mostly unused except in some error reporting tools.
 
 Template: common-lisp-controller/long-site-name
 Type: string
-# Default long site name, just something longer than th default site name
+# Default long site name, just something longer than the default site name
 _Default: Site name not initialized
 _Description: Long Common Lisp site name:
  You can configure what the Common Lisp implementations are going to use as

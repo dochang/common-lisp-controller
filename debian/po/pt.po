@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 6.11\n"
-"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-06-16 09:41+0200\n"
+"Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-12 20:15+0200\n"
 "PO-Revision-Date: 2007-06-17 12:34+0100\n"
 "Last-Translator: Ricardo Silva <ardoric@gmail.com>\n"
 "Language-Team: Native Portuguese <traduz@debianpt.org>\n"
@@ -49,7 +49,7 @@ msgstr ""
 
 #. Type: string
 #. Default
-#. Default long site name, just something longer than th default site name
+#. Default long site name, just something longer than the default site name
 #: ../templates:3001
 msgid "Site name not initialized"
 msgstr "Nome do site não inicializado"

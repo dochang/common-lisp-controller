@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller_6.12\n"
-"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-06-16 09:41+0200\n"
+"Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-12 20:15+0200\n"
 "PO-Revision-Date: 2007-12-21 14:10+0200\n"
 "Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
 "Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
@@ -28,21 +28,24 @@ msgstr "Lyhyt Common Lisp -sivuston nimi:"
 #. Type: string
 #. Description
 #: ../templates:2002
-msgid "You can configure what the Common Lisp implementations are going to use as 'short site name'."
-msgstr "Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”lyhyenä sivuston nimenä”."
+msgid ""
+"You can configure what the Common Lisp implementations are going to use as "
+"'short site name'."
+msgstr ""
+"Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”lyhyenä "
+"sivuston nimenä”."
 
 #. Type: string
 #. Description
 #. Type: string
 #. Description
-#: ../templates:2002
-#: ../templates:3002
+#: ../templates:2002 ../templates:3002
 msgid "This is mostly unused except in some error reporting tools."
 msgstr "Tätä ei yleensä käytetä muuten kuin joissain virheilmoitustyökaluissa."
 
 #. Type: string
 #. Default
-#. Default long site name, just something longer than th default site name
+#. Default long site name, just something longer than the default site name
 #: ../templates:3001
 msgid "Site name not initialized"
 msgstr "Sivuston nimeä ei ole asetettu"
@@ -56,6 +59,9 @@ msgstr "Pitkä Common Lisp -sivuston nimi:"
 #. Type: string
 #. Description
 #: ../templates:3002
-msgid "You can configure what the Common Lisp implementations are going to use as 'long site name'."
-msgstr "Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”pitkänä sivuston nimenä”."
-
+msgid ""
+"You can configure what the Common Lisp implementations are going to use as "
+"'long site name'."
+msgstr ""
+"Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”pitkänä "
+"sivuston nimenä”."

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 6.10\n"
-"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-06-16 09:41+0200\n"
+"Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-12 20:15+0200\n"
 "PO-Revision-Date: 2007-06-29 22:07+0400\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 
 #. Type: string
 #. Default
-#. Default long site name, just something longer than th default site name
+#. Default long site name, just something longer than the default site name
 #: ../templates:3001
 msgid "Site name not initialized"
 msgstr "Имя машины не задано"

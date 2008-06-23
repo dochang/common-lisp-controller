@@ -1,5 +1,19 @@
 common-lisp-controller (6.16) UNRELEASED; urgency=low
 
+  * Debconf template/translations update, thanks to Christian Perrier
+    <bubulle@debian.org>:
+    + Czech.
+    + German.
+    + Spanish.
+    + Finnish.
+    + French.
+    + Galician.
+    + Dutch.
+    + Portoguese.
+    + Russian.
+    + Swedish.
+    + Vietnamese.
+
   * debian/templates:
     + remove trailing space and correct typo, patch from
       Christian Perrier <bubulle@debian.org>.

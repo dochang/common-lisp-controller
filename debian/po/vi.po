@@ -1,12 +1,12 @@
 # Vietnamese Translation for common-lisp-controller.
 # Copyright © 2007 Free Software Foundation, Inc.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 6.11\n"
-"Report-Msgid-Bugs-To: pvaneynd@debian.org\n"
-"POT-Creation-Date: 2007-06-16 09:41+0200\n"
+"Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
+"POT-Creation-Date: 2008-06-12 20:15+0200\n"
 "PO-Revision-Date: 2007-06-21 17:12+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -53,7 +53,7 @@ msgstr "Nó thường không dùng, trừ trong một số công cụ thông bá
 
 #. Type: string
 #. Default
-#. Default long site name, just something longer than th default site name
+#. Default long site name, just something longer than the default site name
 #: ../templates:3001
 msgid "Site name not initialized"
 msgstr "Chưa sở khởi tên nơi Mạng"

@@ -1,4 +1,4 @@
-common-lisp-controller (6.16) UNRELEASED; urgency=low
+common-lisp-controller (6.16) unstable; urgency=low
 
   * Debconf template/translations update, thanks to Christian Perrier
     <bubulle@debian.org>:
@@ -18,7 +18,7 @@ common-lisp-controller (6.16) UNRELEASED; urgency=low
     + remove trailing space and correct typo, patch from
       Christian Perrier <bubulle@debian.org>.
 
- --
+ -- Luca Capello <luca@pca.it>  Wed, 09 Jul 2008 17:11:50 +0200
 
 common-lisp-controller (6.15) unstable; urgency=low
 

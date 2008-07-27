@@ -1,3 +1,11 @@
+common-lisp-controller (6.17) UNRELEASED; urgency=low
+
+  * Debconf translations:
+    + Swedish, thanks to Martin Bagge <brother@bsnet.se>
+      (Closes: #491761).
+
+ --
+
 common-lisp-controller (6.16) unstable; urgency=low
 
   * Debconf template/translations update, thanks to Christian Perrier

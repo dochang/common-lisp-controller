@@ -5,8 +5,9 @@ common-lisp-controller (6.18) unstable; urgency=low
   * normalize umask, Closes: #531439
   * Added Spanish debconf template translation, thanks Francisco Javier
     Cuadrado. (Closes: #520212)
+  * Move to debhelper version 7
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 19 Jun 2009 06:22:36 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 19 Jun 2009 06:26:18 +0200
 
 common-lisp-controller (6.17) unstable; urgency=low
 

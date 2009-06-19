@@ -1,7 +1,7 @@
 Source: common-lisp-controller
 Section: devel
 Priority: optional
-Build-Depends: debhelper (>= 4.1.16), po-debconf
+Build-Depends: debhelper (>= 7), po-debconf
 Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.org>
 Uploaders: Peter Van Eynde <pvaneynd@debian.org>, Kevin M. Rosenberg <kmr@debian.org>, Luca Capello <luca@pca.it>
 Standards-Version: 3.7.3.0

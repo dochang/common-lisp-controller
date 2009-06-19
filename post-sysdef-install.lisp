@@ -61,7 +61,7 @@
 #+sbcl
 (defun get-owner-and-mode (directory)
   (when (eq :directory
-	    (sb-unix:unix-file-kind (namestring directory)))
+	    (sb-impl::native-file-kind (namestring directory)))
     ;; check who owns it
     (multiple-value-bind (res dev ino mode nlink uid gid rdev size atime mtime)
 	(sb-unix:unix-stat (namestring directory))

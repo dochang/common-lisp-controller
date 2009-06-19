@@ -1,3 +1,10 @@
+common-lisp-controller (6.18) unstable; urgency=low
+
+  * SBCL renamed sb-unix:unix-file-kind into sb-impl::native-file-kind
+    so we change the code and add a conflict
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 19 Jun 2009 06:10:50 +0200
+
 common-lisp-controller (6.17) unstable; urgency=low
 
   * Debconf translations:

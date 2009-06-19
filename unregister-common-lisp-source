@@ -9,6 +9,7 @@ HOME=/tmp/
 LANG=C
 LC_ALL=C
 export HOME LANG LC_ALL
+umask 0022
 
 library="$1"
 

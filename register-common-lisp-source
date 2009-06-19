@@ -7,6 +7,7 @@ HOME=/tmp/
 LANG=C
 LC_ALL=C
 export HOME LANG LC_ALL
+umask 0022
 
 if [ "$1" ]; then
     /usr/sbin/clc-update-customized-images "$1"

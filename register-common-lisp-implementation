@@ -9,6 +9,7 @@ HOME=/tmp/
 LANG=C
 LC_ALL=C
 export HOME LANG LC_ALL
+umask 0022
 
 if [ -x /usr/lib/common-lisp/bin/${1}.sh ] ; then
   sh /usr/lib/common-lisp/bin/${1}.sh install-clc

@@ -11,7 +11,7 @@ Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/common-lisp-controller.git
 Package: common-lisp-controller
 Architecture: all
 Depends:  ${misc:Depends}, ${shlibs:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0) | debconf-2.0, cl-asdf (>= 1.111), realpath, perl
-Conflicts: cmucl (<< 3.1.0), clisp (<< 1:2.36-1), cl-asdf (<< 1.111), sbcl (>= 1.0.29.0)
+Conflicts: cmucl (<< 3.1.0), clisp (<< 1:2.36-1), cl-asdf (<< 1.111), sbcl (<< 1.0.29.0)
 Replaces: cmucl (<< 3.1.0)
 Suggests: sbcl
 Description: Common Lisp source and compiler manager

@@ -48,7 +48,7 @@ clean:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs
 	# fix the var directory
 	chmod 1777 debian/common-lisp-controller/var/cache/common-lisp-controller

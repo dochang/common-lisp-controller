@@ -7,8 +7,9 @@ common-lisp-controller (6.18) unstable; urgency=low
     Cuadrado. (Closes: #520212)
   * Move to debhelper version 7
   * updated standard version without any real changes
+  * use dh_prep instead of dh_clean -k
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 19 Jun 2009 06:27:15 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 19 Jun 2009 06:27:48 +0200
 
 common-lisp-controller (6.17) unstable; urgency=low
 

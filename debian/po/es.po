@@ -1,42 +1,43 @@
 # common-lisp-controller po-debconf translation to Spanish
-# Copyright (C) 2005 Software in the Public Interest
+# Copyright (C) 2005, 2009 Software in the Public Interest
 # This file is distributed under the same license as the common-lisp-controller package.
 #
 # Changes:
-#  - Initial translation
-#         César Gómez Martín <cesar.gomez@gmail.com>
+#   - Initial translation
+#       César Gómez Martín <cesar.gomez@gmail.com>, 2005
 #
-#   Traductores, si no conoce el formato PO, merece la pena leer la
-#   documentación de gettext, especialmente las secciones dedicadas a este
-#   formato, por ejemplo ejecutando:
-#          info -n '(gettext)PO Files'
-#          info -n '(gettext)Header Entry'
+#   - Updates
+#       Francisco Javier Cuadrado <fcocuadrado@gmail.com>, 2009
+#
+# Traductores, si no conocen el formato PO, merece la pena leer la
+# documentación de gettext, especialmente las secciones dedicadas a este
+# formato, por ejemplo ejecutando:
+#   info -n '(gettext)PO Files'
+#   info -n '(gettext)Header Entry'
+#
 # Equipo de traducción al español, por favor, lean antes de traducir
 # los siguientes documentos:
 #
-#  - El proyecto de traducción de Debian al español
-#    http://www.debian.org/intl/spanish/
-#    especialmente las notas de traducción en
-#    http://www.debian.org/intl/spanish/notas
+#   - El proyecto de traducción de Debian al español
+#     http://www.debian.org/intl/spanish/
+#     especialmente las notas de traducción en
+#     http://www.debian.org/intl/spanish/notas
 #
-#  - La guía de traducción de po's de debconf:
-#    /usr/share/doc/po-debconf/README-trans
-#    o http://www.debian.org/intl/l10n/po-debconf/README-trans
+#   - La guía de traducción de po's de debconf:
+#     /usr/share/doc/po-debconf/README-trans
+#     o http://www.debian.org/intl/l10n/po-debconf/README-trans
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: common-lisp-controller\n"
+"Project-Id-Version: common-lisp-controller 6.17\n"
 "Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
 "POT-Creation-Date: 2008-06-12 20:15+0200\n"
-"PO-Revision-Date: 2005-09-02 17:53+0100\n"
-"Last-Translator: César Gómez Martín <cesar.gomez@gmail.com>\n"
-"Language-Team: Debian l10n spanish <debian-l10n-spanish@lists.debian.org>\n"
+"PO-Revision-Date: 2009-03-08 17:19+0100\n"
+"Last-Translator: Francisco Javier Cuadrado <fcocuadrado@gmail.com>\n"
+"Language-Team: Debian l10n Spanish <debian-l10n-spanish@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #. Type: string
 #. Default
@@ -48,29 +49,23 @@ msgstr "Desconocido"
 #. Type: string
 #. Description
 #: ../templates:2002
-#, fuzzy
 msgid "Short Common Lisp site name:"
-msgstr "Nombre corto del sitio de common LISP"
+msgstr "Nombre corto del sitio de «common LISP»:"
 
 #. Type: string
 #. Description
 #: ../templates:2002
-#, fuzzy
-msgid ""
-"You can configure what the Common Lisp implementations are going to use as "
-"'short site name'."
-msgstr ""
-"Puede configurar el parámetro que las implementaciones de common LISP van a "
-"usar como «nombre corto del sitio». Esto no se usa normalmente, excepto en "
-"algunas herramientas de informe de errores."
+msgid "You can configure what the Common Lisp implementations are going to use as 'short site name'."
+msgstr "Puede configurar el «nombre corto del sitio» que van a utilizar las implementaciones de «common LISP»."
 
 #. Type: string
 #. Description
 #. Type: string
 #. Description
-#: ../templates:2002 ../templates:3002
+#: ../templates:2002
+#: ../templates:3002
 msgid "This is mostly unused except in some error reporting tools."
-msgstr ""
+msgstr "Esto no se utiliza casi nunca excepto en algunas herramientas de informe de errores."
 
 #. Type: string
 #. Default
@@ -82,18 +77,12 @@ msgstr "El nombre del sitio no está inicializado"
 #. Type: string
 #. Description
 #: ../templates:3002
-#, fuzzy
 msgid "Long Common Lisp site name:"
-msgstr "Nombre largo del sitio de common LISP"
+msgstr "Nombre largo del sitio de «common LISP»:"
 
 #. Type: string
 #. Description
 #: ../templates:3002
-#, fuzzy
-msgid ""
-"You can configure what the Common Lisp implementations are going to use as "
-"'long site name'."
-msgstr ""
-"Puede configurar el parámetro que las implementaciones de common LISP van a "
-"usar como «nombre largo del sitio». Esto no se usa normalmente, excepto en "
-"algunas herramientas de informe de errores."
+msgid "You can configure what the Common Lisp implementations are going to use as 'long site name'."
+msgstr "Puede configurar el «nombre largo del sitio» que van a utilizar las implementaciones de «common LISP»."
+

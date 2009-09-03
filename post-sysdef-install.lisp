@@ -30,7 +30,7 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require :osi))
 
-#+clisp (defun get-uid () (posix:getuid))
+#+clisp (defun get-uid () (linux:getuid))
 #+sbcl (defun get-uid () (sb-unix:unix-getuid))
 #+cmu (defun get-uid () (unix:unix-getuid))
 #+ecl (defun get-uid () (ffi:c-inline () () :int "getuid()" :one-liner t))

@@ -1,3 +1,9 @@
+common-lisp-controller (6.19) unstable; urgency=low
+
+  * posix:getuid became linux:getuid for clisp
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 03 Sep 2009 04:49:06 +0100
+
 common-lisp-controller (6.18) unstable; urgency=low
 
   * SBCL renamed sb-unix:unix-file-kind into sb-impl::native-file-kind

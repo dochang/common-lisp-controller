@@ -22,7 +22,7 @@
 	   #:make-clc-send-command-string
 	   #:send-clc-command)
   (:nicknames #:clc
-	      ; depricated:
+					; depricated:
 	      #:c-l-c))
 
 (in-package #:common-lisp-controller)
@@ -60,22 +60,7 @@ used to name the directory in /var/cache/common-lisp-controller")
   (setf *implementation-name* implementation-name)
   
   (pushnew :common-lisp-controller *features*)
-  (pushnew :clc-os-debian *features*)
-
-  ;; put the central registry at the *end*
-  ;; of the search list
-  (appendf
-   (symbol-value (intern (symbol-name :*central-registry*)
-			 (find-package :asdf)))
-   (list *systems-root*))
-
-  ;; put the users asdf files at the FRONT
-  ;; of the same search list
-  (pushnew '(merge-pathnames ".clc/systems/"
-			     (user-homedir-pathname))
-	   (symbol-value (intern (symbol-name :*central-registry*)
-				 (find-package :asdf)))
-	   :test #'equalp))
+  (pushnew :clc-os-debian *features*))
 
 (defun compile-common-lisp-controller-v5 (implementation-name)
   "Compiles the clc files. Returns a list of fasls
@@ -105,8 +90,8 @@ that should be loaded in the list to enable clc"
 	       ;; should produce system fasls,
 	       ;; and they have .o extension
 	       (merge-pathnames 
-		 (make-pathname :type "o")
-		 (fasl-filename package-name filename)))
+		(make-pathname :type "o")
+		(fasl-filename package-name filename)))
 	     (fasl-filename (package-name filename)
 	       ;; this is complex because ecl
 	       ;; should produce system fasls,
@@ -154,7 +139,7 @@ that should be loaded in the list to enable clc"
       #+sbcl
       (when (boundp 'sb-ext::*module-provider-functions*)
 	(pushnew :sbcl-hooks-require cl:*features*))
-	
+      
       ;; use the sbcl asdf version for increased
       ;; compatibility with the normal sbcl
       

@@ -1,5 +1,5 @@
 Source: common-lisp-controller
-Section: devel
+Section: lisp
 Priority: optional
 Build-Depends: debhelper (>= 7), po-debconf
 Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.org>

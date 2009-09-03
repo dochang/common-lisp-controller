@@ -1,3 +1,9 @@
+common-lisp-controller (6.20) unstable; urgency=low
+
+  * forgot to change to lisp section
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 03 Sep 2009 16:24:50 +0100
+
 common-lisp-controller (6.19) unstable; urgency=low
 
   * posix:getuid became linux:getuid for clisp

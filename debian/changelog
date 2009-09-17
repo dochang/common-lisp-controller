@@ -2,8 +2,9 @@ common-lisp-controller (6.20) UNRELEASED; urgency=low
 
   * forgot to change to lisp section
   * Fixed conflict with sbcl. (Closes: #535305)
+  * After rereading section 7.3 of the policy, maybe Breaks is better
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sun, 13 Sep 2009 08:25:18 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 17 Sep 2009 20:59:48 +0200
 
 common-lisp-controller (6.19) unstable; urgency=low
 

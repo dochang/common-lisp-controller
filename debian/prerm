@@ -17,22 +17,6 @@ set -e
 
 case "$1" in
     remove|upgrade|deconfigure)
-	# Updates by KMR to make sure any previous form of service is removed
-        update-inetd --remove "^8990@localhost\t.*" || true
-        update-inetd --remove "^8990\t.*" || true
-    	for compiler in /usr/lib/common-lisp/bin/*.sh ; do
-            if [ -f "$compiler" -a -r "$compiler" ] ; then
-             i=${compiler##*/}
-             i=${i%.sh}
-             if [ -x "$compiler" ] ; then
-                echo Deinstalling for ${i##*/}
-                echo Removing Common Lisp Controller for $i
-                sh  "$compiler" remove-clc || true
-                echo
-                echo Done rebuilding
-            fi
-	   fi
-         done 
         ;;
     failed-upgrade)
         ;;

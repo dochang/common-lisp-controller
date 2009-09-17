@@ -19,9 +19,10 @@ set -e
 
 
 case "$1" in
-       purge|remove|abort-install|abort-upgrade|disappear)
-        deluser --quiet cl-builder > /dev/null 2>&1   || true
-        delgroup --quiet cl-builder > /dev/null 2>&1 || true
+       purge|disappear)
+       	  rm -f /etc/lisp-config.lisp || true
+        ;;
+       remove|abort-install|abort-upgrade)
         ;;
        upgrade|failed-upgrade)
         ;;

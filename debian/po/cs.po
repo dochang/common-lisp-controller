@@ -1,40 +1,28 @@
+# Czech translation of common-lisp-controller templates
 #
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
-#
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-#
-#    Developers do not need to manually edit POT or PO files.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: common-lisp-controller 4.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-07-26 16:40+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2005-04-18 22:14+0200\n"
+"Last-Translator: Martin Sin <martin.sin@seznam.cz>\n"
+"Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Type: string
 #. Default
 #: ../templates:3
 msgid "Unknown"
-msgstr ""
+msgstr "Neznámý"
 
 #. Type: string
 #. Description
 #: ../templates:4
 msgid "The short common LISP site name"
-msgstr ""
+msgstr "Krátký název umístìní LISPu"
 
 #. Type: string
 #. Description
@@ -44,18 +32,20 @@ msgid ""
 "\"short site name\". This is mostly unused except in some error reporting "
 "tools."
 msgstr ""
+"Mù¾ete nastavit co má bì¾ná implementace LISPu pou¾ívat jako \"krátký název "
+"umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje informující o " "chybách."
 
 #. Type: string
 #. Default
 #: ../templates:11
 msgid "Site name not initialized"
-msgstr ""
+msgstr "Jméno umístìní nebylo inicializováno"
 
 #. Type: string
 #. Description
 #: ../templates:12
 msgid "The long common LISP site name"
-msgstr ""
+msgstr "Dlouhý název umístìní LISPu"
 
 #. Type: string
 #. Description
@@ -65,3 +55,5 @@ msgid ""
 "\"long site name\". This is mostly unused except in some error reporting "
 "tools."
 msgstr ""
+"Mù¾ete nastavit co má bì¾ná implementace LISPu pou¾ívat jako "
+"\"dlouhý název umístìní\". Vìt¹inou se to nepou¾ívá - a¾ na nìkteré nástroje " "informující o chybách."

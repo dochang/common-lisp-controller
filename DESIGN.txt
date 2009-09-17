@@ -1,0 +1,82 @@
+; Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+; Licensed under the LLGPL, see debian/copyright file
+
+This is the general design of the new 'light weight' common-lisp-controller v4.
+
+Common Lisp Libraries:
+
+ Libraries should:
+ - use adsf
+ - install their source packages in /usr/share/common-lisp/source/<library>
+ - install a symlink to their asdf package from /usr/share/common-lisp/systems/<library>.asd to
+   /usr/share/common-lisp/source/<library>/<library>.asd
+ - after install call "/usr/sbin/register-common-lisp-source <library>"
+ - before removal of the package call "/usr/sbin/unregister-common-lisp-source <library>"
+ Libraries can be automaticly created with the "asdf-install-2-deb" package.
+
+Common Lisp Implementations::
+
+ Implementations should:
+ - install a script /usr/lib/common-lisp/bin/<impl>.sh that has the following 
+   commands:
+  /usr/lib/common-lisp/bin/<impl>.sh install-clc
+   This should load /usr/share/common-lisp/source/common-lisp-controller/common-lisp-controller.lisp
+   then call
+(common-lisp-controller:init-common-lisp-controller-v4 <implementation)
+   and then save the resulting image as default for the system.
+ - after install call "/usr/sbin/register-common-lisp-implementation <implementation>"
+ - before removal call "/usr/sbin/unregister-common-lisp-implementation <implementation>"
+ - should load /etc/lisp-config.lisp on startup.
+
+There are 2 scenarious:
+
+- a user wants to use a system-wide library.
+  (asdf:oos 'asdf:compile-op :<library>)
+  will load the system at
+  /usr/share/common-lisp/systems/<library>.asd
+  that will use the source at 
+  /usr/share/common-lisp/source/<library>
+  fasls will be placed in 
+  /var/cache/common-lisp-controller/<userid>/<implementation>/<library>/
+- a user wants to use another library. He or she used adsf-install
+and the sources got placed in ~/.sbcl or ~/sdf-install-dir/. We do not interfere
+with this use as we expect the user to be able to correct all errors :-).
+
+User interface:
+
+To load a library "cil" do:
+(clc:clc-require :cil)
+
+To recompile all libraries, dropping into the 
+debugger on error, do:
+(clc:clc-build-all-packages)
+to do so while ignoring build errors,
+do:
+(clc:clc-build-all-packages t)
+
+To add user packages, use clc-register-user-package. This will
+place a link to the user's asdf file in ~/.clc/systems.
+
+Technical Implementation:
+
+- register-common-lisp-source:
+does nothing
+
+- unregister-common-lisp-source:
+does: (after checking stuff):
+rm -rf /var/cache/common-lisp-controller/*/*/<library>
+
+- register-common-lisp-implementation
+does nothing
+
+- unregister-common-lisp-implementation
+does: (after checking stuff):
+rm -rf /var/cache/common-lisp-controller/*/<implementation>
+
+- clc-init.lisp:
+
+loads adsf
+builds pathname translations for /usr/share/common-lisp/source/
+adds /usr/share/common-lisp/systems/ and `/.clc/systems 
+to the asdf registry
+

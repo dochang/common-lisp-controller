@@ -5,30 +5,21 @@
 #export DH_VERBOSE=1  # Uncomment this to turn on verbose mode.
 
 CLC_SBIN	:= usr/sbin/
-CLC_BIN		:= usr/bin/
 CLC_SRC 	:= usr/share/common-lisp/source/common-lisp-controller/
 CLC_LIB		:= usr/lib/common-lisp-controller/
 
 SBIN_PROGS 	:= register-common-lisp-source unregister-common-lisp-source \
 		register-common-lisp-implementation \
-		unregister-common-lisp-implementation \
-		clc-reregister-all-impl	clc-build-daemon
+		unregister-common-lisp-implementation 
 
-BIN_PROGS	:= clc-send-command clc-autobuild-library clc-autobuild-check \
-		clc-autobuild-impl clc-autobuild-only clc-register-user-package \
+BIN_PROGS	:= clc-register-user-package   \
 		clc-unregister-user-package
-
-CLC_SRC_FILES	:= common-lisp-controller.lisp pre-sysdef-install.lisp \
-		 post-sysdef-install.lisp
+CLC_SRC_FILES	:= common-lisp-controller.lisp post-sysdef-install.lisp
 
 #CLC_UTILS	:= debug-daemon-problems.sh
 
-MAN_FILES := man/clc-send-command.1 man/clc-build-daemon.8 \
-	man/register-common-lisp-implementation.8 \
-	man/clc-reregister-all-impl.8 \
-	man/clc-autobuild-only.1 man/clc-autobuild-check.1 man/clc-autobuild-impl.1 \
-	man/clc-autobuild-library.1 man/clc-register-user-package.1 \
-	man/clc-unregister-user-package.1
+MAN_FILES := man/register-common-lisp-implementation.8  \
+ man/clc-register-user-package.1
 
 configure: configure-stamp
 configure-stamp:
@@ -40,7 +31,7 @@ build: configure-stamp build-stamp
 build-stamp:
 	dh_testdir
 # Add here commands to compile the package.
-	-$(MAKE) 
+	#-$(MAKE) 
 	touch build-stamp
 
 clean:
@@ -48,7 +39,7 @@ clean:
 	dh_testroot
 	rm -f build-stamp configure-stamp
 # Add here commands to clean up after the build process.
-	-$(MAKE) clean
+	#-$(MAKE) clean
 	rm -f *~  || true
 	dh_clean
 
@@ -58,19 +49,19 @@ install: build
 	dh_clean -k
 	dh_installdirs
 	# fix the var directory
-	chmod 1777 debian/common-lisp-controller/var/spool/common-lisp-controller
+	chmod 1777 debian/common-lisp-controller/var/cache/common-lisp-controller
 	# Add here commands to install the package into debian/pkg-name
 	dh_install $(SBIN_PROGS) $(CLC_SBIN)
-	dh_install $(BIN_PROGS) $(CLC_BIN)
+	dh_install $(BIN_PROGS) $(CLC_SBIN)
 	dh_install $(CLC_SRC_FILES) $(CLC_SRC)
 #	dh_install $(CLC_UTILS) $(CLC_LIB)
 
-# Build architecture-independent files here.
- binary-indep: build install
-
-
 # Build architecture-dependent files here.
 binary-arch: build install
+
+
+# Build architecture-independent files here.
+ binary-indep: build install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
@@ -91,7 +82,7 @@ binary-arch: build install
 	dh_link
 	dh_strip
 	dh_compress
-	dh_fixperms --exclude debian/common-lisp-controller/var/spool/common-lisp-controller
+	dh_fixperms --exclude debian/common-lisp-controller/var/cache/common-lisp-controller
 	dh_makeshlibs
 	dh_installdeb
 #	dh_perl

@@ -1,24 +1,44 @@
-!.\" 	-*- Mode: Nroff -*-
-.TH "clc-register-user-package" "1" "" "" ""
+.\" 	-*- Mode: Nroff -*-
+.TH "clc-register-user-package" "1" "October 6, 2004"
+.AT 3
+.SH NAME
+.Nm clc-(un)register-user-package  
+.Nd registers a user asdf system
+.SH SYNOPSIS
+.B clc-register-user-package 
+.I package-file
 
-.SH "NAME"
-clc-register-user-package \- Register a Common Lisp user package
+.B clc-unregister-user-package
+.I package-file
 
-.SH "SYNOPSIS"
-.B clc-register-user-package <asdf-file>
+.SH DESCRIPTION
+Registers a user defined system into the 
+.I common lisp controller
+system. This means that any Common Lisp implementation
+will know how to find the system.
 
-.SH "DESCRIPTION"
-This command registers a user package. It is given the filename of the ASDF file
-for the user package. When registered, a user package is loaded in preference to 
-any system-wide installation of the same system name.
+The system file itself will be symlinked from the 
+.I ~/.clc/systems
+directory and the system will be recorded in the 
+.I ~/.clc/user-packages.db
+file.
 
-.SH "FILES"
-The user package database is stored in ~/.clc/user-packages.db
+No removal of old fasl files during upgrades of Common Lisp
+Implementations will be done, nor will the fasls of different
+implementations will be separated by 
+.I clc
+, it is expected that the users who require this will create a
+full Debian package or create a symlink in 
+.I /usr/share/common-lisp/systems/
+to the system file.
 
-.SH "BUGS"
+.SH BUGS
 
-Bug reports should be sent to the debian BTS, preferably with
+Bug reports should be sent to the Debian BTS, preferably with
 reportbug.
 
-.SH "AUTHOR"
-Kevin M. Rosenberg <kmr@debian.org>, Oct 2002
+.SH AUTHOR
+Peter Van Eynde (pvaneynd@debian.org) and Kevin M. Rosenberg
+(kmr@debian.org) 2001-2004
+
+.PP

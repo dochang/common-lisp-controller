@@ -1,21 +1,128 @@
-common-lisp-controller (3.91) unstable; urgency=low
+common-lisp-controller (4.16) unstable; urgency=low
 
-  * Use fboundp rather than symbol-function when checking for the
-  existence of sb-ext:without-package-locks
+  * Now uses darcs
+  * Updated standard version
+  * Remove /etc/lisp-config.lisp on purge. Closes: #319163
 
- -- Kevin M. Rosenberg <kmr@debian.org>  Tue, 13 Jul 2004 09:22:27 -0600
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  3 Aug 2005 09:32:06 +0200
 
-common-lisp-controller (3.90) unstable; urgency=low
+common-lisp-controller (4.15) unstable; urgency=low
 
-  * Support SBCL package locks
+  * Added Vietnamese translation for debconf. Closes: #310034 
 
- -- Kevin M. Rosenberg <kmr@debian.org>  Tue, 13 Jul 2004 01:08:36 -0600
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 21 May 2005 16:02:40 +0200
 
-common-lisp-controller (3.89) unstable; urgency=low
+common-lisp-controller (4.14) unstable; urgency=low
 
-  * Allow pathname aliases for user packages 
+  * Corrected user system search path for sbcl. Closes: #307161
 
- -- Kevin M. Rosenberg <kmr@debian.org>  Wed,  9 Jun 2004 20:27:26 -0600
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 May 2005 11:53:00 +0200
+
+common-lisp-controller (4.13) unstable; urgency=low
+
+  * Added Czech translation from Martin Šín.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 21 Apr 2005 14:18:15 +0200
+
+common-lisp-controller (4.12) unstable; urgency=low
+
+  * Make clc:clc-require also work for user-supplied packages. 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 19 Oct 2004 10:27:05 +0200
+
+common-lisp-controller (4.11) unstable; urgency=low
+
+  * Added support for clc-register-user-package again. 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 29 Sep 2004 23:49:16 +0200
+
+common-lisp-controller (4.10) unstable; urgency=low
+
+  * Fixed regexp for source uninstallation. Closes: #272679.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue, 21 Sep 2004 14:41:38 +0200
+
+common-lisp-controller (4.9) unstable; urgency=low
+
+  * Fixed regexp for implementation removal. Closes: #271319. 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 13 Sep 2004 07:13:03 +0200
+
+common-lisp-controller (4.8) unstable; urgency=low
+
+  * Remembered that we actually have all the versions
+    of the cronjob in the sf cvs. Got them and their
+    md5sums.
+  * Shutup an rm during install Closes: #264491.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon,  9 Aug 2004 11:11:40 +0200
+
+common-lisp-controller (4.7) unstable; urgency=low
+
+  * Also recognise an older cronjob. Closes: #263863. 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun,  8 Aug 2004 00:15:53 +0200
+
+common-lisp-controller (4.6) unstable; urgency=low
+
+  * unregister-common-lisp-implemention: Fix implementation name checking regex
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Wed,  4 Aug 2004 17:57:39 -0600
+
+common-lisp-controller (4.5) unstable; urgency=low
+
+  * Forgot to use a CVS export! 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed,  4 Aug 2004 22:59:17 +0200
+
+common-lisp-controller (4.4) unstable; urgency=low
+
+  * Fixed stupid typo in preinst. Closes: #263087 
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Tue,  3 Aug 2004 13:51:17 +0200
+
+common-lisp-controller (4.3) unstable; urgency=low
+
+  * Forgot to remove old cronjob file. Closes: #262677
+  * Corrected the preinst script. Closes: #262914
+  * Corrected the file to load in the design document.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon,  2 Aug 2004 18:38:38 +0200
+
+common-lisp-controller (4.2) unstable; urgency=low
+
+  * Stupid error: we should reinstall clc when
+    we upgrade a implementation.
+  * Stupid error2: fixed typo in package alias and
+    the use of the old alias in post-sysdef-install.lisp
+  * Now we clean the correct directory: /var/cache/common-lisp-controller
+    not /var/cache/common-lisp
+  * Slight license change: now LLGPL'ed.
+  * This version should fix almost all problems.
+    Closes: #197649, #261757, #231031
+    By removing complexity
+    Closes: #260069
+    By not having a cronjob anymore
+    Closes: #128761
+    Because the user can set options for his lisp that
+    then get used for the compilation.
+  * Fixed quoting problem that prevented the removal of 
+    cached fasl's.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Fri, 30 Jul 2004 17:51:34 +0200
+
+common-lisp-controller (4.1) experimental; urgency=low
+
+  * Fixed syntax error. Closes: #261757
+  * New clc-build-all-packages to rebuild all known systems.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 28 Jul 2004 21:45:19 +0200
+
+common-lisp-controller (4.0) experimental; urgency=low
+
+  * Test upload
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 26 Jul 2004 16:30:06 +0200
 
 common-lisp-controller (3.88) unstable; urgency=low
 

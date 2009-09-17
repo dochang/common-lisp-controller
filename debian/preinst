@@ -16,25 +16,28 @@ set -e
 
 
 case "$1" in
-    install|upgrade)
-        update-inetd --remove "^8990@localhost\t.*"
-	update-inetd --remove "^8990\t.*"
-
-	getent passwd cl-builder > /dev/null || \
-	    adduser --system --home /usr/lib/common-lisp --shell /bin/false --no-create-home \
-                --disabled-password --disabled-login --group cl-builder  || true
-        
-        if [ "$1" = "upgrade" ] ; then
-         for compiler in /usr/lib/common-lisp/bin/*.sh ; do
-	   if [ -f "$compiler" -a -r "$compiler" ] ; then
-	     i=${compiler##*/}
-	     i=${i%.sh}
-             chown -R cl-builder.cl-builder /usr/lib/common-lisp/${i} 2> /dev/null || true
-           fi
-         done
-        fi
+    install)
     ;;
+    upgrade)
+        # cleanup fasl files:
+        find  /usr/share/common-lisp/source/defsystem /usr/share/common-lisp/source/asdf /usr/share/common-lisp/source/common-lisp-controller -type f -not -name "*.lisp" -print0 | xargs --null rm --force 2> /dev/null
+        # remove old autobuild files:
+        find /etc/common-lisp -name autobuild -print0 | xargs -0 rm  2> /dev/null || true
+        find /etc/common-lisp -type d -depth -print0 | xargs rmdir 2> /dev/null || true
+        # remove old fals files:
 
+        if [ -d /usr/lib/common-lisp-controller ] ; then rmdir --ignore-fail-on-non-empty /usr/lib/common-lisp-controller ; fi
+
+        for compiler in /usr/lib/common-lisp/bin/*.sh ; do
+           if [ -f "$compiler" -a -r "$compiler" ] ; then
+             i=${compiler##*/}
+             i=${i%.sh}
+             if [ -d "/usr/lib/common-lisp/${i}" ] ; then
+                rm -rf "/usr/lib/common-lisp/${i}"
+             fi
+           fi
+        done
+    ;;
     abort-upgrade)
     ;;
 

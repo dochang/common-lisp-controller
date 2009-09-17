@@ -4,16 +4,19 @@ Priority: optional
 Build-Depends: debhelper (>= 4.1.16)
 Maintainer: Peter Van Eynde <pvaneynd@debian.org>
 Uploaders: Kevin M. Rosenberg <kmr@debian.org>
-Standards-Version: 3.6.1.1
+Standards-Version: 3.6.2.1
 
 Package: common-lisp-controller
-Architecture: any
-Depends:  ${shlibs:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0), mailx, netbase, adduser (>= 3.47), cl-asdf (>= 1.55), cl-defsystem3, realpath
-Pre-Depends: netkit-inetd 
-Conflicts: cmucl (<< 3.1.0), xinetd
+Architecture: all
+Depends:  ${shlibs:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0), cl-asdf (>= 1.55), realpath
+Conflicts: cmucl (<< 3.1.0)
 Replaces: cmucl (<< 3.1.0)
-Suggests: cmucl, sbcl
+Suggests: sbcl
 Description: This is a Common Lisp source and compiler manager
  With this package you can install and manage 
- common lisp sources and compilers and have
- a working defsystem system.
+ common lisp sources and compilers. It creates 
+ a user-specific cache of compiled objects. When a 
+ library or an implementation is upgraded all
+ compiled objects in the cache are flushed. It also
+ provides tools to recompile all libraries and 
+ to generate debian packages from asdf-install packages.

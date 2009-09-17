@@ -1,6 +1,6 @@
 #!/bin/sh
 # Registers a user package
-# Author: Kevin Rosenberg <kmr@debian.org>  GPL-2 license
+# Author: Kevin Rosenberg <kmr@debian.org >  GPL-2 license
 
 set -e
 
@@ -35,8 +35,6 @@ EOF
     exit 1
 fi
 asdf_file=$(realpath -s "$1" 2>/dev/null || true)
-
-
 if [ ! -f "$asdf_file" ] ; then
     echo "The user package file $1 does not exist." 
     exit 3

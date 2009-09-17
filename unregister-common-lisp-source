@@ -1,62 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
-PROGNAME=`basename $0`
+# Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+# Licensed under the LLGPL, see debian/copyright file
 
-if [ `id -u` != 0 ] ; then
- echo "$PROGNAME: you need to be root this program" >&2
- exit 1
-fi
+# just nuke all caches of this library
 
-# first check if there is at least a package-name:
+library="$1"
 
-if [ -z "$1" ] ; then
- cat <<EOF
-usage: $PROGNAME package-name
+echo "$library" | grep -q '[^a-zA-Z0-9-]' && echo "Found special characters in $1!" && exit 42
 
-unregisters a Common Lisp source tree to the 
-Common-Lisp-Controller system.
-EOF
-    exit 1
-fi
+echo "$library" | grep -q '\.\.' && echo "Found .. in $1!" && exit 1
 
-PKG_NAME=$1
+echo "$library" | grep -q '\/\/' && echo "Found // in $1!" && exit 2
 
-DEFSYSTEM3_FILE="/usr/share/common-lisp/systems/$PKG_NAME.system"
-ASDF_FILE="/usr/share/common-lisp/systems/$PKG_NAME.asd"
-SOURCENAME="/usr/share/common-lisp/source/$PKG_NAME"
-if [ ! \( -d "$SOURCENAME" -o  -h "$SOURCENAME" \) ] ; then 
-    cat <<EOF
-$PROGNAME: symlink $SOURCENAME does not exist.
+rm -rf /var/cache/common-lisp-controller/*/*/"$1"
 
-This is where I expected package $PKG_NAME to be.
-
-Maybe you already uninstalled it?
-EOF
-    exit 0
-fi
-
-if [ \( ! -e "$DEFSYSTEM3_FILE" -a ! -h "$DEFSYSTEM3_FILE" \) ] && \
-    [ \( ! -e "$ASDF_FILE" -a ! -h "$ASDF_FILE" \) ]; then
-    cat <<EOF
-$PROGNAME: Neither $DEFSYSTEM3_FILE nor $ASDF_FILE  exists. 
-One of these are needed to unregister the $PKG_NAME package.
-
-Perhaps you already uninstalled it?
-EOF
-    exit 0
-fi
-
-for compiler in /usr/lib/common-lisp/bin/*.sh ; do
-    if [ -f $compiler -a -r $compiler ] ; then
-     i=${compiler##*/}
-     i=${i%.sh}
-     if [ -d /usr/lib/common-lisp/$i/$PKG_NAME ]; then
-	 /usr/bin/clc-send-command --quiet remove $PKG_NAME $i
-     fi
-    fi
-done
-
-# Remove all autobuild directories for this package
-rm -rf /etc/common-lisp/*/$PKG_NAME
-
-echo "$PROGNAME: Package $PKG_NAME uninstalled" >&2

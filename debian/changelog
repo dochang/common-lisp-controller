@@ -1,4 +1,4 @@
-common-lisp-controller (6.20) UNRELEASED; urgency=low
+common-lisp-controller (6.20) unstable; urgency=low
 
   * forgot to change to lisp section
   * Fixed conflict with sbcl. (Closes: #535305)

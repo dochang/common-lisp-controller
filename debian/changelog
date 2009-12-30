@@ -3,8 +3,10 @@ common-lisp-controller (6.21) UNRELEASED; urgency=low
   * Renamed and exported clc:with-clc-active
   * Changed documentation to reflect clc:with-clc-active related
     changes. (Closes: #560781) by documenting it
+  * Forgot that load-user-image-components also needs to use with-clc-
+    active
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 30 Dec 2009 22:37:23 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 30 Dec 2009 22:38:47 +0100
 
 common-lisp-controller (6.20) unstable; urgency=low
 

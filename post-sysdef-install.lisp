@@ -401,15 +401,17 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
   (asdf::get-object-files system))
 
 (defun load-user-image-components ()
-  (with-open-file (components (merge-pathnames
-			       *image-preferences*
-			       *implementation-name*)
-			      :direction :input :if-does-not-exist nil)
-    (when components
-      (let ((asdf:*central-registry*
-	     (append asdf:*central-registry* (list *systems-root*))))
-	(loop for component = (read-line components nil)
-	   while component nconc
-	     (let ((system (asdf:find-system component nil)))
-	       (if system (load-component system)
-		   (warn "System ~S not found, not loading it into implementation image" component))))))))
+  (with-clc-active
+   (with-open-file (components (merge-pathnames
+				*image-preferences*
+				*implementation-name*)
+			       :direction :input :if-does-not-exist nil)
+      (when components
+	(let ((asdf:*central-registry*
+	       (append asdf:*central-registry* (list *systems-root*))))
+	  (loop for component = (read-line components nil)
+		while component nconc
+		(let ((system (asdf:find-system component nil)))
+		  (if system (load-component system)
+		    (warn "System ~S not found, not loading it into implementation image" component)))))))))
+  

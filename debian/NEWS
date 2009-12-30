@@ -1,4 +1,4 @@
-common-lisp-controller (6.21) UNRELEASED; urgency=low
+common-lisp-controller (6.21) unstable; urgency=low
 
   * From version 6.19 onwards clc does not longer add the 
     /usr/share/common-lisp/systems/ directory to asdf:*central-registry*

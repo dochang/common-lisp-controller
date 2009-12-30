@@ -1,17 +1,21 @@
-From version 6.19 onwards clc does not longer add the 
-/usr/share/common-lisp/systems/ directory to asdf:*central-registry*
+common-lisp-controller (6.21) UNRELEASED; urgency=low
 
-The net effect of this is that just using "(asdf:oos 'asdf:load-op ...)" 
-will no longer work. The only way to load clc enabled packages now
-it to use "(clc:clc-require :<foo>)"
+  * From version 6.19 onwards clc does not longer add the 
+    /usr/share/common-lisp/systems/ directory to asdf:*central-registry*
+    
+    The net effect of this is that just using "(asdf:oos 'asdf:load-op ...)" 
+    will no longer work. The only way to load clc enabled packages now
+    it to use "(clc:clc-require :<foo>)"
+    
+    You can also activate the clc packages using "clc:with-clc-active" so
+    
+    (clc:with-clc-active
+      (asdf:oos 'asdf:load-op :<foo>))
+    
+    will work too.
+    
+    This change was done so that using for example clbuild in Debian becomes
+    possible again. Otherwise the packaged systems will interfere with the
+    clbuild or locally generated systems.  
 
-You can also activate the clc packages using "clc:with-clc-active" so
-
-(clc:with-clc-active
-  (asdf:oos 'asdf:load-op :<foo>))
-
-will work too.
-
-This change was done so that using for example clbuild in Debian becomes
-possible again. Otherwise the packaged systems will interfere with the
-clbuild or locally generated systems.  
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 30 Dec 2009 22:44:19 +0100

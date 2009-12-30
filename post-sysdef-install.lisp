@@ -306,7 +306,7 @@ exit 0;' 2>&1 3>&1"
 	    (asdf:oos 'asdf:load-op module-name)))
       t)))
 
-(Defmacrox with-clc-active (&rest code)
+(defmacro with-clc-active (&rest code)
   `(let ((asdf:*central-registry*
 	  (append (list 
                    ;; put the users asdf files at the FRONT

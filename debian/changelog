@@ -1,4 +1,4 @@
-common-lisp-controller (6.21) UNRELEASED; urgency=low
+common-lisp-controller (6.21) unstable; urgency=low
 
   * Renamed and exported clc:with-clc-active
   * Changed documentation to reflect clc:with-clc-active related

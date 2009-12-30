@@ -1,8 +1,10 @@
 common-lisp-controller (6.21) UNRELEASED; urgency=low
 
   * Renamed and exported clc:with-clc-active
+  * Changed documentation to reflect clc:with-clc-active related
+    changes. (Closes: #560781) by documenting it
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 30 Dec 2009 22:25:19 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 30 Dec 2009 22:37:23 +0100
 
 common-lisp-controller (6.20) unstable; urgency=low
 

@@ -1,4 +1,4 @@
-; Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+; Copyright (C) 2000,2009  Peter Van Eynde and Kevin M. Rosenberg
 ; Licensed under the LLGPL, see debian/copyright file
 
 This is the general design of the new 'light weight' common-lisp-controller v4.
@@ -32,7 +32,7 @@ Common Lisp Implementations::
 There are 2 scenarious:
 
 - a user wants to use a system-wide library.
-  (asdf:oos 'asdf:compile-op :<library>)
+  (clc:clc-require :<library>)
   will load the system at
   /usr/share/common-lisp/systems/<library>.asd
   that will use the source at 
@@ -78,6 +78,4 @@ rm -rf /var/cache/common-lisp-controller/*/<implementation>
 
 loads adsf
 builds pathname translations for /usr/share/common-lisp/source/
-adds /usr/share/common-lisp/systems/ and `/.clc/systems 
-to the asdf registry
 

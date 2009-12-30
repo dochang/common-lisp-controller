@@ -18,6 +18,7 @@
 	   #:calculate-fasl-root
 	   #:list-systems
 	   #:*redirect-fasl-files-to-cache*
+	   #:with-clc-active
 	   ;; depricated:
 	   #:make-clc-send-command-string
 	   #:send-clc-command)

@@ -306,7 +306,7 @@ exit 0;' 2>&1 3>&1"
 	    (asdf:oos 'asdf:load-op module-name)))
       t)))
 
-(defmacro activate-clc (&rest code)
+(Defmacrox with-clc-active (&rest code)
   `(let ((asdf:*central-registry*
 	  (append (list 
                    ;; put the users asdf files at the FRONT
@@ -320,7 +320,7 @@ exit 0;' 2>&1 3>&1"
      ,@code))
 
 (defun clc-require (module-name &optional (pathname 'clc::unspecified))
-  (activate-clc
+  (with-clc-active
    (let ((*redirect-fasl-files-to-cache* t))
      (if (not (eq pathname 'clc::unspecified))
 	 (common-lisp:require module-name pathname)
@@ -338,7 +338,7 @@ exit 0;' 2>&1 3>&1"
   "Tries to build all known packages.
 Looks in /usr/share/commmon-lisp/systems/ for .asd files
 If IGNORE-ERRORS is true ignores all errors while rebuilding"
-  (activate-clc
+  (with-clc-active
    (loop :for registry-object :in asdf:*central-registry*
       :for registry-location = (eval registry-object)
       :with failed-packages = ()
@@ -365,7 +365,7 @@ If IGNORE-ERRORS is true ignores all errors while rebuilding"
 	     nil))))))
 
 (defun list-systems ()
-  (activate-clc
+  (with-clc-active
    (let ((systems (make-hash-table :test #'equal)))
      (loop :for item :in asdf:*central-registry*
 	:for location = (eval item)

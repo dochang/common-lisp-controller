@@ -1,3 +1,9 @@
+common-lisp-controller (6.22) UNRELEASED; urgency=low
+
+  * open for changes
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 31 Dec 2009 10:14:58 +0100
+
 common-lisp-controller (6.21) unstable; urgency=low
 
   * Renamed and exported clc:with-clc-active

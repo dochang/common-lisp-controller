@@ -308,31 +308,59 @@ exit 0;' 2>&1 3>&1"
 
 (defmacro with-clc-active (&rest code)
   `(let ((asdf:*central-registry*
-	  (append (list 
-                   ;; put the users asdf files at the FRONT
-                   ;; of the same search list
-                   (merge-pathnames ".clc/systems/"
-			            (user-homedir-pathname)))
-		  asdf:*central-registry*
-		  ;; put the central registry at the *end*
-		  ;; of the search list
-		  (list *systems-root*))))
+	  (if *one-world-mode*
+	      asdf:*central-registry*
+	      (append (list 
+		       ;; put the users asdf files at the FRONT
+		       ;; of the same search list
+		       (merge-pathnames ".clc/systems/"
+					(user-homedir-pathname)))
+		      asdf:*central-registry*
+		      ;; put the central registry at the *end*
+		      ;; of the search list
+		      (list *systems-root*)))))
      ,@code))
 
 (defun clc-require (module-name &optional (pathname 'clc::unspecified))
+  "Loads the given MODULE-NAME ADSF package, using CLC and with ASDF native as a fallback"
   (with-clc-active
-   (let ((*redirect-fasl-files-to-cache* t))
-     (if (not (eq pathname 'clc::unspecified))
-	 (common-lisp:require module-name pathname)
-         (let ((system-type (find-system-def module-name)))
-	   (case system-type
-	     (:asdf
-	      (require-asdf module-name))
-	     ;; Don't call original-require with SBCL since we are called by that function
-	     #-sbcl 
-	     (otherwise
-	      (common-lisp:require module-name))))))))
+      (let ((*redirect-fasl-files-to-cache* t))
+	(if (not (eq pathname 'clc::unspecified))
+	    (common-lisp:require module-name pathname)
+	    (let ((system-type (find-system-def module-name)))
+	      (case system-type
+		(:asdf
+		 (require-asdf module-name))
+		;; Don't call original-require with SBCL since we are called by that function
+		#-sbcl 
+		(otherwise
+		 (common-lisp:require module-name))))))))
 
+(defun prepare-world ()
+  "Check for one-world-mode and adapt if needed"
+  (let ((users (merge-pathnames ".clc/systems/"
+				(user-homedir-pathname))))
+    ;; first check if we must remove it?
+    (setf asdf:*central-registry*
+	  (loop :for item :in asdf:*central-registry*
+             :unless (or (member item *systems-root* 
+  	                         :test #'equalp)
+		         (equalp item users))
+	     :collect item))
+    ;; now...
+    (when *one-world-mode*
+      ;; put the central registry at the *end*
+      ;; of the search list
+      (appendf asdf:*central-registry*
+	       (list *systems-root*))
+ 
+      ;; put the users asdf files at the FRONT
+      ;; of the same search list
+      (pushnew '(merge-pathnames ".clc/systems/"
+		 (user-homedir-pathname))
+	       asdf:*central-registry*
+	       :test #'equalp)))
+  (values))
 
 (defun clc-build-all-packages (&optional (ignore-errors nil))
   "Tries to build all known packages.

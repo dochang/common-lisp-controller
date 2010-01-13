@@ -1,0 +1,5 @@
+lisp-config.lisp /etc/lisp-config.lisp
+register-common-lisp-source unregister-common-lisp-source register-common-lisp-implementation unregister-common-lisp-implementation clc-update-customized-images usr/sbin/
+clc-register-user-package clc-unregister-user-package usr/bin/
+common-lisp-controller.lisp post-sysdef-install.lisp usr/share/common-lisp/source/common-lisp-controller/
+debian/binary.lintian-overrides usr/share/lintian/overrides/common-lisp-controller

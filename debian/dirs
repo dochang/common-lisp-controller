@@ -6,3 +6,4 @@ usr/share/common-lisp/source/common-lisp-controller
 usr/lib/common-lisp/bin
 usr/lib/common-lisp
 var/cache/common-lisp-controller
+var/lib/common-lisp-controller/

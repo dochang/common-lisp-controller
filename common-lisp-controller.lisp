@@ -23,10 +23,15 @@
 	   #:make-clc-send-command-string
 	   #:send-clc-command)
   (:nicknames #:clc
-					; depricated:
+	      ;;; depricated:
 	      #:c-l-c))
 
 (in-package #:common-lisp-controller)
+
+(defvar *one-world-mode* t
+  "Are we working in a unified ASDF namespace?
+If true then CLC enabled and normal ASDF package definitions share the same namespace.
+If false then asdf operation will not operate or see CLC enabled systems, and one needs to use (clc:clc-require) to load packages")
 
 (defvar *clc-quiet* nil
   "If true then clc prints no messages")

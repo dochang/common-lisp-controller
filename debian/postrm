@@ -20,8 +20,8 @@ set -e
 
 case "$1" in
        purge|disappear)
-       	  rm -f /etc/lisp-config.lisp || true
 	  rm -rf var/cache/common-lisp-controller || true
+	  rm -f /var/lib/common-lisp-controller/lisp-config.lisp || true
         ;;
        remove|abort-install|abort-upgrade)
         ;;

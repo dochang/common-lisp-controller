@@ -4,24 +4,6 @@
 
 #export DH_VERBOSE=1  # Uncomment this to turn on verbose mode.
 
-CLC_SBIN	:= usr/sbin/
-CLC_BIN		:= usr/bin
-CLC_SRC 	:= usr/share/common-lisp/source/common-lisp-controller/
-CLC_LIB		:= usr/lib/common-lisp-controller/
-
-SBIN_PROGS 	:= register-common-lisp-source unregister-common-lisp-source \
-		register-common-lisp-implementation \
-		unregister-common-lisp-implementation clc-update-customized-images
-
-BIN_PROGS	:= clc-register-user-package   \
-		clc-unregister-user-package
-CLC_SRC_FILES	:= common-lisp-controller.lisp post-sysdef-install.lisp
-
-#CLC_UTILS	:= debug-daemon-problems.sh
-
-MAN_FILES := man/register-common-lisp-implementation.8  \
- man/clc-register-user-package.1 man/common-lisp-controller.3
-
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
@@ -45,29 +27,18 @@ clean:
 	debconf-updatepo
 	dh_clean
 
-install: build
+# Build architecture-dependent files here.
+binary-arch: build 
+
+
+# Build architecture-independent files here.
+binary-indep: build 
 	dh_testdir
 	dh_testroot
 	dh_prep
 	dh_installdirs
 	# fix the var directory
 	chmod 1777 debian/common-lisp-controller/var/cache/common-lisp-controller
-	# Add here commands to install the package into debian/pkg-name
-	dh_install $(SBIN_PROGS) $(CLC_SBIN)
-	dh_install $(BIN_PROGS) $(CLC_BIN)
-	dh_install $(CLC_SRC_FILES) $(CLC_SRC)
-#	dh_install $(CLC_UTILS) $(CLC_LIB)
-	# lintian overrides for empty directories and dir permissions
-	install -D -m 0644 debian/binary.lintian-overrides debian/common-lisp-controller/usr/share/lintian/overrides/common-lisp-controller
-
-# Build architecture-dependent files here.
-binary-arch: build install
-
-
-# Build architecture-independent files here.
-binary-indep: build install
-	dh_testdir
-	dh_testroot
 	dh_installchangelogs
 	dh_installdocs
 	dh_installexamples
@@ -82,7 +53,7 @@ binary-indep: build install
 	dh_installcron
 #	dh_installinfo
 #	dh_undocumented
-	dh_installman $(MAN_FILES)
+	dh_installman
 	dh_link
 	dh_strip
 	dh_compress

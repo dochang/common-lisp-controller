@@ -30,7 +30,7 @@ _Description: Long Common Lisp site name:
 Template: common-lisp-controller/one-world-mode
 Type: boolean
 _Default: true
-_Description: One unified asdf world mode:
+_Description: Enable one unified asdf world mode?
  asdf is used to load and compile Common Lisp libraries. Some libraries are
  packaged in Debian packages and are loaded with Common Lisp Controller,
  in particular using '(clc:clc-require :<name>)'. Other libraries can be
@@ -47,5 +47,3 @@ _Description: One unified asdf world mode:
  does not know about the Debian packages libraries, only CLC. The advantage of this is that
  there is less probability of conflicts, the disavantage is that using asdf to load CLC enabled
  packages will not work.
- .
- Do you want to enable One World mode?

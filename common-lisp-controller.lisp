@@ -6,6 +6,10 @@
 
 (in-package #:cl-user)
 
+#+ecl ;; Hush ECL
+(setf *load-verbose* nil
+      *load-print* nil)
+
 (defpackage #:common-lisp-controller
   (:use #:common-lisp)
   (:export #:init-common-lisp-controller

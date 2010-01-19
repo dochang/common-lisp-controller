@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 3.87\n"
 "Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
-"POT-Creation-Date: 2010-01-13 21:39+0100\n"
+"POT-Creation-Date: 2010-01-14 10:51+0100\n"
 "PO-Revision-Date: 2004-03-29 10:44+0100\n"
 "Last-Translator: Luk Claes <luk.claes@ugent.be>\n"
 "Language-Team: Debian l10n Dutch <debian-l10n-dutch@lists.debian.org>\n"
@@ -92,7 +92,7 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../templates:4002
-msgid "One unified asdf world mode:"
+msgid "Enable one unified asdf world mode?"
 msgstr ""
 
 #. Type: boolean
@@ -102,15 +102,8 @@ msgid ""
 "asdf is used to load and compile Common Lisp libraries. Some libraries are "
 "packaged in Debian packages and are loaded with Common Lisp Controller, in "
 "particular using '(clc:clc-require :<name>)'. Other libraries can be added "
-"manually or by using other systems like for example clbuild."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../templates:4002
-msgid ""
-"There are two possible configuration options available: One world or Two "
-"world mode."
+"manually or by using other systems like for example clbuild. There are two "
+"possible configuration options available: One world or Two world mode."
 msgstr ""
 
 #. Type: boolean
@@ -132,12 +125,6 @@ msgid ""
 "CLC. The advantage of this is that there is less probability of conflicts, "
 "the disavantage is that using asdf to load CLC enabled packages will not "
 "work."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../templates:4002
-msgid "Do you want to enable One World mode?"
 msgstr ""
 
 #~ msgid "Only build lisp libraries daily"

@@ -41,6 +41,7 @@ binary-indep: build
 	chmod 1777 debian/common-lisp-controller/var/cache/common-lisp-controller
 	dh_installchangelogs
 	dh_installdocs
+	dh_lintian
 	dh_install
 	dh_installdebconf	
 	dh_installman

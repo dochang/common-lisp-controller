@@ -35,7 +35,6 @@ _Description: Enable one unified asdf world mode?
  packaged in Debian packages and are loaded with Common Lisp Controller,
  in particular using '(clc:clc-require :<name>)'. Other libraries can be
  added manually or by using other systems like for example clbuild.
- .
  There are two possible configuration options available: One world or Two world mode.
  .
  In One World mode (the default) both CLC and manually added libraries are in the same 

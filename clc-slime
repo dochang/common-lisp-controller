@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e 
+
+if [ "$EUID" == 0 ] ; then
+  echo You should NOT run this as root
+  exit 1
+fi
+
+(/usr/share/common-lisp/cl-build 
+ shift
+ ./clbuild  slime "$@")

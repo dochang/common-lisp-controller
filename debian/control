@@ -21,3 +21,15 @@ Description: Common Lisp source and compiler manager
  or an implementation is upgraded, all compiled objects in the cache
  are flushed. It also provides tools to recompile all libraries and to
  generate Debian packages from asdf-install packages.
+
+Package: clc-clbuild
+Architecture: all
+Depends: common-lisp-controller, cvs, subversion, darcs, wget, tar
+Suggests: emacs23
+Description: common-lisp-controller installer for clbuild
+ This package will download clbuild and act as a wrapper for it.
+ .
+ clbuild is described in http://common-lisp.net/project/clbuild/ and 
+ is a method to install Common Lisp libraries and keep them up to date.
+ .
+ This package also contains a wrapper to invoke emacs with slime active

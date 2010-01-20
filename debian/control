@@ -10,7 +10,7 @@ Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/common-lisp-controller.git
 
 Package: common-lisp-controller
 Architecture: all
-Depends:  ${misc:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0) | debconf-2.0, cl-asdf (>= 1.111), realpath, perl
+Depends:  ${misc:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0) | debconf-2.0, cl-asdf (>= 1.111), realpath, perl, adduser
 Breaks: cmucl (<< 3.1.0), clisp (<< 1:2.48-1), cl-asdf (<< 1.111), sbcl (<< 1:1.0.29.0)
 Replaces: cmucl (<< 3.1.0)
 Suggests: sbcl
@@ -24,7 +24,7 @@ Description: Common Lisp source and compiler manager
 
 Package: clc-clbuild
 Architecture: all
-Depends: common-lisp-controller, cvs, subversion, darcs, wget, tar
+Depends: common-lisp-controller, cvs, subversion, darcs, wget
 Suggests: emacs23
 Description: common-lisp-controller installer for clbuild
  This package will download clbuild and act as a wrapper for it.

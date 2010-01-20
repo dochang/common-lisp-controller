@@ -17,6 +17,10 @@ set -e
 
 case "$1" in
     install)
+	# just check if the user already exists:
+	getent passwd cl-builder > /dev/null || \
+	    adduser --system --home /usr/share/common-lisp/ --shell /bin/false --no-create-home \
+                --disabled-password --disabled-login --group cl-builder 
     ;;
     upgrade)
         # cleanup fasl files:
@@ -43,6 +47,10 @@ case "$1" in
              fi
            fi
         done
+	# just check if the user already exists:
+	getent passwd cl-builder > /dev/null || \
+	    adduser --system --home /usr/share/common-lisp/ --shell /bin/false --no-create-home \
+                --disabled-password --disabled-login --group cl-builder 
     ;;
     abort-upgrade)
     ;;

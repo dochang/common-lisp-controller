@@ -8,13 +8,16 @@ if [ "$EUID" != 0 ] ; then
   exit 1
 fi
 
-if [ $1 == "setup" ] ; then
+if [ "x$1" == "xsetup" ] ; then
   [ -d "/usr/share/common-lisp/cl-build" ] || mkdir /usr/share/common-lisp/cl-build
   chown cl-builder:cl-builder /usr/share/common-lisp/cl-build
   (cd /usr/share/common-lisp/cl-build ; 
       echo downloading clbuild using darcs
-      su --shell="/bin/sh" --command="darcs get http://common-lisp.net/project/clbuild/clbuild"
-      chmod u+x clbuild )
+      su --shell="/bin/sh" --command="darcs get http://common-lisp.net/project/clbuild/clbuild" cl-builder
+      chmod a+x clbuild/clbuild )
+  mv /usr/share/common-lisp/cl-build/clbuild /usr/share/common-lisp/cl-build/the-dir
+  mv /usr/share/common-lisp/cl-build/the-dir/* /usr/share/common-lisp/cl-build/
+  rmdir /usr/share/common-lisp/cl-build/the-dir
   echo
   echo done
   exit 0
@@ -25,6 +28,5 @@ if [ ! -d "/usr/share/common-lisp/cl-build" ]  ; then
   exit 2
 fi
  
-(/usr/share/common-lisp/cl-build 
- shift
- su --shell="/bin/sh" -- ./clbuild  "$@")
+(cd /usr/share/common-lisp/cl-build 
+ su --shell="/bin/sh" cl-builder -- ./clbuild  "$@")

@@ -1,2 +1,2 @@
 clc-clbuild usr/sbin/
-clc-slime usr/bin/
+clc-slime clc-lisp usr/bin/

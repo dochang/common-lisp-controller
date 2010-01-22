@@ -9,24 +9,24 @@ if [ "$EUID" != 0 ] ; then
 fi
 
 if [ "x$1" == "xsetup" ] ; then
-  [ -d "/usr/share/common-lisp/cl-build" ] || mkdir /usr/share/common-lisp/cl-build
-  chown cl-builder:cl-builder /usr/share/common-lisp/cl-build
-  (cd /usr/share/common-lisp/cl-build ; 
+  [ -d "/usr/share/common-lisp/clbuild" ] || mkdir /usr/share/common-lisp/clbuild
+  chown cl-builder:cl-builder /usr/share/common-lisp/clbuild
+  (cd /usr/share/common-lisp/clbuild ; 
       echo downloading clbuild using darcs
       su --shell="/bin/sh" --command="darcs get http://common-lisp.net/project/clbuild/clbuild" cl-builder
       chmod a+x clbuild/clbuild )
-  mv /usr/share/common-lisp/cl-build/clbuild /usr/share/common-lisp/cl-build/the-dir
-  mv /usr/share/common-lisp/cl-build/the-dir/* /usr/share/common-lisp/cl-build/
-  rmdir /usr/share/common-lisp/cl-build/the-dir
+  mv /usr/share/common-lisp/clbuild/clbuild /usr/share/common-lisp/clbuild/the-dir
+  mv /usr/share/common-lisp/clbuild/the-dir/* /usr/share/common-lisp/clbuild/
+  rmdir /usr/share/common-lisp/clbuild/the-dir
   echo
   echo done
   exit 0
 fi
 
-if [ ! -d "/usr/share/common-lisp/cl-build" ]  ; then
+if [ ! -d "/usr/share/common-lisp/clbuild" ]  ; then
   echo please first run "$0 setup" to install clbuild
   exit 2
 fi
  
-(cd /usr/share/common-lisp/cl-build 
+(cd /usr/share/common-lisp/clbuild 
  su --shell="/bin/sh" cl-builder -- ./clbuild  "$@")

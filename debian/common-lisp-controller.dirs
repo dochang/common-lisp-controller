@@ -1,4 +1,5 @@
 etc/common-lisp
+etc/common-lisp/source-registry.conf.d/
 usr/sbin
 usr/bin
 usr/share/common-lisp/systems

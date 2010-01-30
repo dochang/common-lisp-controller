@@ -1,2 +1,3 @@
 clc-clbuild usr/sbin/
 clc-slime clc-lisp usr/bin/
+clbuild.conf etc/common-lisp/source-registry.conf.d/

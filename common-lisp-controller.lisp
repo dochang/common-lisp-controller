@@ -1,6 +1,6 @@
 ;;; -*- Mode: Lisp; Package: COMMON-LISP-CONTROLLER -*-
 ;;;
-;;; Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+;;; Copyright (C) 2000,2010  Peter Van Eynde and Kevin M. Rosenberg
 ;;; Licensed under the LLGPL, see debian/copyright file
 
 
@@ -17,40 +17,16 @@
 	   #:compile-common-lisp-controller-v5
 	   #:init-common-lisp-controller-v5
 	   #:clc-require
-	   #:clc-build-all-packages
-	   #:*clc-quiet*
-	   #:calculate-fasl-root
-	   #:list-systems
-	   #:*redirect-fasl-files-to-cache*
-	   #:with-clc-active
-	   ;; depricated:
-	   #:make-clc-send-command-string
-	   #:send-clc-command)
-  (:nicknames #:clc
-	      ;;; depricated:
-	      #:c-l-c))
+	   #:*clc-quiet*)
+  (:nicknames #:clc))
 
 (in-package #:common-lisp-controller)
-
-(defvar *one-world-mode* t
-  "Are we working in a unified ASDF namespace?
-If true then CLC enabled and normal ASDF package definitions share the same namespace.
-If false then asdf operation will not operate or see CLC enabled systems, and one needs to use (clc:clc-require) to load packages")
 
 (defvar *clc-quiet* nil
   "If true then clc prints no messages")
 
-(defvar *redirect-fasl-files-to-cache* t
-  "If true we redirect the fasl files to the local cache directory")
-
 ;; Some general utilities to make the
 ;; descriptions shorter
-
-(defvar *fasl-type*
-  (load-time-value
-   (pathname-type
-    (compile-file-pathname "foo.lisp")))
-  "This is the type of compiled lisp files.")
 
 (defvar *fasl-root* nil "Root of implementation's directories of binary files")
 (defvar *source-root* #p"/usr/share/common-lisp/source/"
@@ -150,12 +126,6 @@ that should be loaded in the list to enable clc"
       (when (boundp 'sb-ext::*module-provider-functions*)
 	(pushnew :sbcl-hooks-require cl:*features*))
       
-      ;; use the sbcl asdf version for increased
-      ;; compatibility with the normal sbcl
-      
-      #+sbcl
-      (require :asdf)
-
       ;; return a list
       (prog1
 	  (nconc
@@ -165,7 +135,6 @@ that should be loaded in the list to enable clc"
 	    (compile-and-load  "common-lisp-controller"
 			       "common-lisp-controller.lisp")
 	    ;; asdf
-	    #-sbcl
 	    (compile-and-load  "cl-asdf" "asdf.lisp")
 	    
 	    (compile-and-load  "cl-asdf" "wild-modules.lisp")

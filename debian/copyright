@@ -4,7 +4,7 @@ and Kevin M. Rosenberg <kmr@debian.org>
 The original source can always be found at:
 	ftp://ftp.debian.org/dists/unstable/main/source/
 
-Copyright (C) 2000,2004  Peter Van Eynde and Kevin M. Rosenberg
+Copyright (C) 2000,2010  Peter Van Eynde and Kevin M. Rosenberg
 
   common-lisp-controller is licensed under the terms of the Lisp Lesser GNU
   Public License, known as the LLGPL.  The LLGPL consists of a preamble (see

@@ -11,6 +11,3 @@ db_go
 
 db_input medium common-lisp-controller/long-site-name || true
 db_go
-
-db_input medium common-lisp-controller/one-world-mode || true
-db_go

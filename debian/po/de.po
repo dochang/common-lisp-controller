@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller 6.11\n"
 "Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
-"POT-Creation-Date: 2010-01-14 10:51+0100\n"
+"POT-Creation-Date: 2010-01-30 22:00+0100\n"
 "PO-Revision-Date: 2007-06-29 23:33-0400\n"
 "Last-Translator: Matthias Julius <mdeb@julius-net.net>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -70,47 +70,3 @@ msgid ""
 msgstr ""
 "Sie können einstellen, was die Implementationen von Common Lisp als »long "
 "site name« verwenden werden."
-
-#. Type: boolean
-#. Default
-#: ../templates:4001
-msgid "true"
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../templates:4002
-msgid "Enable one unified asdf world mode?"
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../templates:4002
-msgid ""
-"asdf is used to load and compile Common Lisp libraries. Some libraries are "
-"packaged in Debian packages and are loaded with Common Lisp Controller, in "
-"particular using '(clc:clc-require :<name>)'. Other libraries can be added "
-"manually or by using other systems like for example clbuild. There are two "
-"possible configuration options available: One world or Two world mode."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../templates:4002
-msgid ""
-"In One World mode (the default) both CLC and manually added libraries are in "
-"the same  world and can load eachother. Using \"(asdf:oos 'asdf:load-op :"
-"<name)\" will also  load CLC enabled packages. However there is a slight "
-"risk that conflicts arrise between the two systems."
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../templates:4002
-msgid ""
-"In Two World mode you need to use clc-require to load CLC enabled packages "
-"as the ASDF system does not know about the Debian packages libraries, only "
-"CLC. The advantage of this is that there is less probability of conflicts, "
-"the disavantage is that using asdf to load CLC enabled packages will not "
-"work."
-msgstr ""

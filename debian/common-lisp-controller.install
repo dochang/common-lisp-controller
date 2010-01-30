@@ -2,3 +2,5 @@ lisp-config.lisp /etc/
 register-common-lisp-source unregister-common-lisp-source register-common-lisp-implementation unregister-common-lisp-implementation clc-update-customized-images usr/sbin/
 clc-register-user-package clc-unregister-user-package usr/bin/
 common-lisp-controller.lisp post-sysdef-install.lisp usr/share/common-lisp/source/common-lisp-controller/
+common-lisp-controller.conf /etc/common-lisp/source-registry.conf.d/
+common-lisp-controller-userdir.conf /etc/common-lisp/source-registry.conf.d/

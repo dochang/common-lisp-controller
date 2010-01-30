@@ -6,9 +6,9 @@ common-lisp-controller (7.0~rc1) UNRELEASED; urgency=low
   * make clc quiet on clc. (Closes: #382430) (Finally!)
   * Add a cl-builder user again, so that we can:
   *  add clc-clbuild wrapper that does what you think it does 
-  *  
+  * Use the cl-asdf not the build-in one for sbcl 
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 20 Jan 2010 22:18:22 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 30 Jan 2010 18:12:19 +0100
 
 common-lisp-controller (6.21) unstable; urgency=low
 

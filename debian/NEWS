@@ -1,3 +1,23 @@
+common-lisp-controller (7.0) unstable; urgency=low
+
+  This new version uses asdf version 1.502 or higher so it only needs to
+  install files in /etc/common-lisp/source-registry.conf.d/ in order
+  for asdf to find it.
+
+  CLC also uses the standard 'place binaries there' feature of asdf to 
+  put the binaries in /var/cache/common-lisp. The problem is that this
+  feature is opaque to us, so we cannot remove specifc libraries 
+  or files for one implementation. For now we will nuke all 
+  the fasl files in the cache when we add or remove a library or an
+  implementation.
+
+  This also means that clc enabled packages are _always_ active in asdf.
+
+  As a bonus there is now also clc-clbuild which is a small wrapper round
+  clbuild enabling you to download clbuild enabled packages.
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sun, 31 Jan 2010 21:10:18 +0100
+
 common-lisp-controller (6.21) unstable; urgency=low
 
   * From version 6.19 onwards clc does not longer add the 

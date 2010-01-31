@@ -1,0 +1,55 @@
+.\" 	-*- Mode: Nroff -*-
+.TH "clc-clbuild" "1" "Janurary 31, 2010"
+.AT 1
+.SH NAME
+clc-clbuild \- clc enabled clbuild wrapper
+.SH SYNOPSIS
+.B clc-clbuild
+.I setup
+
+.B clc-clbuild
+.I clbuild commands
+
+.SH DESCRIPTION
+This is a thin wrapper round
+.I clbuild
+for use with 
+.I common lisp controller.
+You can use this to install and update
+.I clbuild 
+enabled packages.
+
+To use first do (as root)
+.B clc-clbuild setup,
+this will download and setup clbuild. Then you can use the normal
+.I clbuild
+commands. These will be ran as the user 
+.I cl-builder
+and will setup a
+.I clbuild 
+environment in 
+.B /usr/share/common-lisp/clbuild/
+
+For example running (as root again)
+
+.B clc-clbuild install cl-ppcre
+
+will download and install 
+.I cl-ppcre
+from the appropriate libraries. Please see
+
+.B clc-clbuild help
+
+for more information.
+
+.SH BUGS
+
+Bug reports should be sent to the debian BTS, preferably with
+reportbug.
+
+.SH SEE ALSO
+
+.SH AUTHOR
+Peter Van Eynde (pvaneynd@debian.org)
+
+.PP

@@ -1,4 +1,4 @@
-common-lisp-controller (7.0) UNRELEASED; urgency=low
+common-lisp-controller (7.0) unstable; urgency=low
 
   * Use the new asdf to do much of the hard lifting
     * The problem with that is that we cannot selectively

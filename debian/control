@@ -25,4 +25,5 @@ Description: Common Lisp source and compiler manager
  Also includes clc-clbuild, a wrapper for clbuild. Please see
  http://common-lisp.net/project/clbuild/ for more information.
  .
- This package also contains a wrapper to invoke emacs with a clbuild provided slime environment.
+ This package also contains a wrapper to invoke emacs with a 
+ clbuild provided slime environment.

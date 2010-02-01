@@ -4,3 +4,6 @@ clc-register-user-package clc-unregister-user-package usr/bin/
 common-lisp-controller.lisp post-sysdef-install.lisp usr/share/common-lisp/source/common-lisp-controller/
 common-lisp-controller.conf /etc/common-lisp/source-registry.conf.d/
 common-lisp-controller-userdir.conf /etc/common-lisp/source-registry.conf.d/
+clc-clbuild usr/sbin/
+clc-slime clc-lisp usr/bin/
+clbuild.conf etc/common-lisp/source-registry.conf.d/

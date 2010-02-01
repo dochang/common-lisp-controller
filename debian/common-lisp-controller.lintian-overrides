@@ -5,3 +5,6 @@ common-lisp-controller binary: package-contains-empty-directory
 # /var/cache/common-lisp-controller/ has non-standard dir permission
 # since only the owner of the subdirectories can be delete their content
 common-lisp-controller binary: non-standard-dir-perm
+
+# no we only mention this link
+common-lisp-controller binary: description-possibly-contains-homepage

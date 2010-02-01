@@ -13,8 +13,9 @@ common-lisp-controller (7.0) unstable; urgency=low
       download clbuild packages
   * 
   * Added lintian overrides for cl-cclan
+  * Updated standard version, no real changes
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 01 Feb 2010 07:16:09 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 01 Feb 2010 07:19:06 +0100
 
 common-lisp-controller (6.21) unstable; urgency=low
 

@@ -1,8 +1,9 @@
 common-lisp-controller (7.1) UNRELEASED; urgency=low
 
   * open for changes
+  * Fixed typo in path. (Closes: #569841)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 01 Feb 2010 08:29:27 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Wed, 24 Feb 2010 21:28:04 +0100
 
 common-lisp-controller (7.0) unstable; urgency=low
 

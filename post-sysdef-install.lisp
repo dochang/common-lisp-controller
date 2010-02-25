@@ -14,12 +14,6 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (require :asdf))
 
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (setf asdf:*enable-asdf-binary-locations* t
-	asdf:*centralize-lisp-binaries* t
-	asdf:*default-toplevel-directory* #p"/var/cache/common-lisp-controller/"
-	asdf:*include-per-user-information* t))
-	
 (defun find-system-def (module-name)
   "Looks for name of system. Returns :asdf if found asdf file."
   (when (asdf:find-system module-name nil) :asdf))

@@ -1,5 +1,6 @@
 etc/common-lisp
 etc/common-lisp/source-registry.conf.d/
+etc/common-lisp/asdf-output-translations.conf.d/
 usr/sbin
 usr/bin
 usr/share/common-lisp/systems

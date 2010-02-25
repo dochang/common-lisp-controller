@@ -10,7 +10,7 @@ Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/common-lisp-controller.git
 
 Package: common-lisp-controller
 Architecture: all
-Depends:  ${misc:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0) | debconf-2.0, cl-asdf (>= 1.501), realpath, perl, adduser
+Depends:  ${misc:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1.0) | debconf-2.0, cl-asdf (>= 1.625), realpath, perl, adduser
 Breaks: cmucl (<< 3.1.0), clisp (<< 1:2.48-1), cl-asdf (<< 1.501), sbcl (<< 1:1.0.29.0)
 Replaces: cmucl (<< 3.1.0)
 Suggests: sbcl

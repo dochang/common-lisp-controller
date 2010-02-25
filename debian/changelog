@@ -2,8 +2,9 @@ common-lisp-controller (7.1) UNRELEASED; urgency=low
 
   * Fixed typo in path. (Closes: #569841)
   * Use the new ASDF Output Translations for our requirements.
+  * Give a nice order to the configuration files
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 25 Feb 2010 05:35:48 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Thu, 25 Feb 2010 05:36:59 +0100
 
 common-lisp-controller (7.0) unstable; urgency=low
 

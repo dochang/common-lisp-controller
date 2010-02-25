@@ -65,14 +65,14 @@ does nothing
 
 - unregister-common-lisp-source:
 does: (after checking stuff):
-rm -rf /var/cache/common-lisp-controller/*
+rm -rf /var/cache/common-lisp-controller/*/*/<library>
 
 - register-common-lisp-implementation
 does nothing
 
 - unregister-common-lisp-implementation
 does: (after checking stuff):
-rm -rf /var/cache/common-lisp-controller/*
+rm -rf /var/cache/common-lisp-controller/*/<implementation>
 
 - clc-init.lisp:
 

@@ -18,5 +18,5 @@ echo "$implementation" | grep -q '\.\.' && echo "Found .. in $1!" && exit 1
 
 echo "$implementation" | grep -q '\/\/' && echo "Found // in $1!" && exit 2
 
-rm -rf /var/cache/common-lisp-controller/*
+rm -rf /var/cache/common-lisp-controller/*/"$1"
 

@@ -44,10 +44,10 @@ binary-indep: build
 	dh_lintian
 	dh_install
 	# give an order to the files:
-	install --owner=root --mode=644 --no-target-directory common-lisp-controller.conf /etc/common-lisp/source-registry.conf.d/01-common-lisp-controller.conf
-	install --owner=root --mode=644 --no-target-directory common-lisp-controller-userdir.conf /etc/common-lisp/source-registry.conf.d/02-common-lisp-controller-userdir.conf
-	install --owner=root --mode=644 --no-target-directory clbuild.conf etc/common-lisp/source-registry.conf.d/03-clbuild.conf
-	install --owner=root --mode=644 --no-target-directory common-lisp-controller-locations.conf /etc/common-lisp/asdf-output-translations.conf.d/01-common-lisp-controller.conf
+	install --owner=root --mode=644 --no-target-directory common-lisp-controller.conf debian/common-lisp-controller/etc/common-lisp/source-registry.conf.d/01-common-lisp-controller.conf
+	install --owner=root --mode=644 --no-target-directory common-lisp-controller-userdir.conf debian/common-lisp-controller/etc/common-lisp/source-registry.conf.d/02-common-lisp-controller-userdir.conf
+	install --owner=root --mode=644 --no-target-directory clbuild.conf debian/common-lisp-controller/etc/common-lisp/source-registry.conf.d/03-clbuild.conf
+	install --owner=root --mode=644 --no-target-directory common-lisp-controller-locations.conf debian/common-lisp-controller/etc/common-lisp/asdf-output-translations.conf.d/01-common-lisp-controller.conf
 
 	dh_installdebconf	
 	dh_installman

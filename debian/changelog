@@ -2,14 +2,17 @@ common-lisp-controller (7.1) UNRELEASED; urgency=low
 
   * Fixed typo in path. (Closes: #569841)
   * Use the new ASDF Output Translations for our requirements.
+    (Closes: #568818)
   * Give a nice order to the configuration files
   * We now again remove specific directories
   * Use install not dh_install
   * We still have to remove all cached information because the asdf
     naming is not the naming that we use
   * This version works better with clisp. (Closes: #567912)
+  * Silence removal of user/group. This should stop any debconf
+    confusion. (Closes: #571626)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 27 Feb 2010 20:47:41 +0100
+ -- Peter Van Eynde <pvaneynd@debian.org>  Sat, 27 Feb 2010 20:53:39 +0100
 
 common-lisp-controller (7.0) unstable; urgency=low
 

@@ -1,4 +1,4 @@
-common-lisp-controller (7.1) UNRELEASED; urgency=low
+common-lisp-controller (7.1) unstable; urgency=low
 
   * Fixed typo in path. (Closes: #569841)
   * Use the new ASDF Output Translations for our requirements.

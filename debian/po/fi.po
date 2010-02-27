@@ -1,9 +1,10 @@
+# Esko Arajärvi <edu@iki.fi>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: common-lisp-controller_6.12\n"
 "Report-Msgid-Bugs-To: common-lisp-controller@packages.debian.org\n"
-"POT-Creation-Date: 2010-01-30 22:00+0100\n"
-"PO-Revision-Date: 2007-12-21 14:10+0200\n"
+"POT-Creation-Date: 2008-06-12 20:15+0200\n"
+"PO-Revision-Date: 2010-01-09 22:31+0200\n"
 "Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
 "Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,6 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-Country: Finland\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Type: string
 #. Default
@@ -23,7 +26,7 @@ msgstr "Tuntematon"
 #. Description
 #: ../templates:2002
 msgid "Short Common Lisp site name:"
-msgstr "Lyhyt Common Lisp -sivuston nimi:"
+msgstr "Common Lispin käyttöpaikan lyhyt nimi:"
 
 #. Type: string
 #. Description
@@ -32,8 +35,8 @@ msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'short site name'."
 msgstr ""
-"Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”lyhyenä "
-"sivuston nimenä”."
+"Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”käyttöpaikan "
+"lyhyenä nimenä” (short-site-name)."
 
 #. Type: string
 #. Description
@@ -41,20 +44,20 @@ msgstr ""
 #. Description
 #: ../templates:2002 ../templates:3002
 msgid "This is mostly unused except in some error reporting tools."
-msgstr "Tätä ei yleensä käytetä muuten kuin joissain virheilmoitustyökaluissa."
+msgstr "Tätä käytetään lähinnä joissain virheilmoitustyökaluissa."
 
 #. Type: string
 #. Default
 #. Default long site name, just something longer than the default site name
 #: ../templates:3001
 msgid "Site name not initialized"
-msgstr "Sivuston nimeä ei ole asetettu"
+msgstr "Käyttöpaikan nimeä ei ole asetettu"
 
 #. Type: string
 #. Description
 #: ../templates:3002
 msgid "Long Common Lisp site name:"
-msgstr "Pitkä Common Lisp -sivuston nimi:"
+msgstr "Common Lispin käyttöpaikan pitkä nimi:"
 
 #. Type: string
 #. Description
@@ -63,5 +66,6 @@ msgid ""
 "You can configure what the Common Lisp implementations are going to use as "
 "'long site name'."
 msgstr ""
-"Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”pitkänä "
-"sivuston nimenä”."
+"Voit asettaa mitä Common Lisp -toteutukset tulevat käyttämään ”käyttöpaikan "
+"pitkänä nimenä” (long-site-name)."
+

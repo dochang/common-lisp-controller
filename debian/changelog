@@ -3,8 +3,9 @@ common-lisp-controller (7.2) UNRELEASED; urgency=low
   * open for changes
   * Call (asdf:clear-output-translations) and (asdf:clear-source-
     registry) prior to dumping. (Closes: #577210)
+  * Use bash in clc-clbuild. (Closes: #572356)
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 19 Apr 2010 21:52:32 +0200
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 19 Apr 2010 21:53:59 +0200
 
 common-lisp-controller (7.1) unstable; urgency=low
 

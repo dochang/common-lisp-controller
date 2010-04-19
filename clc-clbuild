@@ -13,7 +13,7 @@ if [ "x$1" == "xsetup" ] ; then
   chown cl-builder:cl-builder /usr/share/common-lisp/clbuild
   (cd /usr/share/common-lisp/clbuild ; 
       echo downloading clbuild using darcs
-      su --shell="/bin/sh" --command="darcs get http://common-lisp.net/project/clbuild/clbuild" cl-builder
+      su --shell="/bin/bash" --command="darcs get http://common-lisp.net/project/clbuild/clbuild" cl-builder
       chmod a+x clbuild/clbuild )
   mv /usr/share/common-lisp/clbuild/clbuild /usr/share/common-lisp/clbuild/the-dir
   mv /usr/share/common-lisp/clbuild/the-dir/* /usr/share/common-lisp/clbuild/
@@ -29,4 +29,4 @@ if [ ! -d "/usr/share/common-lisp/clbuild" ]  ; then
 fi
  
 (cd /usr/share/common-lisp/clbuild 
- su --shell="/bin/sh" cl-builder -- ./clbuild  "$@")
+ su --shell="/bin/bash" cl-builder -- ./clbuild  "$@")

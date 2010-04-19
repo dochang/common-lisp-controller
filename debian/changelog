@@ -1,3 +1,9 @@
+common-lisp-controller (7.3) UNRELEASED; urgency=low
+
+  * open for changes
+
+ -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 19 Apr 2010 21:59:49 +0200
+
 common-lisp-controller (7.2) unstable; urgency=low
 
   * Call (asdf:clear-output-translations) and (asdf:clear-source-

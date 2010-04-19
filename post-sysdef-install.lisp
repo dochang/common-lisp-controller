@@ -9,6 +9,11 @@
   (unless (find-package :asdf)
     (error "You need to load the asdf system before loading or compiling this file!")))
 
+;;; Init the library
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (asdf:clear-output-translations)
+  (asdf:clear-source-registry))
+
 ;;; ECL has the asdf::build-op operation
 #+ecl
 (eval-when (:compile-toplevel :load-toplevel :execute)

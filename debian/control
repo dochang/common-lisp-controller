@@ -3,7 +3,8 @@ Section: lisp
 Priority: optional
 Build-Depends: debhelper (>= 7), po-debconf
 Maintainer: Debian Common Lisp Team <pkg-common-lisp-devel@lists.alioth.debian.org>
-Uploaders: Peter Van Eynde <pvaneynd@debian.org>, Kevin M. Rosenberg <kmr@debian.org>, Luca Capello <luca@pca.it>
+Uploaders: Peter Van Eynde <pvaneynd@debian.org>, Kevin M. Rosenberg <kmr@debian.org>,
+ Luca Capello <luca@pca.it>, Desmond O. Chang <dochang@gmail.com>
 Standards-Version: 3.8.4
 Vcs-Git: http://git.debian.org/git/pkg-common-lisp/common-lisp-controller.git
 Vcs-Browser: http://git.debian.org/?p=pkg-common-lisp/common-lisp-controller.git;a=summary

@@ -1,8 +1,11 @@
 common-lisp-controller (7.3) UNRELEASED; urgency=low
 
-  * open for changes
+  * debian/copyright:
+    + add copyright info about Luca and me
+  * debian/control:
+    + add me into Uploaders
 
- -- Peter Van Eynde <pvaneynd@debian.org>  Mon, 19 Apr 2010 21:59:49 +0200
+ -- Desmond O. Chang <dochang@gmail.com>  Mon, 19 Jul 2010 02:25:11 +0800
 
 common-lisp-controller (7.2) unstable; urgency=low
 

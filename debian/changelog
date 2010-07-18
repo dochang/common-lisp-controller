@@ -4,8 +4,10 @@ common-lisp-controller (7.3) UNRELEASED; urgency=low
     + add copyright info about Luca and me
   * debian/control:
     + add me into Uploaders
+  * debian/source/format:
+    + change source format to 3.0 (native)
 
- -- Desmond O. Chang <dochang@gmail.com>  Mon, 19 Jul 2010 02:25:11 +0800
+ -- Desmond O. Chang <dochang@gmail.com>  Mon, 19 Jul 2010 02:31:41 +0800
 
 common-lisp-controller (7.2) unstable; urgency=low
 

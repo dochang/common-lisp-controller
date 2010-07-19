@@ -15,6 +15,7 @@ Depends:  ${misc:Depends}, bash (>= 2.04-9), debianutils (>= 1.7), debconf (>= 1
 Breaks: cmucl (<< 3.1.0), clisp (<< 1:2.48-1), cl-asdf (<< 1.501), sbcl (<< 1:1.0.29.0)
 Replaces: cmucl (<< 3.1.0)
 Suggests: sbcl
+Homepage: http://pkg-common-lisp.alioth.debian.org
 Description: Common Lisp source and compiler manager
  This package helps installing Common Lisp sources and compilers.
  .

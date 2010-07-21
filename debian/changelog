@@ -1,5 +1,6 @@
 common-lisp-controller (7.3) UNRELEASED; urgency=low
 
+  * update manpage (Closes: #589185)
   * debian/copyright:
     + add copyright info about Luca and me
   * debian/control:
@@ -8,7 +9,7 @@ common-lisp-controller (7.3) UNRELEASED; urgency=low
   * debian/source/format:
     + change source format to 3.0 (native)
 
- -- Desmond O. Chang <dochang@gmail.com>  Mon, 19 Jul 2010 03:02:00 +0800
+ -- Desmond O. Chang <dochang@gmail.com>  Wed, 21 Jul 2010 15:33:00 +0800
 
 common-lisp-controller (7.2) unstable; urgency=low
 

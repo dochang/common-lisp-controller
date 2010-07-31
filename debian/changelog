@@ -1,6 +1,8 @@
 common-lisp-controller (7.4) UNRELEASED; urgency=low
 
   * unregister-common-lisp-{source,implementation} handle more characters
+  * debian/control:
+    + change Standards-Version to 3.9.1
 
  -- Desmond O. Chang <dochang@gmail.com>  Sat, 31 Jul 2010 13:54:11 +0800
 

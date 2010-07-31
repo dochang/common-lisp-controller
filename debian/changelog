@@ -1,3 +1,9 @@
+common-lisp-controller (7.4) UNRELEASED; urgency=low
+
+  * unregister-common-lisp-{source,implementation} handle more characters
+
+ -- Desmond O. Chang <dochang@gmail.com>  Sat, 31 Jul 2010 13:54:11 +0800
+
 common-lisp-controller (7.3) unstable; urgency=low
 
   * update manpage (Closes: #589185)

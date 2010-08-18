@@ -8,4 +8,4 @@ if [ "$EUID" == 0 ] ; then
 fi
 
 (cd /usr/share/common-lisp/clbuild 
- ./clbuild  slime "$@")
+ ./clbuild  lisp "$@")

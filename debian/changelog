@@ -1,4 +1,4 @@
-common-lisp-controller (7.4) UNRELEASED; urgency=low
+common-lisp-controller (7.4) unstable; urgency=low
 
   * clc-lisp should run 'clbuild lisp'. (Closes: #593157)
   * unregister-common-lisp-{source,implementation} handle more characters
@@ -6,7 +6,7 @@ common-lisp-controller (7.4) UNRELEASED; urgency=low
     + change Standards-Version to 3.9.1
     + depends on cl-asdf (>= 2:2.004-1)
 
- -- Desmond O. Chang <dochang@gmail.com>  Thu, 19 Aug 2010 03:59:07 +0800
+ -- Desmond O. Chang <dochang@gmail.com>  Thu, 19 Aug 2010 23:37:48 +0800
 
 common-lisp-controller (7.3) unstable; urgency=low
 

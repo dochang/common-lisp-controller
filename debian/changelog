@@ -1,11 +1,11 @@
-common-lisp-controller (7.5) UNRELEASED; urgency=low
+common-lisp-controller (7.5) unstable; urgency=low
 
   * Correct source registry DSL (Closes: #599903).
   * debian/control:
     + depends on cl-asdf (>= 2:2.009-1)
     + Suggests: darcs for 'clc-clbuild setup' (Closes: #578740).
 
- -- Desmond O. Chang <dochang@gmail.com>  Wed, 13 Oct 2010 11:45:39 +0800
+ -- Desmond O. Chang <dochang@gmail.com>  Wed, 13 Oct 2010 12:27:32 +0800
 
 common-lisp-controller (7.4) unstable; urgency=low
 

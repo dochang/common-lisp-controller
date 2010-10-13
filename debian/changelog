@@ -1,3 +1,10 @@
+common-lisp-controller (7.5) UNRELEASED; urgency=low
+
+  * debian/control:
+    + depends on cl-asdf (>= 2:2.009-1)
+
+ -- Desmond O. Chang <dochang@gmail.com>  Wed, 13 Oct 2010 11:15:09 +0800
+
 common-lisp-controller (7.4) unstable; urgency=low
 
   * clc-lisp should run 'clbuild lisp'. (Closes: #593157)

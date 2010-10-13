@@ -1,5 +1,6 @@
 common-lisp-controller (7.5) UNRELEASED; urgency=low
 
+  * Correct source registry DSL (Closes: #599903).
   * debian/control:
     + depends on cl-asdf (>= 2:2.009-1)
 

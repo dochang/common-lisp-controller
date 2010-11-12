@@ -23,6 +23,12 @@ case "$1" in
                 --disabled-password --disabled-login --group cl-builder 
     ;;
     upgrade)
+        # lisp-config.lisp is shipped as a conffile from 7.0 onwards, so when
+        # upgrading from earlier versions we have to remove the old
+        # auto-generated file, to avoid config file conflict (#601957)
+        if dpkg --compare-versions "$2" lt 7.0; then
+            rm -f /etc/lisp-config.lisp
+        fi
         # cleanup fasl files:
         find  /usr/share/common-lisp/source/defsystem \
 	      /usr/share/common-lisp/source/asdf \

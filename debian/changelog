@@ -7,6 +7,16 @@ common-lisp-controller (7.5) unstable; urgency=low
 
  -- Desmond O. Chang <dochang@gmail.com>  Wed, 13 Oct 2010 12:27:32 +0800
 
+common-lisp-controller (7.4+nmu1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * lisp-config.lisp is shipped as a conffile from 7.0 onwards, so when
+    upgrading from earlier versions we have to remove the old auto-generated
+    file, to avoid config file conflict (Closes: #601957). Setting urgency to
+    high for RC bug.
+
+ -- Serafeim Zanikolas <sez@debian.org>  Mon, 08 Nov 2010 20:13:35 +0100
+
 common-lisp-controller (7.4) unstable; urgency=low
 
   * clc-lisp should run 'clbuild lisp'. (Closes: #593157)

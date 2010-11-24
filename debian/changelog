@@ -1,3 +1,11 @@
+common-lisp-controller (7.4+nmu2) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Same as 7.4+nmu1, but also when preinst is invoked with `install'
+    <old-version> (hopefully this really closes: #601957).
+
+ -- Serafeim Zanikolas <sez@debian.org>  Sun, 21 Nov 2010 21:50:39 +0100
+
 common-lisp-controller (7.4+nmu1) unstable; urgency=high
 
   * Non-maintainer upload.

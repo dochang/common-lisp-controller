@@ -5,7 +5,7 @@ common-lisp-controller (7.5) unstable; urgency=low
     + depends on cl-asdf (>= 2:2.009-1)
     + Suggests: darcs for 'clc-clbuild setup' (Closes: #578740).
 
- -- Desmond O. Chang <dochang@gmail.com>  Fri, 12 Nov 2010 18:19:23 +0800
+ -- Desmond O. Chang <dochang@gmail.com>  Wed, 24 Nov 2010 20:37:16 +0800
 
 common-lisp-controller (7.4+nmu2) unstable; urgency=high
 

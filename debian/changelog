@@ -1,4 +1,4 @@
-common-lisp-controller (7.6) UNRELEASED; urgency=low
+common-lisp-controller (7.6) unstable; urgency=low
 
   [ Luca Capello ]
   * debian/control:
@@ -8,7 +8,7 @@ common-lisp-controller (7.6) UNRELEASED; urgency=low
   * move user management script from {preinst,postrm}
     to {postinst,prerm} (Closes: #606785).
 
- -- Desmond O. Chang <dochang@gmail.com>  Tue, 21 Dec 2010 18:53:03 +0800
+ -- Desmond O. Chang <dochang@gmail.com>  Tue, 21 Dec 2010 20:16:04 +0800
 
 common-lisp-controller (7.5) unstable; urgency=low
 

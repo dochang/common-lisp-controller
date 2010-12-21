@@ -4,7 +4,11 @@ common-lisp-controller (7.6) UNRELEASED; urgency=low
   * debian/control:
     + remove myself from Uploaders:.
 
- --
+  [ Desmond O. Chang ]
+  * move user management script from {preinst,postrm}
+    to {postinst,prerm} (Closes: #606785).
+
+ -- Desmond O. Chang <dochang@gmail.com>  Tue, 21 Dec 2010 18:53:03 +0800
 
 common-lisp-controller (7.5) unstable; urgency=low
 

@@ -23,10 +23,6 @@ case "$1" in
         if test "x$2" != "x" && dpkg --compare-versions "$2" lt 7.0; then
             rm -f /etc/lisp-config.lisp
         fi
-	# just check if the user already exists:
-	getent passwd cl-builder > /dev/null || \
-	    adduser --system --home /usr/share/common-lisp/ --shell /bin/false --no-create-home \
-                --disabled-password --disabled-login --group cl-builder 
     ;;
     upgrade)
         # same as the install case above
@@ -57,10 +53,6 @@ case "$1" in
              fi
            fi
         done
-	# just check if the user already exists:
-	getent passwd cl-builder > /dev/null || \
-	    adduser --system --home /usr/share/common-lisp/ --shell /bin/false --no-create-home \
-                --disabled-password --disabled-login --group cl-builder 
     ;;
     abort-upgrade)
     ;;

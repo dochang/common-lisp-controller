@@ -22,9 +22,6 @@ case "$1" in
        purge|disappear)
 	  rm -rf /var/cache/common-lisp-controller || true
 	  rm -f /var/lib/common-lisp-controller/lisp-config.lisp || true
-	  rm -rf /usr/share/common-lisp/clbuild/* || true
-	  deluser cl-builder  > /dev/null 2>&1 || true
-	  delgroup cl-builder > /dev/null 2>&1  || true
         ;;
        remove|abort-install|abort-upgrade)
         ;;

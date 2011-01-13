@@ -1,3 +1,11 @@
+common-lisp-controller (7.7) UNRELEASED; urgency=low
+
+  [ Paulo Sequeira ]
+  * debian/rules
+    + add dh_link to create symlinks for manpages.
+
+ -- Desmond O. Chang <dochang@gmail.com>  Thu, 13 Jan 2011 13:42:07 +0800
+
 common-lisp-controller (7.6) unstable; urgency=low
 
   [ Luca Capello ]
